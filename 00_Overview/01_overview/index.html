@@ -1334,7 +1334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/01_view_implementation/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/01_view_implementation.md" class="md-nav__link">
         
   
   
@@ -1362,7 +1362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/02_view_design_specs/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/02_view_design_specs.md" class="md-nav__link">
         
   
   
@@ -1390,7 +1390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/03_state_to_figma_mapping/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/03_state_to_figma_mapping.md" class="md-nav__link">
         
   
   
@@ -1418,7 +1418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/04_figma_to_design_system_mapping/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/04_figma_to_design_system_mapping.md" class="md-nav__link">
         
   
   
@@ -2390,17 +2390,17 @@
 <tr>
 <td><strong>首頁 Widget</strong></td>
 <td><code>LoadBookingCodeSectionView</code></td>
-<td><code>LoadCodeWidgetView</code>（原地擴展）</td>
+<td><code>LoadBookingCodeSectionView</code>（原地擴展）</td>
 </tr>
 <tr>
 <td><strong>Code Center Load Code Tab</strong></td>
 <td><code>LoadCodeViewWrapper</code> → <code>LoadCodeViewController</code> (UIKit)</td>
-<td><code>LoadCodeWidgetView</code> (SwiftUI)</td>
+<td><code>LoadBookingCodeSectionView</code> (SwiftUI)</td>
 </tr>
 <tr>
 <td><strong>首頁 Betslip (Empty)</strong></td>
 <td>既有空狀態</td>
-<td>嵌入 <code>LoadCodeWidgetView</code></td>
+<td>嵌入 <code>LoadBookingCodeSectionView</code></td>
 </tr>
 </tbody>
 </table>
@@ -2411,11 +2411,9 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                    復用策略                                          │
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─────────────────────────────────────────────────────────────────────┤
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  ✅ 擴展現有 View/Feature 結構                                       │
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  ✅ 保持原有 API 向後相容                                            │
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  ✅ 新功能以 optional flag (enableCodeConverter) 控制                │
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  ✅ 子元件擴展而非重寫                                               │
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  ✅ 漸進式替換 LoadCodeViewController                                │
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>└─────────────────────────────────────────────────────────────────────┘
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  ✅ 子元件擴展而非重寫                                               │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  ✅ 漸進式替換 LoadCodeViewController                                │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└─────────────────────────────────────────────────────────────────────┘
 </code></pre></div>
 <h3 id="_5">元件對照表<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <table>
@@ -2429,7 +2427,7 @@
 <tbody>
 <tr>
 <td><code>LoadBookingCodeSectionView</code></td>
-<td><code>LoadCodeWidgetView</code></td>
+<td><code>LoadBookingCodeSectionView</code></td>
 <td>擴展</td>
 </tr>
 <tr>
@@ -2444,7 +2442,7 @@
 </tr>
 <tr>
 <td><code>LoadBookingCodeSection.Feature</code></td>
-<td><code>LoadCodeWidget.Feature</code></td>
+<td><code>LoadBookingCodeSection.Feature</code></td>
 <td>擴展</td>
 </tr>
 <tr>
@@ -2515,10 +2513,10 @@
 <h2 id="_6">技術架構<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <h3 id="clean-architecture">Clean Architecture 分層<a class="headerlink" href="#clean-architecture" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>UI Layer (SwiftUI)
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    └── LoadCodeWidgetView, BookieSelectorSheet
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    └── LoadBookingCodeSectionView, BookieSelectorSheet
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Domain Layer (TCA)
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    ├── Feature: LoadCodeWidget.Feature
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    ├── Feature: LoadBookingCodeSection.Feature
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    └── UseCase: LoadProviderConfigUseCase, ConvertBookingCodeUseCase
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Domain Model
@@ -2571,9 +2569,9 @@
 </ol>
 <h3 id="phase-13">Phase 1.3: 替換入口點<a class="headerlink" href="#phase-13" title="Permanent link">&para;</a></h3>
 <ol>
-<li>首頁 Widget：設置 <code>enableCodeConverter = true</code></li>
-<li>Code Center：用 <code>LoadCodeWidgetView</code> 替換 <code>LoadCodeViewWrapper</code></li>
-<li>Betslip Empty：嵌入 <code>LoadCodeWidgetView</code></li>
+<li>首頁 Widget：使用 <code>LoadBookingCodeSectionView</code></li>
+<li>Code Center：用 <code>LoadBookingCodeSectionView</code> 替換 <code>LoadCodeViewWrapper</code></li>
+<li>Betslip Empty：嵌入 <code>LoadBookingCodeSectionView</code></li>
 </ol>
 <h3 id="phase-14">Phase 1.4: 清理<a class="headerlink" href="#phase-14" title="Permanent link">&para;</a></h3>
 <ol>
@@ -2625,11 +2623,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>原有邏輯相容性</td>
-<td>LoadCodeManager 既有呼叫可能受影響</td>
-<td>保持 enableCodeConverter = false 時完全相容</td>
-</tr>
 <tr>
 <td>API 回傳格式變更</td>
 <td>DTO 映射失敗</td>

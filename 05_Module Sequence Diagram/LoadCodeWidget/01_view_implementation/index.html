@@ -13,10 +13,6 @@
       
       
       
-        <link rel="prev" href="../../Module%20Sequence%20Diagrams/03_data_interaction_bookie_selection/">
-      
-      
-        <link rel="next" href="../02_view_design_specs/">
       
       
         
@@ -27,7 +23,7 @@
     
     
       
-        <title>View 實作 - Code Converter Phase 1 - TDD</title>
+        <title>View Implementation: 復用策略詳解 - Code Converter Phase 1 - TDD</title>
       
     
     
@@ -112,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              View 實作
+              View Implementation: 復用策略詳解
             
           </span>
         </div>
@@ -293,8 +289,6 @@
   
   
   
-    
-  
   
     
     
@@ -302,12 +296,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../../Module%20Sequence%20Diagrams/01_data_initialization_load_provider_config/" class="md-tabs__link">
           
   
@@ -878,31 +870,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -920,7 +909,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -944,13 +933,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -959,7 +945,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_1" >
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
             
   
   
@@ -1084,37 +1070,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    View 實作
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../05_Module Sequence Diagram/LoadBookingCodeSection/01_view_implementation.md" class="md-nav__link">
         
   
   
@@ -1130,193 +1089,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目錄
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        復用策略總覽
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        現有 vs 新增對照
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="現有 vs 新增對照">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#loadbookingcodesectionview-loadcodewidgetview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LoadBookingCodeSectionView → LoadCodeWidgetView
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        子元件變更詳解
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="子元件變更詳解">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-countrydropdownview-bookiedropdownview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. CountryDropdownView → BookieDropdownView
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-bookingcodeinputview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. BookingCodeInputView 擴展
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 新增元件
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. 新增元件">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#loadinghintview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LoadingHintView
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#errormessageview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ErrorMessageView
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        向後相容性保證
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="向後相容性保證">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-feature" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Feature 初始化相容
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-state" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. State 預設值
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 漸進式遷移
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1329,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02_view_design_specs/" class="md-nav__link">
+      <a href="../../../05_Module Sequence Diagram/LoadBookingCodeSection/02_view_design_specs.md" class="md-nav__link">
         
   
   
@@ -1357,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../03_state_to_figma_mapping/" class="md-nav__link">
+      <a href="../../../05_Module Sequence Diagram/LoadBookingCodeSection/03_state_to_figma_mapping.md" class="md-nav__link">
         
   
   
@@ -1385,7 +1157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04_figma_to_design_system_mapping/" class="md-nav__link">
+      <a href="../../../05_Module Sequence Diagram/LoadBookingCodeSection/04_figma_to_design_system_mapping.md" class="md-nav__link">
         
   
   
@@ -2114,10 +1886,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#loadbookingcodesectionview-loadcodewidgetview" class="md-nav__link">
+  <a href="#loadbookingcodesectionview-loadbookingcodesectionview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LoadBookingCodeSectionView → LoadCodeWidgetView
+        LoadBookingCodeSectionView → LoadBookingCodeSectionView
       
     </span>
   </a>
@@ -2207,56 +1979,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        向後相容性保證
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="向後相容性保證">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-feature" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Feature 初始化相容
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-state" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. State 預設值
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 漸進式遷移
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2277,7 +1999,7 @@
 <h1 id="view-implementation">View Implementation: 復用策略詳解<a class="headerlink" href="#view-implementation" title="Permanent link">&para;</a></h1>
 <h2 id="_1">復用策略總覽<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────────────────────────┐
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                   LoadCodeWidgetView 復用策略                          │
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                   LoadBookingCodeSectionView 復用策略                          │
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├────────────────────────────────────────────────────────────────────────┤
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  核心原則：最大化復用 LoadBookingCodeSectionView 的結構               │
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│                                                                        │
@@ -2288,7 +2010,7 @@
 </code></pre></div>
 <hr />
 <h2 id="vs">現有 vs 新增對照<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h2>
-<h3 id="loadbookingcodesectionview-loadcodewidgetview">LoadBookingCodeSectionView → LoadCodeWidgetView<a class="headerlink" href="#loadbookingcodesectionview-loadcodewidgetview" title="Permanent link">&para;</a></h3>
+<h3 id="loadbookingcodesectionview-loadbookingcodesectionview">LoadBookingCodeSectionView → LoadBookingCodeSectionView<a class="headerlink" href="#loadbookingcodesectionview-loadbookingcodesectionview" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 現有</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">LoadBookingCodeSectionView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">store</span><span class="p">:</span><span class="w"> </span><span class="n">StoreOf</span><span class="p">&lt;</span><span class="n">LoadBookingCodeSection</span><span class="p">.</span><span class="n">Feature</span><span class="p">&gt;</span>
@@ -2305,8 +2027,8 @@
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span>
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1">// 新增（擴展）</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">LoadCodeWidgetView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">store</span><span class="p">:</span><span class="w"> </span><span class="n">StoreOf</span><span class="p">&lt;</span><span class="n">LoadCodeWidget</span><span class="p">.</span><span class="n">Feature</span><span class="p">&gt;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">LoadBookingCodeSectionView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">store</span><span class="p">:</span><span class="w"> </span><span class="n">StoreOf</span><span class="p">&lt;</span><span class="n">LoadBookingCodeSection</span><span class="p">.</span><span class="n">Feature</span><span class="p">&gt;</span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="p">@</span><span class="n">FocusState</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">isTextFieldFocused</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
 <a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
@@ -2390,46 +2112,43 @@
 <a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="c1">// 新增（擴展）</span>
 <a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="kd">private</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="nc">BookieDropdownView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">selectedBookie</span><span class="p">:</span><span class="w"> </span><span class="n">SelectedBookie</span><span class="p">?</span>
-<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">enableCodeConverter</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span>
-<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">selectedCountry</span><span class="p">:</span><span class="w"> </span><span class="n">Region</span><span class="w">  </span><span class="c1">// 向後相容</span>
-<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">onTap</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Void</span>
-<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
-<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="n">onTap</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">            </span><span class="n">HStack</span><span class="p">(</span><span class="n">spacing</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">                </span><span class="c1">// 根據 enableCodeConverter 決定顯示內容</span>
-<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">enableCodeConverter</span><span class="p">,</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">bookie</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">selectedBookie</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">                    </span><span class="c1">// 新功能：顯示 Bookie + Country</span>
-<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">                    </span><span class="n">VStack</span><span class="p">(</span><span class="n">alignment</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">leading</span><span class="p">,</span><span class="w"> </span><span class="n">spacing</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">                        </span><span class="n">Text</span><span class="p">(</span><span class="n">bookie</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
-<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">                            </span><span class="p">.</span><span class="n">font</span><span class="p">(.</span><span class="n">system</span><span class="p">(</span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">))</span>
-<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">                            </span><span class="p">.</span><span class="n">lineLimit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">                        </span><span class="n">Text</span><span class="p">(</span><span class="n">bookie</span><span class="p">.</span><span class="n">country</span><span class="p">.</span><span class="n">displayName</span><span class="p">)</span>
-<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">                            </span><span class="p">.</span><span class="n">font</span><span class="p">(.</span><span class="n">system</span><span class="p">(</span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
-<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">                            </span><span class="p">.</span><span class="n">foregroundColor</span><span class="p">(.</span><span class="n">secondary</span><span class="p">)</span>
-<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">                    </span><span class="p">}</span>
-<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">                    </span><span class="c1">// 向後相容：只顯示 Country</span>
-<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">                    </span><span class="n">Text</span><span class="p">(</span><span class="n">selectedCountry</span><span class="p">.</span><span class="n">description</span><span class="p">)</span>
-<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="w">                        </span><span class="p">.</span><span class="n">font</span><span class="p">(.</span><span class="n">system</span><span class="p">(</span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">))</span>
-<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="w">                </span><span class="p">}</span>
-<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>
-<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">                </span><span class="n">Spacer</span><span class="p">()</span>
-<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>
-<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">                </span><span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;chevron.down&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">                    </span><span class="p">.</span><span class="n">font</span><span class="p">(.</span><span class="n">system</span><span class="p">(</span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
-<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">                    </span><span class="p">.</span><span class="n">foregroundColor</span><span class="p">(.</span><span class="n">secondary</span><span class="p">)</span>
-<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">            </span><span class="p">}</span>
-<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="w">            </span><span class="p">.</span><span class="n">padding</span><span class="p">(.</span><span class="n">horizontal</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span>
-<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="w">            </span><span class="p">.</span><span class="n">padding</span><span class="p">(.</span><span class="n">vertical</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a><span class="w">        </span><span class="p">.</span><span class="n">frame</span><span class="p">(</span><span class="n">maxWidth</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">infinity</span><span class="p">,</span><span class="w"> </span><span class="n">maxHeight</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">infinity</span><span class="p">)</span>
-<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="w">        </span><span class="p">.</span><span class="n">background</span><span class="p">(</span>
-<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a><span class="w">            </span><span class="n">RoundedRectangle</span><span class="p">(</span><span class="n">cornerRadius</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a><span class="w">                </span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">backgroundType1Secondary</span><span class="p">)</span>
-<a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a><span class="w">        </span><span class="p">)</span>
-<a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a><span class="p">}</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">onTap</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Void</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="n">onTap</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">            </span><span class="n">HStack</span><span class="p">(</span><span class="n">spacing</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">bookie</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">selectedBookie</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">                    </span><span class="c1">// 顯示 Bookie + Country</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">                    </span><span class="n">VStack</span><span class="p">(</span><span class="n">alignment</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">leading</span><span class="p">,</span><span class="w"> </span><span class="n">spacing</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">                        </span><span class="n">Text</span><span class="p">(</span><span class="n">bookie</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">                            </span><span class="p">.</span><span class="n">font</span><span class="p">(.</span><span class="n">system</span><span class="p">(</span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">))</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">                            </span><span class="p">.</span><span class="n">lineLimit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">                        </span><span class="n">Text</span><span class="p">(</span><span class="n">bookie</span><span class="p">.</span><span class="n">country</span><span class="p">.</span><span class="n">displayName</span><span class="p">)</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">                            </span><span class="p">.</span><span class="n">font</span><span class="p">(.</span><span class="n">system</span><span class="p">(</span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">                            </span><span class="p">.</span><span class="n">foregroundColor</span><span class="p">(.</span><span class="n">secondary</span><span class="p">)</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">                    </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Select Bookie&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">                        </span><span class="p">.</span><span class="n">font</span><span class="p">(.</span><span class="n">system</span><span class="p">(</span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">))</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">                        </span><span class="p">.</span><span class="n">foregroundColor</span><span class="p">(.</span><span class="n">secondary</span><span class="p">)</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="w">                </span><span class="n">Spacer</span><span class="p">()</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="w">                </span><span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;chevron.down&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">                    </span><span class="p">.</span><span class="n">font</span><span class="p">(.</span><span class="n">system</span><span class="p">(</span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="w">                    </span><span class="p">.</span><span class="n">foregroundColor</span><span class="p">(.</span><span class="n">secondary</span><span class="p">)</span>
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">            </span><span class="p">.</span><span class="n">padding</span><span class="p">(.</span><span class="n">horizontal</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">            </span><span class="p">.</span><span class="n">padding</span><span class="p">(.</span><span class="n">vertical</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="w">        </span><span class="p">.</span><span class="n">frame</span><span class="p">(</span><span class="n">maxWidth</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">infinity</span><span class="p">,</span><span class="w"> </span><span class="n">maxHeight</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">infinity</span><span class="p">)</span>
+<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="w">        </span><span class="p">.</span><span class="n">background</span><span class="p">(</span>
+<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a><span class="w">            </span><span class="n">RoundedRectangle</span><span class="p">(</span><span class="n">cornerRadius</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a><span class="w">                </span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">backgroundType1Secondary</span><span class="p">)</span>
+<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="w">        </span><span class="p">)</span>
+<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a><span class="p">}</span>
 </code></pre></div>
 <hr />
 <h3 id="2-bookingcodeinputview">2. BookingCodeInputView 擴展<a class="headerlink" href="#2-bookingcodeinputview" title="Permanent link">&para;</a></h3>
@@ -2591,72 +2310,6 @@
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">}</span>
 </code></pre></div>
-<hr />
-<h2 id="_3">向後相容性保證<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="1-feature">1. Feature 初始化相容<a class="headerlink" href="#1-feature" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// 原有呼叫方式仍然有效</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">let</span><span class="w"> </span><span class="nv">store</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Store</span><span class="p">(</span><span class="n">initialState</span><span class="p">:</span><span class="w"> </span><span class="n">LoadCodeWidget</span><span class="p">.</span><span class="n">State</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">LoadCodeWidget</span><span class="p">.</span><span class="n">Feature</span><span class="p">()</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1">// 新功能呼叫方式</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="kd">let</span><span class="w"> </span><span class="nv">store</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Store</span><span class="p">(</span><span class="n">initialState</span><span class="p">:</span><span class="w"> </span><span class="n">LoadCodeWidget</span><span class="p">.</span><span class="n">State</span><span class="p">(</span><span class="n">enableCodeConverter</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="n">LoadCodeWidget</span><span class="p">.</span><span class="n">Feature</span><span class="p">()</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="2-state">2. State 預設值<a class="headerlink" href="#2-state" title="Permanent link">&para;</a></h3>
-<p>所有新增屬性都有合理的預設值，不影響原有邏輯：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">extension</span><span class="w"> </span><span class="nc">LoadCodeWidget</span><span class="p">.</span><span class="n">State</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="kd">init</span><span class="p">(</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="c1">// 原有（保持預設）</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="n">bookingCode</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="n">selectedCountry</span><span class="p">:</span><span class="w"> </span><span class="n">Region</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">current</span><span class="p">,</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="n">isLoading</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="n">contentState</span><span class="p">:</span><span class="w"> </span><span class="n">SectionContentState</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="n">availableCountries</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">Region</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[.</span><span class="n">ghana</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">nigeria</span><span class="p">],</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="c1">// 新增（預設關閉）</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="n">enableCodeConverter</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  </span><span class="c1">// ← 預設關閉！</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="n">selectedBookie</span><span class="p">:</span><span class="w"> </span><span class="n">SelectedBookie</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="n">providerConfigs</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">ProviderConfig</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[],</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="n">inputState</span><span class="p">:</span><span class="w"> </span><span class="n">WidgetInputState</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="k">default</span><span class="p">,</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="n">isBookieSelectorPresented</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">        </span><span class="n">errorMessage</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">        </span><span class="n">convertResult</span><span class="p">:</span><span class="w"> </span><span class="n">ConvertResult</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">    </span><span class="p">)</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="3_1">3. 漸進式遷移<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>入口點</th>
-<th>Phase 1</th>
-<th>Phase 2</th>
-<th>Phase 3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>首頁 Widget</td>
-<td><code>enableCodeConverter = true</code></td>
-<td>完成</td>
-<td>完成</td>
-</tr>
-<tr>
-<td>Code Center</td>
-<td>暫用舊元件</td>
-<td>替換為新元件</td>
-<td>移除舊元件</td>
-</tr>
-<tr>
-<td>Betslip</td>
-<td>暫用舊元件</td>
-<td>替換為新元件</td>
-<td>移除舊元件</td>
-</tr>
-</tbody>
-</table>
 
 
 

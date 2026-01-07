@@ -1079,7 +1079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/01_view_implementation/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/01_view_implementation.md" class="md-nav__link">
         
   
   
@@ -1107,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/02_view_design_specs/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/02_view_design_specs.md" class="md-nav__link">
         
   
   
@@ -1135,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/03_state_to_figma_mapping/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/03_state_to_figma_mapping.md" class="md-nav__link">
         
   
   
@@ -1163,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/04_figma_to_design_system_mapping/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/04_figma_to_design_system_mapping.md" class="md-nav__link">
         
   
   
@@ -1800,10 +1800,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#1-api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 向後相容性
+        1. API 相關
       
     </span>
   </a>
@@ -1811,10 +1811,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-api" class="md-nav__link">
+  <a href="#2-uiux" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. API 相關
+        2. UI/UX 相關
       
     </span>
   </a>
@@ -1822,21 +1822,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-uiux" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. UI/UX 相關
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 效能相關
+        3. 效能相關
       
     </span>
   </a>
@@ -2170,10 +2159,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#1-api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 向後相容性
+        1. API 相關
       
     </span>
   </a>
@@ -2181,10 +2170,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-api" class="md-nav__link">
+  <a href="#2-uiux" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. API 相關
+        2. UI/UX 相關
       
     </span>
   </a>
@@ -2192,21 +2181,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-uiux" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. UI/UX 相關
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 效能相關
+        3. 效能相關
       
     </span>
   </a>
@@ -2415,33 +2393,7 @@
 
 <h1 id="risks-and-questions">Risks and Questions<a class="headerlink" href="#risks-and-questions" title="Permanent link">&para;</a></h1>
 <h2 id="_1">待確認事項<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="1">1. 向後相容性<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>問題</th>
-<th>背景</th>
-<th>影響</th>
-<th>建議</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>LoadCodeManager</code> 是否需要修改？</td>
-<td>現有 <code>LoadBookingCodeSection.Feature</code> 依賴 <code>LoadCodeManager</code></td>
-<td>如需修改可能影響其他使用者</td>
-<td>保持 <code>LoadCodeManager</code> 不變，新邏輯走 UseCase</td>
-</tr>
-<tr>
-<td><code>enableCodeConverter</code> 預設值？</td>
-<td>決定新功能的啟用策略</td>
-<td>影響 rollout 計畫</td>
-<td>建議預設 <code>false</code>，逐步開啟</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="2-api">2. API 相關<a class="headerlink" href="#2-api" title="Permanent link">&para;</a></h3>
+<h3 id="1-api">1. API 相關<a class="headerlink" href="#1-api" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2473,7 +2425,7 @@
 </tbody>
 </table>
 <hr />
-<h3 id="3-uiux">3. UI/UX 相關<a class="headerlink" href="#3-uiux" title="Permanent link">&para;</a></h3>
+<h3 id="2-uiux">2. UI/UX 相關<a class="headerlink" href="#2-uiux" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2505,7 +2457,7 @@
 </tbody>
 </table>
 <hr />
-<h3 id="4">4. 效能相關<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<h3 id="3">3. 效能相關<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2542,11 +2494,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><strong>原有功能 regression</strong></td>
-<td>擴展 <code>LoadBookingCodeSectionView</code> 可能影響首頁 Widget</td>
-<td>完整的單元測試 + <code>enableCodeConverter = false</code> 時完全走原有邏輯</td>
-</tr>
 <tr>
 <td><strong>API 格式不匹配</strong></td>
 <td>DTO 定義與實際 API 不符</td>
@@ -2649,7 +2596,7 @@
 <tr>
 <td><code>LoadCodeManager</code></td>
 <td>✅ 既有</td>
-<td>保持不變，向後相容</td>
+<td>保持不變</td>
 </tr>
 <tr>
 <td><code>Region</code> enum</td>

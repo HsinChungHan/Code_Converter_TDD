@@ -1345,7 +1345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LoadCodeWidget/01_view_implementation/" class="md-nav__link">
+      <a href="../../../05_Module Sequence Diagram/LoadBookingCodeSection/01_view_implementation.md" class="md-nav__link">
         
   
   
@@ -1373,7 +1373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LoadCodeWidget/02_view_design_specs/" class="md-nav__link">
+      <a href="../../../05_Module Sequence Diagram/LoadBookingCodeSection/02_view_design_specs.md" class="md-nav__link">
         
   
   
@@ -1401,7 +1401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LoadCodeWidget/03_state_to_figma_mapping/" class="md-nav__link">
+      <a href="../../../05_Module Sequence Diagram/LoadBookingCodeSection/03_state_to_figma_mapping.md" class="md-nav__link">
         
   
   
@@ -1429,7 +1429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LoadCodeWidget/04_figma_to_design_system_mapping/" class="md-nav__link">
+      <a href="../../../05_Module Sequence Diagram/LoadBookingCodeSection/04_figma_to_design_system_mapping.md" class="md-nav__link">
         
   
   
@@ -2633,8 +2633,8 @@
 <h2 id="2-codebase-level-sequence-diagram">2️⃣ Codebase-Level Sequence Diagram<a class="headerlink" href="#2-codebase-level-sequence-diagram" title="Permanent link">&para;</a></h2>
 <p>此圖展示 Clean Architecture 各層之間的呼叫關係。</p>
 <pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
+    participant UI as LoadBookingCodeSectionView
+    participant Feature as LoadBookingCodeSection.Feature
     participant UC as ConvertBookingCodeUseCase
     participant CCRepo as CodeConverterRepository
     participant CCClient as CodeConverterClient
@@ -2645,7 +2645,7 @@
 
     UI-&gt;&gt;Feature: .loadBookingCode
 
-    Note over Feature: 檢查 enableCodeConverter&lt;br/&gt;已選 Bookie + 輸入 Code
+    Note over Feature: 已選 Bookie + 輸入 Code
 
     Feature-&gt;&gt;Feature: state.inputState = .loading
     Feature-&gt;&gt;Feature: state.isLoading = true
@@ -2685,8 +2685,8 @@
 <summary>📝 Mermaid 語法</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sequenceDiagram
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    participant UI as LoadCodeWidgetView
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    participant Feature as LoadCodeWidget.Feature
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    participant UI as LoadBookingCodeSectionView
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    participant Feature as LoadBookingCodeSection.Feature
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    participant UC as ConvertBookingCodeUseCase
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    participant CCRepo as CodeConverterRepository
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    participant CCClient as CodeConverterClient
@@ -2697,7 +2697,7 @@
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    UI-&gt;&gt;Feature: .loadBookingCode
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    Note over Feature: 檢查 enableCodeConverter&lt;br/&gt;已選 Bookie + 輸入 Code
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    Note over Feature: 已選 Bookie + 輸入 Code
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    Feature-&gt;&gt;Feature: state.inputState = .loading
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    Feature-&gt;&gt;Feature: state.isLoading = true
@@ -2765,8 +2765,8 @@
 <h2 id="partial-failure">Partial Failure 流程<a class="headerlink" href="#partial-failure" title="Permanent link">&para;</a></h2>
 <p>當部分 selections 轉換失敗時 (<code>failCnt &gt; 0</code>)：</p>
 <pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
+    participant UI as LoadBookingCodeSectionView
+    participant Feature as LoadBookingCodeSection.Feature
     participant Betslip as BetslipPage
 
     Feature--&gt;&gt;UI: .presentBetslip(shareCode, failCnt: 2)
@@ -2780,8 +2780,8 @@
 <summary>📝 Mermaid 語法</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sequenceDiagram
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    participant UI as LoadCodeWidgetView
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    participant Feature as LoadCodeWidget.Feature
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    participant UI as LoadBookingCodeSectionView
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    participant Feature as LoadBookingCodeSection.Feature
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    participant Betslip as BetslipPage
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    Feature--&gt;&gt;UI: .presentBetslip(shareCode, failCnt: 2)
@@ -2799,8 +2799,8 @@
 <h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
 <h3 id="1-code-not-found-cc002">1. Code Not Found (CC002)<a class="headerlink" href="#1-code-not-found-cc002" title="Permanent link">&para;</a></h3>
 <pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
+    participant UI as LoadBookingCodeSectionView
+    participant Feature as LoadBookingCodeSection.Feature
     participant UC as ConvertBookingCodeUseCase
     participant CCRepo as CodeConverterRepository
 
@@ -2823,8 +2823,8 @@
 <summary>📝 Mermaid 語法</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sequenceDiagram
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    participant UI as LoadCodeWidgetView
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    participant Feature as LoadCodeWidget.Feature
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    participant UI as LoadBookingCodeSectionView
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    participant Feature as LoadBookingCodeSection.Feature
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    participant UC as ConvertBookingCodeUseCase
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    participant CCRepo as CodeConverterRepository
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
@@ -2849,8 +2849,8 @@
 
 <h3 id="2-all-selections-failed-cc003">2. All Selections Failed (CC003)<a class="headerlink" href="#2-all-selections-failed-cc003" title="Permanent link">&para;</a></h3>
 <pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
+    participant UI as LoadBookingCodeSectionView
+    participant Feature as LoadBookingCodeSection.Feature
 
     Note over Feature: convertResult.isAllFailed == true
 
@@ -2862,8 +2862,8 @@
     Note over UI: 顯示紅色邊框 + 錯誤訊息&lt;br/&gt;不導航至 Betslip</code></pre>
 <h3 id="3-network-error">3. Network Error<a class="headerlink" href="#3-network-error" title="Permanent link">&para;</a></h3>
 <pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
+    participant UI as LoadBookingCodeSectionView
+    participant Feature as LoadBookingCodeSection.Feature
     participant UC as ConvertBookingCodeUseCase
 
     UI-&gt;&gt;Feature: .loadBookingCode

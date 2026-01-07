@@ -1334,7 +1334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/01_view_implementation/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/01_view_implementation.md" class="md-nav__link">
         
   
   
@@ -1362,7 +1362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/02_view_design_specs/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/02_view_design_specs.md" class="md-nav__link">
         
   
   
@@ -1390,7 +1390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/03_state_to_figma_mapping/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/03_state_to_figma_mapping.md" class="md-nav__link">
         
   
   
@@ -1418,7 +1418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/04_figma_to_design_system_mapping/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/04_figma_to_design_system_mapping.md" class="md-nav__link">
         
   
   
@@ -2369,7 +2369,7 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>LoadCodeWidgetView</strong></td>
+<td><strong>LoadBookingCodeSectionView</strong></td>
 <td><code>LoadBookingCodeSectionView.swift</code></td>
 <td>擴展</td>
 <td>1. 增加 <code>inputState</code> 支援 6 種狀態<br>2. 增加 Error 訊息顯示<br>3. 增加 Loading 提示文字</td>
@@ -2424,7 +2424,7 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>LoadCodeWidget.Feature</strong></td>
+<td><strong>LoadBookingCodeSection.Feature</strong></td>
 <td><code>LoadBookingCodeSection+Feature.swift</code></td>
 <td>擴展</td>
 <td>1. LoadProviderConfigUseCase（新增）<br>2. ConvertBookingCodeUseCase（新增）<br>3. 既有的 loadBookingCode 邏輯</td>
@@ -2686,18 +2686,14 @@
 <hr />
 <h2 id="_2">替換計畫<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="phase-1-loadbookingcodesectionview">Phase 1: 擴展 LoadBookingCodeSectionView<a class="headerlink" href="#phase-1-loadbookingcodesectionview" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 保持向後相容，新功能以 optional 方式加入</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">LoadCodeWidgetView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">store</span><span class="p">:</span><span class="w"> </span><span class="n">StoreOf</span><span class="p">&lt;</span><span class="n">LoadCodeWidget</span><span class="p">.</span><span class="n">Feature</span><span class="p">&gt;</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="c1">// 新增：是否啟用 Code Converter 功能</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">enableCodeConverter</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="c1">// 基本結構與原本相同</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="c1">// 根據 enableCodeConverter 決定顯示 Bookie Dropdown 還是 Country Dropdown</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">LoadBookingCodeSectionView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">store</span><span class="p">:</span><span class="w"> </span><span class="n">StoreOf</span><span class="p">&lt;</span><span class="n">LoadBookingCodeSection</span><span class="p">.</span><span class="n">Feature</span><span class="p">&gt;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="c1">// 基本結構與原本相同</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="c1">// 顯示 Bookie Dropdown + Booking Code Input</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="phase-2-loadcodeviewcontroller">Phase 2: 替換 LoadCodeViewController<a class="headerlink" href="#phase-2-loadcodeviewcontroller" title="Permanent link">&para;</a></h3>
 <table>
@@ -2710,7 +2706,7 @@
 <tbody>
 <tr>
 <td><strong>Code Center</strong></td>
-<td><code>LoadCodeViewWrapper</code> → 直接使用 <code>LoadCodeWidgetView</code></td>
+<td><code>LoadCodeViewWrapper</code> → 直接使用 <code>LoadBookingCodeSectionView</code></td>
 </tr>
 <tr>
 <td><strong>首頁 Widget</strong></td>
@@ -2718,7 +2714,7 @@
 </tr>
 <tr>
 <td><strong>Betslip Empty</strong></td>
-<td>新增嵌入 <code>LoadCodeWidgetView</code></td>
+<td>新增嵌入 <code>LoadBookingCodeSectionView</code></td>
 </tr>
 </tbody>
 </table>
@@ -2731,7 +2727,7 @@
 <hr />
 <h2 id="_3">模組依賴關係<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TD
-    LCW[LoadCodeWidgetView] --&gt; LCF[LoadCodeWidget.Feature]
+    LCW[LoadBookingCodeSectionView] --&gt; LCF[LoadBookingCodeSection.Feature]
     BSS[BookieSelectorSheet] --&gt; LCF
     LCF --&gt; LPCU[LoadProviderConfigUseCase]
     LCF --&gt; CBCU[ConvertBookingCodeUseCase]

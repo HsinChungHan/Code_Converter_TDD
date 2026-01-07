@@ -1077,7 +1077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/01_view_implementation/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/01_view_implementation.md" class="md-nav__link">
         
   
   
@@ -1105,7 +1105,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/02_view_design_specs/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/02_view_design_specs.md" class="md-nav__link">
         
   
   
@@ -1133,7 +1133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/03_state_to_figma_mapping/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/03_state_to_figma_mapping.md" class="md-nav__link">
         
   
   
@@ -1161,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/LoadCodeWidget/04_figma_to_design_system_mapping/" class="md-nav__link">
+      <a href="../../05_Module Sequence Diagram/LoadBookingCodeSection/04_figma_to_design_system_mapping.md" class="md-nav__link">
         
   
   
@@ -1921,10 +1921,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#football-xxxx-ios-code-converter-loadcodewidgetview-ui" class="md-nav__link">
+  <a href="#football-xxxx-ios-code-converter-loadbookingcodesectionview-ui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎫 FOOTBALL-XXXX: [iOS] Code Converter - LoadCodeWidgetView 基礎 UI
+        🎫 FOOTBALL-XXXX: [iOS] Code Converter - LoadBookingCodeSectionView 基礎 UI
       
     </span>
   </a>
@@ -2318,10 +2318,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#football-xxxx-ios-code-converter-loadcodewidgetview-ui" class="md-nav__link">
+  <a href="#football-xxxx-ios-code-converter-loadbookingcodesectionview-ui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎫 FOOTBALL-XXXX: [iOS] Code Converter - LoadCodeWidgetView 基礎 UI
+        🎫 FOOTBALL-XXXX: [iOS] Code Converter - LoadBookingCodeSectionView 基礎 UI
       
     </span>
   </a>
@@ -2718,14 +2718,14 @@
 - TDD: <code>02_Architecture/01_clean_architecture_diagram.md</code>
 - TDD: <code>03_Module Responsibility/01_module_responsibility.md</code></p>
 <hr />
-<h4 id="football-xxxx-ios-code-converter-loadcodewidgetview-ui">🎫 FOOTBALL-XXXX: [iOS] Code Converter - LoadCodeWidgetView 基礎 UI<a class="headerlink" href="#football-xxxx-ios-code-converter-loadcodewidgetview-ui" title="Permanent link">&para;</a></h4>
+<h4 id="football-xxxx-ios-code-converter-loadbookingcodesectionview-ui">🎫 FOOTBALL-XXXX: [iOS] Code Converter - LoadBookingCodeSectionView 基礎 UI<a class="headerlink" href="#football-xxxx-ios-code-converter-loadbookingcodesectionview-ui" title="Permanent link">&para;</a></h4>
 <p><strong>Type</strong>: Story<br />
 <strong>Story Points</strong>: 2<br />
 <strong>Labels</strong>: <code>ui</code>, <code>view</code></p>
 <p><strong>Description</strong>:
 實作 Load Code Widget 的主要容器視圖。</p>
 <p><strong>Acceptance Criteria</strong>:
-- [ ] 實作 <code>LoadCodeWidgetView</code> 主視圖
+- [ ] 實作 <code>LoadBookingCodeSectionView</code> 主視圖
   - 包含 <code>BookieDropdownView</code> placeholder
   - 包含 <code>BookingCodeInputView</code> placeholder
   - 背景色: <code>Color.backgroundType1Tertiary</code>
@@ -2737,8 +2737,8 @@
 - Node: <code>26769-88873</code> (Default State)
 - Node: <code>26342-46244</code> (Component Set)</p>
 <p><strong>Reference</strong>:
-- TDD: <code>05_Module Sequence Diagram/LoadCodeWidget/01_view_implementation.md</code>
-- TDD: <code>05_Module Sequence Diagram/LoadCodeWidget/02_view_design_specs.md</code></p>
+- TDD: <code>05_Module Sequence Diagram/LoadBookingCodeSection/01_view_implementation.md</code>
+- TDD: <code>05_Module Sequence Diagram/LoadBookingCodeSection/02_view_design_specs.md</code></p>
 <hr />
 <h4 id="football-xxxx-ios-code-converter-bookiedropdownview">🎫 FOOTBALL-XXXX: [iOS] Code Converter - BookieDropdownView<a class="headerlink" href="#football-xxxx-ios-code-converter-bookiedropdownview" title="Permanent link">&para;</a></h4>
 <p><strong>Type</strong>: Story<br />
@@ -2895,13 +2895,13 @@
 <p><strong>Description</strong>:
 整合 TCA Feature State 和 Action。</p>
 <p><strong>Acceptance Criteria</strong>:
-- [ ] 實作 <code>LoadCodeWidget.Feature.State</code> 新增屬性
+- [ ] 實作 <code>LoadBookingCodeSection.Feature.State</code> 新增屬性
   - <code>providerConfigs: [ProviderConfig]</code>
   - <code>selectedProvider: ProviderConfig?</code>
   - <code>selectedCountry: String?</code>
   - <code>bookingCode: String</code>
   - <code>conversionState: ConversionState</code>
-- [ ] 實作 <code>LoadCodeWidget.Feature.Action</code> 新增項目
+- [ ] 實作 <code>LoadBookingCodeSection.Feature.Action</code> 新增項目
   - <code>.loadProviderConfig</code>
   - <code>.providerConfigResponse(Result&lt;...&gt;)</code>
   - <code>.bookieDropdownTapped</code>
@@ -2985,7 +2985,7 @@
 <p><strong>Acceptance Criteria</strong>:
 - [ ] <code>LoadProviderConfigUseCase</code> tests
 - [ ] <code>ConvertBookingCodeUseCase</code> tests
-- [ ] <code>LoadCodeWidget.Feature</code> reducer tests
+- [ ] <code>LoadBookingCodeSection.Feature</code> reducer tests
   - Config 載入成功/失敗
   - Bookie 選擇邏輯
   - 轉換成功/部分成功/失敗</p>
