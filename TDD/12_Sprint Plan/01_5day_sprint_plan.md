@@ -185,9 +185,10 @@
 **Acceptance Criteria**:
 - [ ] 實作 `LoadBookingCodeSection.Feature.State` 新增屬性
   - `bookingCode: String`
-  - `conversionState: ConversionState`
+  - `inputState: WidgetInputState`
+  - `errorMessage: String?`
+  - `convertResult: ConvertResult?`
   - `isTooltipVisible: Bool`
-  - `hasTooltipBeenDismissed: Bool`
 - [ ] 實作 `LoadBookingCodeSection.Feature.Action` 新增項目
   - `.bookingCodeChanged(String)`
   - `.clearButtonTapped`
