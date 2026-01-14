@@ -1,6 +1,17 @@
 # Phase 1 - Code Converter 實作指南
 
-> 此文件為 View Layer 的實作步驟與程式碼範本
+> 此文件為 View Layer 的實作步驟與程式碼範本  
+> **最後更新**：2025-01-14
+
+---
+
+## ⚠️ BE 新設計更新 (2025-01-14)
+
+| 變更項目 | 說明 |
+|----------|------|
+| **Bookie 相關元件廢棄** | `BookieDropdown.swift`, `BookieSelectorBottomSheet.swift`, `BookieRow.swift`, `CountryChip.swift`, `Bookie.swift` |
+| **新增元件** | `TooltipView.swift` |
+| **簡化 API** | 不再需要 Provider/Country 選擇 |
 
 ---
 
@@ -12,18 +23,21 @@ FCom/
 │   └── CodeConverter/
 │       ├── Views/
 │       │   ├── LoadCodeWidget.swift
-│       │   ├── BookieDropdown.swift
 │       │   ├── CodeInputField.swift
 │       │   ├── LoadButton.swift
-│       │   └── BookieSelectorBottomSheet.swift
+│       │   ├── TooltipView.swift          # 🆕 新增
+│       │   ├── ❌ BookieDropdown.swift       # 廢棄
+│       │   └── ❌ BookieSelectorBottomSheet.swift  # 廢棄
 │       ├── ViewModels/
 │       │   └── LoadCodeViewModel.swift
 │       ├── Models/
 │       │   ├── LoadCodeState.swift
-│       │   └── Bookie.swift
+│       │   └── ❌ Bookie.swift              # 廢棄
+│       ├── Storage/
+│       │   └── TooltipStorage.swift       # 🆕 新增
 │       └── Components/
-│           ├── BookieRow.swift
-│           └── CountryChip.swift
+│           ├── ❌ BookieRow.swift           # 廢棄
+│           └── ❌ CountryChip.swift         # 廢棄
 ```
 
 ---
