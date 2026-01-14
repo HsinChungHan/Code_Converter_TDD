@@ -596,6 +596,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -715,10 +726,27 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🏗️ 架構總覽">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄項目
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         📅 開發時程
@@ -729,7 +757,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         🔗 相關連結
@@ -2391,6 +2419,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2510,10 +2549,27 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🏗️ 架構總覽">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄項目
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         📅 開發時程
@@ -2524,7 +2580,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         🔗 相關連結
@@ -2555,20 +2611,51 @@
 <blockquote>
 <p><strong>功能</strong>: Booking Code Converter (Code2Code)<br />
 <strong>版本</strong>: Phase 1<br />
-<strong>最後更新</strong>: 2025-01-06</p>
+<strong>最後更新</strong>: 2025-01-14</p>
 </blockquote>
 <hr />
+<h2 id="be-2025-01-14">⚠️ BE 新設計更新 (2025-01-14)<a class="headerlink" href="#be-2025-01-14" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>變更項目</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Config API 廢棄</strong></td>
+<td>~~<code>GET /orders/converter/config/providerCountries</code>~~ 不再使用</td>
+</tr>
+<tr>
+<td><strong>Provider/Country 移除</strong></td>
+<td>Convert API 只需 <code>bookingCode</code>，BE 自動識別</td>
+</tr>
+<tr>
+<td><strong>Bookie Selector 廢棄</strong></td>
+<td>不再需要選擇 Bookie 流程</td>
+</tr>
+<tr>
+<td><strong>Tooltip 新增</strong></td>
+<td>首次使用顯示引導，以 Device ID 儲存</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="_1">🎯 功能概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Code Converter 讓用戶可以將競品的 Booking Code 轉換為 Fcom 的 Share Code，並直接載入到 Betslip 進行投注。</p>
+<p>Code Converter 讓用戶可以將任意 Booking Code 轉換為 Fcom 的 Share Code，並直接載入到 Betslip 進行投注。</p>
 <h3 id="_2">核心流程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <pre class="mermaid"><code>sequenceDiagram
     actor User
     participant App
     participant BE as Backend
 
-    User-&gt;&gt;App: 輸入競品 Booking Code
-    App-&gt;&gt;BE: POST /orders/converter/code
-    BE--&gt;&gt;App: 返回 Share Code
+    Note over App: 📐 Tooltip (首次使用)
+    User-&gt;&gt;App: 輸入任意 Booking Code
+    App-&gt;&gt;BE: POST /orders/converter/code {bookingCode}
+    BE--&gt;&gt;App: 返回 {shareCode, successCnt, failCnt}
+    Note over App: 走原有 Load Code 流程
+    App-&gt;&gt;BE: GET /bookingCode/{shareCode}/liabilities
     App-&gt;&gt;BE: GET /orders/share/{shareCode}
     BE--&gt;&gt;App: 返回 Betslip 資料
     App--&gt;&gt;User: 顯示 Betslip</code></pre>
@@ -2636,6 +2723,14 @@
 <tr>
 <td><a href="05_Module%20Sequence%20Diagram/LoadBookingCodeSection/03_state_to_figma_mapping/">State ↔ Figma 對照</a></td>
 <td>State 與 Figma Node 對照表</td>
+</tr>
+<tr>
+<td><a href="05_Module%20Sequence%20Diagram/LoadBookingCodeSection/05_ui_replacement_strategy_01_09/">⭐ UI 替換策略</a></td>
+<td>01_09 版本 UI 替換策略</td>
+</tr>
+<tr>
+<td><a href="05_Module%20Sequence%20Diagram/Module%20Sequence%20Diagrams/04_tooltip_display_logic/">🆕 Tooltip 邏輯</a></td>
+<td>Tooltip 顯示邏輯</td>
 </tr>
 </tbody>
 </table>
@@ -2708,27 +2803,55 @@
 <h2 id="_7">🏗️ 架構總覽<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────┐
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                        UI Layer                             │
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│  LoadBookingCodeSectionView │ BookieSelectorSheet │ PartialErrorToast │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│  LoadBookingCodeSectionView │ TooltipView │ PartialErrorToast │
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└────────────────────────────┬────────────────────────────────┘
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                             │
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>┌────────────────────────────▼────────────────────────────────┐
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                      Domain Layer (TCA)                      │
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  ┌─────────────────────────────────────────────────────────┐ │
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  │  LoadBookingCodeSection.Feature (擴展自 LoadBookingCodeSection) │ │
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│  └──────────────┬─────────────────────┬────────────────────┘ │
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│                 │                     │                      │
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│  ┌──────────────▼──────────┐  ┌──────▼──────────────────┐   │
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│  │ LoadProviderConfigUseCase │  │ ConvertBookingCodeUseCase │   │
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  └──────────────┬──────────┘  └──────┬──────────────────┘   │
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>└─────────────────┼────────────────────┼──────────────────────┘
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                  │                    │
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>┌─────────────────▼────────────────────▼──────────────────────┐
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  │  LoadBookingCodeSection.Feature (擴展)                   │ │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│  └──────────────────────────┬──────────────────────────────┘ │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│                             │                                │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│            ┌────────────────▼────────────────┐               │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│            │ ConvertBookingCodeUseCase       │               │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│            └────────────────┬────────────────┘               │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>└─────────────────────────────┼────────────────────────────────┘
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                              │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>┌─────────────────────────────▼────────────────────────────────┐
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│                   Data &amp; Infrastructure                      │
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│  CodeConverterRepository │ CodeConverterClient │ API        │
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>└─────────────────────────────────────────────────────────────┘
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│  CodeConverterRepository │ CodeConverterClient │ API         │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│  TooltipStorage (UserDefaults)                               │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>└─────────────────────────────────────────────────────────────┘
 </code></pre></div>
+<h3 id="_8">廢棄項目<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>類型</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>~~BookieSelectorSheet~~</td>
+<td>UI</td>
+<td>不再需要選擇 Bookie</td>
+</tr>
+<tr>
+<td>~~LoadProviderConfigUseCase~~</td>
+<td>UseCase</td>
+<td>Config API 已廢棄</td>
+</tr>
+<tr>
+<td>~~Config API~~</td>
+<td>API</td>
+<td>BE 新設計不需要</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="_8">📅 開發時程<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_9">📅 開發時程<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -2740,7 +2863,7 @@
 <tbody>
 <tr>
 <td><strong>Phase 1.1</strong></td>
-<td>擴展現有元件</td>
+<td>擴展現有元件 + Tooltip</td>
 <td>Day 1-2</td>
 </tr>
 <tr>
@@ -2761,7 +2884,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="_9">🔗 相關連結<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_10">🔗 相關連結<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Epic</strong>: <a href="https://jira.example.com/browse/FOOTBALL-9161">FOOTBALL-9161</a></li>
 <li><strong>Figma</strong>: <a href="https://www.figma.com/design/SvcTlADMZ7gUPIa7nN2hT1/Code-Converter">Code-Converter</a></li>
