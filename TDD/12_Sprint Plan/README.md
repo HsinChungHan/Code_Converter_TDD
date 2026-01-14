@@ -23,3 +23,7 @@
 | Day 4 | Betslip 串接 + 結果顯示 |
 | Day 5 | 錯誤處理 + 測試 + Polish |
 
+
+
+
+

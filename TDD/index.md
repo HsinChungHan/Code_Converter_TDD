@@ -49,9 +49,9 @@ sequenceDiagram
 
 | 章節 | 說明 |
 |------|------|
-| [View 實作](./05_Module%20Sequence%20Diagram/LoadCodeWidget/01_view_implementation.md) | SwiftUI View 實作細節 |
-| [設計規格](./05_Module%20Sequence%20Diagram/LoadCodeWidget/02_view_design_specs.md) | Figma 設計規格（顏色、字型、間距） |
-| [State ↔ Figma 對照](./05_Module%20Sequence%20Diagram/LoadCodeWidget/03_state_to_figma_mapping.md) | State 與 Figma Node 對照表 |
+| [View 實作](./05_Module%20Sequence%20Diagram/LoadBookingCodeSection/01_view_implementation.md) | SwiftUI View 實作細節 |
+| [設計規格](./05_Module%20Sequence%20Diagram/LoadBookingCodeSection/02_view_design_specs.md) | Figma 設計規格（顏色、字型、間距） |
+| [State ↔ Figma 對照](./05_Module%20Sequence%20Diagram/LoadBookingCodeSection/03_state_to_figma_mapping.md) | State 與 Figma Node 對照表 |
 
 ### Domain Layer
 
@@ -83,13 +83,13 @@ sequenceDiagram
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                        UI Layer                             │
-│  LoadCodeWidgetView │ BookieSelectorSheet │ PartialErrorToast │
+│  LoadBookingCodeSectionView │ BookieSelectorSheet │ PartialErrorToast │
 └────────────────────────────┬────────────────────────────────┘
                              │
 ┌────────────────────────────▼────────────────────────────────┐
 │                      Domain Layer (TCA)                      │
 │  ┌─────────────────────────────────────────────────────────┐ │
-│  │  LoadCodeWidget.Feature (擴展自 LoadBookingCodeSection) │ │
+│  │  LoadBookingCodeSection.Feature (擴展自 LoadBookingCodeSection) │ │
 │  └──────────────┬─────────────────────┬────────────────────┘ │
 │                 │                     │                      │
 │  ┌──────────────▼──────────┐  ┌──────▼──────────────────┐   │
@@ -121,4 +121,8 @@ sequenceDiagram
 - **Epic**: [FOOTBALL-9161](https://jira.example.com/browse/FOOTBALL-9161)
 - **Figma**: [Code-Converter](https://www.figma.com/design/SvcTlADMZ7gUPIa7nN2hT1/Code-Converter)
 - **PRD**: 參見 `/PRDs/01_PRD/01_06/`
+
+
+
+
 

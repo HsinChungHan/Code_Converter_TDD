@@ -18,7 +18,6 @@
 | **09. Error Handling** | 錯誤處理策略 | [01_error_handling.md](./09_Error%20Handling/01_error_handling.md) |
 | **10. Test Scenarios** | 測試情境與範例 | [01_test_scenarios.md](./10_Test%20Scenarios/01_test_scenarios.md) |
 | **11. Risks & Questions** | 風險評估與待確認事項 | [01_risks_and_questions.md](./11_Risks%20and%20Questions/01_risks_and_questions.md) |
-| **12. Sprint Plan** | 5 天 Sprint 規劃與 Jira Tickets | [01_5day_sprint_plan.md](./12_Sprint%20Plan/01_5day_sprint_plan.md) |
 
 ---
 
@@ -150,8 +149,6 @@ Code_Converter_Phase1_TDD/
 │   └── 01_error_handling.md
 ├── 10_Test Scenarios/
 │   └── 01_test_scenarios.md
-├── 11_Risks and Questions/
-│   └── 01_risks_and_questions.md
-└── 12_Sprint Plan/
-    └── 01_5day_sprint_plan.md
+└── 11_Risks and Questions/
+    └── 01_risks_and_questions.md
 ```

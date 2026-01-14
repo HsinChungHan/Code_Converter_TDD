@@ -1,7 +1,19 @@
 # State ↔ Figma Node Mapping
 
 > **用途**：讓 AI 在實作時透過 Figma MCP 自動抓取對應狀態的設計規格  
-> **File Key**：`SvcTlADMZ7gUPIa7nN2hT1`
+> **File Key**：`SvcTlADMZ7gUPIa7nN2hT1`  
+> **版本**：01_09 (2025-01-09) - 已移除 Bookie Selector
+
+---
+
+## ⚠️ 01_09 版本變更
+
+| 項目 | 舊版 (01_01) | 新版 (01_09) |
+|------|--------------|--------------|
+| 按鈕文字 | "Load" | "Import" |
+| Placeholder | "Booking Code" | "Paste any booking code" |
+| Bookie Selector | ✅ 有 | ❌ 移除 |
+| Info Tip Icon | ❌ 沒有 | ✅ 新增 |
 
 ---
 
@@ -9,39 +21,34 @@
 
 | State Enum | Figma Node ID | 觸發條件 (Action/Condition) | 對應 UI 變化 |
 |------------|---------------|---------------------------|--------------|
-| `.default` | `26769:88873` | 初始狀態 / `.inputBlurred` + 無輸入 | 無邊框、Load 灰色 |
+| `.default` | `26769:88873` | 初始狀態 / `.inputBlurred` + 無輸入 | 無邊框、Import 灰色 |
 | `.focus` | `26769:88868` | `.inputFocused` + 無輸入 | 綠色邊框、游標 |
-| `.typing` | `26769:88869` | `.bookingCodeChanged` + 有輸入 + 聚焦 | 綠色邊框、清除按鈕、Load 綠色 |
-| `.filled` | `26769:88870` | `.inputBlurred` + 有輸入 | 無邊框、清除按鈕、Load 綠色 |
+| `.typing` | `26769:88869` | `.bookingCodeChanged` + 有輸入 + 聚焦 | 綠色邊框、清除按鈕、Import 綠色 |
+| `.filled` | `26769:88870` | `.inputBlurred` + 有輸入 | 無邊框、清除按鈕、Import 綠色 |
 | `.loading` | `26769:88872` | `.loadBookingCode` 執行中 | 無邊框、Spinner、提示文字 |
-| `.error(message)` | `26769:88871` | `.convertCodeCompleted(.failure)` | 紅色邊框、錯誤訊息、Load 綠色 |
+| `.error(message)` | `26769:88871` | `.convertCodeCompleted(.failure)` | 紅色邊框、錯誤訊息、Import 綠色 |
 
 ---
 
-## 📱 主流程畫面 → Figma Node Mapping
+## 📱 主流程畫面 → Figma Node Mapping (01_09 簡化版)
 
 | 流程步驟 | 畫面 | Figma Node ID | 對應 Feature Action |
 |----------|------|---------------|---------------------|
 | 1.0.0 | 首頁 Default | `26453:93262` | 初始狀態 |
 | 1.0.1 | 首頁 Focus | `26453:94175` | `.inputFocused` |
 | 1.0.2 | 首頁 Typing | `26453:95089` | `.bookingCodeChanged("...")` |
-| 1.0.3 | Bookie 選擇器 | `26479:188518` | `.bookieDropdownTapped` → Sheet 開啟 |
-| 1.0.4 | 輸入完成 | `26479:195612` | `.bookieSelected` + 有輸入 |
+| ~~1.0.3~~ | ~~Bookie 選擇器~~ | - | ❌ 已移除 |
+| ~~1.0.4~~ | ~~輸入完成~~ | - | ❌ 已移除 |
 | 1.0.5 | Loading | `26453:96003` | `.loadBookingCode` |
 | 1.0.6 | Error | `26453:96916` | `.convertCodeCompleted(.failure)` |
 | 1.0.8 | Betslip | `26428:71768` | `.presentBetslip` |
 
 ---
 
-## 🧩 Bookie Selector Sheet → Figma Node Mapping
+## ~~🧩 Bookie Selector Sheet → Figma Node Mapping~~
 
-| 場景 | Figma Node ID | 觸發條件 | 對應 Action |
-|------|---------------|----------|-------------|
-| Sheet 開啟 | `26753:64425` | `.providerConfigLoaded(.success)` | `isBookieSelectorPresented = true` |
-| 多國家 Bookie 展開 | `26753:74664` | 點擊多國家 Bookie | UI 內部狀態 |
-| 選擇 Country | `26753:78142` | 點擊 Country | `.bookieSelected(provider, country)` |
-| 點擊 mask 關閉 | `26753:81632` | 點擊背景 | `.bookieSelectorDismissed` |
-| 選擇完成 | `26753:85011` | 選擇後 | Sheet 關閉 |
+> ❌ **01_09 版本已移除此功能**  
+> Bookie Selector Sheet 不再需要，API 會自動判斷 Bookie
 
 ---
 
@@ -146,7 +153,7 @@ extension WidgetInputState {
 }
 
 // 主流程畫面對應
-enum LoadCodeWidgetScreen {
+enum LoadBookingCodeSectionScreen {
     case homepage_default     // 26453:93262
     case homepage_focus       // 26453:94175
     case homepage_typing      // 26453:95089
@@ -160,7 +167,7 @@ enum LoadCodeWidgetScreen {
 
 ---
 
-## 🔄 State 轉換圖 + Figma Node
+## 🔄 State 轉換圖 + Figma Node (01_09 簡化版)
 
 ```mermaid
 stateDiagram-v2
@@ -175,14 +182,15 @@ stateDiagram-v2
     
     typing --> focus: clearButtonTapped
     typing --> filled: inputBlurred
-    typing --> loading: loadBookingCode
+    typing --> loading: loadBookingCode (Import 按鈕)
     note right of typing: 26769:88869
     
     filled --> focus: inputFocused
-    filled --> loading: loadBookingCode
+    filled --> typing: bookingCodeChanged
+    filled --> loading: loadBookingCode (Import 按鈕)
     note right of filled: 26769:88870
     
-    loading --> filled: convertCodeCompleted (success)
+    loading --> default: convertCodeCompleted (success) → Betslip
     loading --> error: convertCodeCompleted (failure)
     note right of loading: 26769:88872
     
@@ -190,4 +198,6 @@ stateDiagram-v2
     error --> focus: clearButtonTapped
     note right of error: 26769:88871
 ```
+
+> **01_09 變更**：移除了 Bookie Selector 相關的狀態轉換
 

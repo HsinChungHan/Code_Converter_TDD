@@ -51,7 +51,7 @@
 
 ---
 
-#### 🎫 FOOTBALL-XXXX: [iOS] Code Converter - LoadCodeWidgetView 基礎 UI
+#### 🎫 FOOTBALL-XXXX: [iOS] Code Converter - LoadBookingCodeSectionView 基礎 UI
 **Type**: Story  
 **Story Points**: 2  
 **Labels**: `ui`, `view`
@@ -60,7 +60,7 @@
 實作 Load Code Widget 的主要容器視圖。
 
 **Acceptance Criteria**:
-- [ ] 實作 `LoadCodeWidgetView` 主視圖
+- [ ] 實作 `LoadBookingCodeSectionView` 主視圖
   - 包含 `BookieDropdownView` placeholder
   - 包含 `BookingCodeInputView` placeholder
   - 背景色: `Color.backgroundType1Tertiary`
@@ -74,8 +74,8 @@
 - Node: `26342-46244` (Component Set)
 
 **Reference**:
-- TDD: `05_Module Sequence Diagram/LoadCodeWidget/01_view_implementation.md`
-- TDD: `05_Module Sequence Diagram/LoadCodeWidget/02_view_design_specs.md`
+- TDD: `05_Module Sequence Diagram/LoadBookingCodeSection/01_view_implementation.md`
+- TDD: `05_Module Sequence Diagram/LoadBookingCodeSection/02_view_design_specs.md`
 
 ---
 
@@ -283,13 +283,13 @@
 整合 TCA Feature State 和 Action。
 
 **Acceptance Criteria**:
-- [ ] 實作 `LoadCodeWidget.Feature.State` 新增屬性
+- [ ] 實作 `LoadBookingCodeSection.Feature.State` 新增屬性
   - `providerConfigs: [ProviderConfig]`
   - `selectedProvider: ProviderConfig?`
   - `selectedCountry: String?`
   - `bookingCode: String`
   - `conversionState: ConversionState`
-- [ ] 實作 `LoadCodeWidget.Feature.Action` 新增項目
+- [ ] 實作 `LoadBookingCodeSection.Feature.Action` 新增項目
   - `.loadProviderConfig`
   - `.providerConfigResponse(Result<...>)`
   - `.bookieDropdownTapped`
@@ -400,7 +400,7 @@
 **Acceptance Criteria**:
 - [ ] `LoadProviderConfigUseCase` tests
 - [ ] `ConvertBookingCodeUseCase` tests
-- [ ] `LoadCodeWidget.Feature` reducer tests
+- [ ] `LoadBookingCodeSection.Feature` reducer tests
   - Config 載入成功/失敗
   - Bookie 選擇邏輯
   - 轉換成功/部分成功/失敗
@@ -471,4 +471,8 @@
 - **Figma**: [Code-Converter](https://www.figma.com/design/SvcTlADMZ7gUPIa7nN2hT1/Code-Converter)
 - **PRD**: `PRDs/01_PRD/01_06/Fcom_PRD_Booking_Code_Converter_01_06_zh-TW.md`
 - **API Doc**: `Docs/API_Doc/Code_Converter_API_Doc.md`
+
+
+
+
 

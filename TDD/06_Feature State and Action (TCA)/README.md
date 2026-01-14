@@ -1,6 +1,6 @@
 # 06_Feature State and Action (TCA)
 
-本章節定義 LoadCodeWidgetFeature 的 State 和 Action。
+本章節定義 LoadBookingCodeSectionFeature 的 State 和 Action。
 
 ## 文件列表
 

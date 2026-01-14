@@ -23,7 +23,7 @@
 sequenceDiagram
     actor User
     
-    box rgb(173, 216, 230) App
+    box rgb(173, 216, 230) Client Side
         participant Widget as Load Code Widget
         participant Selector as Bookie Selector Sheet
         participant Betslip as Betslip

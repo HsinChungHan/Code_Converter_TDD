@@ -6,7 +6,7 @@
 flowchart TB
     subgraph UI["UI Layer (SwiftUI)"]
         direction TB
-        LCW[LoadCodeWidgetView<br/>擴展自 LoadBookingCodeSectionView]
+        LCW[LoadBookingCodeSectionView<br/>擴展自 LoadBookingCodeSectionView]
         BSS[BookieSelectorSheet<br/>新增 SwiftUI]
         Toast[PartialErrorToast]
     end
@@ -14,7 +14,7 @@ flowchart TB
     subgraph Domain["Domain Layer (TCA)"]
         direction TB
         subgraph Feature["Feature (Thin Reducer)"]
-            LCF[LoadCodeWidget.Feature<br/>擴展自 LoadBookingCodeSection.Feature]
+            LCF[LoadBookingCodeSection.Feature<br/>擴展自 LoadBookingCodeSection.Feature]
         end
         subgraph UseCase["UseCase (Business Logic)"]
             LPC[LoadProviderConfigUseCase]
@@ -53,7 +53,7 @@ flowchart TB
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    LoadCodeWidgetView（新）                          │
+│                    LoadBookingCodeSectionView（新）                          │
 │    ┌──────────────────────────────────────────────────────────────┐ │
 │    │  擴展自 LoadBookingCodeSectionView 的結構                      │ │
 │    │                                                              │ │
@@ -82,9 +82,9 @@ flowchart TB
 
 | 入口點 | 現有實作 | 替換為 |
 |--------|----------|--------|
-| **首頁 Widget** | `LoadBookingCodeSectionView` | `LoadCodeWidgetView`（原地擴展） |
-| **Code Center Load Code Tab** | `LoadCodeViewWrapper` → `LoadCodeViewController` (UIKit) | `LoadCodeWidgetView` (SwiftUI) |
-| **首頁 Betslip (Empty)** | 無 / 既有空狀態 | 嵌入 `LoadCodeWidgetView` |
+| **首頁 Widget** | `LoadBookingCodeSectionView` | `LoadBookingCodeSectionView`（原地擴展） |
+| **Code Center Load Code Tab** | `LoadCodeViewWrapper` → `LoadCodeViewController` (UIKit) | `LoadBookingCodeSectionView` (SwiftUI) |
+| **首頁 Betslip (Empty)** | 無 / 既有空狀態 | 嵌入 `LoadBookingCodeSectionView` |
 
 ---
 
@@ -104,10 +104,10 @@ UI → Feature → UseCase → Repository → Client → API
 
 | 元件 | 變更類型 | 說明 |
 |------|----------|------|
-| `LoadBookingCodeSectionView` | **擴展** | → `LoadCodeWidgetView`，增加更多狀態 |
+| `LoadBookingCodeSectionView` | **擴展** | → `LoadBookingCodeSectionView`，增加更多狀態 |
 | `CountryDropdownView` | **擴展** | → `BookieDropdownView`，顯示 Bookie + Country |
 | `BookingCodeInputView` | **擴展** | 增加 Error 狀態、清除按鈕、Loading 提示 |
-| `LoadBookingCodeSection.Feature` | **擴展** | → `LoadCodeWidget.Feature`，增加 Provider Config + Convert API |
+| `LoadBookingCodeSection.Feature` | **擴展** | → `LoadBookingCodeSection.Feature`，增加 Provider Config + Convert API |
 
 ### 新增的元件
 
@@ -123,7 +123,7 @@ UI → Feature → UseCase → Repository → Client → API
 
 | 元件 | 原因 |
 |------|------|
-| `LoadCodeViewController` | 被 `LoadCodeWidgetView` (SwiftUI) 替換 |
+| `LoadCodeViewController` | 被 `LoadBookingCodeSectionView` (SwiftUI) 替換 |
 | `LoadCodeViewController.xib` | 隨 ViewController 一起廢棄 |
 | `LoadCodeViewWrapper` | 不再需要 UIKit 橋接 |
 
@@ -132,14 +132,14 @@ UI → Feature → UseCase → Repository → Client → API
 ## 模組分組
 
 ```
-LoadCodeWidget/  (擴展自 LoadBookingCode/)
+LoadBookingCodeSection/  (擴展自 LoadBookingCode/)
 ├── View/
-│   ├── LoadCodeWidgetView.swift          (擴展自 LoadBookingCodeSectionView)
+│   ├── LoadBookingCodeSectionView.swift          (擴展自 LoadBookingCodeSectionView)
 │   ├── BookieDropdownView.swift          (擴展自 CountryDropdownView)
 │   ├── BookingCodeInputView.swift        (擴展，增加狀態)
 │   └── BookieSelectorSheet.swift         (新增)
 ├── Feature/
-│   └── LoadCodeWidget+Feature.swift      (擴展自 LoadBookingCodeSection+Feature)
+│   └── LoadBookingCodeSection+Feature.swift      (擴展自 LoadBookingCodeSection+Feature)
 ├── UseCase/
 │   ├── LoadProviderConfigUseCase.swift   (新增)
 │   └── ConvertBookingCodeUseCase.swift   (新增)

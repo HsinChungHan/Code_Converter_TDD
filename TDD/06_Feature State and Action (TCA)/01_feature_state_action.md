@@ -1,5 +1,15 @@
 # Feature State and Action (TCA)
 
+## ⚠️ BE 新設計更新 (2025-01)
+
+| 變更項目 | 說明 |
+|----------|------|
+| **Bookie 相關 State 移除** | `selectedBookie`, `providerConfigs`, `isBookieSelectorPresented` |
+| **Bookie 相關 Action 移除** | `bookieDropdownTapped`, `bookieSelected`, `bookieSelectorDismissed`, `providerConfigLoaded` |
+| **新增 Tooltip State/Action** | `isTooltipVisible`, `tooltipDismissed` |
+
+---
+
 ## LoadCodeWidget.Feature（擴展自 LoadBookingCodeSection.Feature）
 
 ### 復用策略
@@ -30,23 +40,22 @@ struct State: Equatable {
     /// 是否啟用 Code Converter 功能（向後相容開關）
     var enableCodeConverter: Bool = true
     
-    /// 已選擇的 Bookie（包含 provider + country）
-    var selectedBookie: SelectedBookie?
-    
-    /// Provider Config 列表（從 API 取得）
-    var providerConfigs: [ProviderConfig] = []
-    
     /// Widget 輸入狀態（6 種狀態）
     var inputState: WidgetInputState = .default
-    
-    /// Bookie 選擇器是否顯示
-    var isBookieSelectorPresented: Bool = false
     
     /// 錯誤訊息
     var errorMessage: String?
     
     /// 轉換結果
     var convertResult: ConvertResult?
+    
+    /// Tooltip 是否顯示
+    var isTooltipVisible: Bool = false
+    
+    // ========== 廢棄屬性 ==========
+    // ❌ var selectedBookie: SelectedBookie?       // 已移除
+    // ❌ var providerConfigs: [ProviderConfig] = [] // 已移除
+    // ❌ var isBookieSelectorPresented: Bool = false // 已移除
 }
 ```
 
@@ -55,17 +64,18 @@ struct State: Equatable {
 | 屬性 | 類型 | 原有/新增 | 預設值 | 說明 |
 |------|------|-----------|--------|------|
 | `bookingCode` | String | ✅ 原有 | `""` | 輸入的 Booking Code |
-| `selectedCountry` | Region | ✅ 原有 | `.current` | 選擇的國家 |
+| `selectedCountry` | Region | ✅ 原有 | `.current` | 選擇的國家（原流程備用） |
 | `isLoading` | Bool | ✅ 原有 | `false` | Loading 狀態 |
 | `contentState` | SectionContentState | ✅ 原有 | `.loaded` | Section 狀態 |
 | `availableCountries` | [Region] | ✅ 原有 | `[.ghana, .nigeria]` | 可用國家 |
 | `enableCodeConverter` | Bool | 🆕 新增 | `true` | 是否啟用 Code Converter |
-| `selectedBookie` | SelectedBookie? | 🆕 新增 | `nil` | 已選 Bookie |
-| `providerConfigs` | [ProviderConfig] | 🆕 新增 | `[]` | Provider 設定 |
 | `inputState` | WidgetInputState | 🆕 新增 | `.default` | 6 種輸入狀態 |
-| `isBookieSelectorPresented` | Bool | 🆕 新增 | `false` | Sheet 顯示 |
 | `errorMessage` | String? | 🆕 新增 | `nil` | 錯誤訊息 |
 | `convertResult` | ConvertResult? | 🆕 新增 | `nil` | 轉換結果 |
+| `isTooltipVisible` | Bool | 🆕 新增 | `false` | Tooltip 是否顯示 |
+| ~~`selectedBookie`~~ | ~~SelectedBookie?~~ | ❌ 廢棄 | - | ~~已選 Bookie~~ |
+| ~~`providerConfigs`~~ | ~~[ProviderConfig]~~ | ❌ 廢棄 | - | ~~Provider 設定~~ |
+| ~~`isBookieSelectorPresented`~~ | ~~Bool~~ | ❌ 廢棄 | - | ~~Sheet 顯示~~ |
 
 ---
 
@@ -85,19 +95,24 @@ enum Action: Equatable {
     // ========== 新增 Action（Code Converter） ==========
     
     // UI Actions
-    case bookieDropdownTapped
-    case bookieSelectorDismissed
-    case bookieSelected(provider: String, country: CountryCode)
     case inputFocused
     case inputBlurred
     case clearButtonTapped
     
+    // Tooltip Actions
+    case tooltipDismissed
+    
     // Response Actions
-    case providerConfigLoaded(Result<[ProviderConfig], Error>)
     case convertCodeCompleted(Result<ConvertBookingCodeOutput, Error>)
     
     // Navigation Actions
     case presentBetslip(shareCode: String, failCnt: Int)
+    
+    // ========== 廢棄 Action ==========
+    // ❌ case bookieDropdownTapped
+    // ❌ case bookieSelectorDismissed
+    // ❌ case bookieSelected(provider: String, country: CountryCode)
+    // ❌ case providerConfigLoaded(Result<[ProviderConfig], Error>)
 }
 ```
 
@@ -108,18 +123,19 @@ enum Action: Equatable {
 | `.onAppear` | ✅ 原有 | 頁面出現 | - |
 | `.bookingCodeChanged` | ✅ 原有 | 輸入變更 | - |
 | `.countrySelected` | ✅ 原有 | 選擇國家（原流程） | - |
-| `.loadBookingCode` | ✅ 原有 | 載入（原流程） | LoadCodeManager |
+| `.loadBookingCode` | ✅ 原有 | 點擊 Load 按鈕 | ConvertBookingCodeUseCase |
 | `.bookingCodeLoadFailed` | ✅ 原有 | 載入失敗（原流程） | - |
 | `.bookingCodeLoaded` | ✅ 原有 | 載入成功（原流程） | - |
-| `.bookieDropdownTapped` | 🆕 新增 | 點擊 Bookie Dropdown | LoadProviderConfigUseCase |
-| `.bookieSelectorDismissed` | 🆕 新增 | 關閉 Sheet | - |
-| `.bookieSelected` | 🆕 新增 | 選擇 Bookie + Country | - |
 | `.inputFocused` | 🆕 新增 | 輸入框聚焦 | - |
 | `.inputBlurred` | 🆕 新增 | 輸入框失焦 | - |
 | `.clearButtonTapped` | 🆕 新增 | 點擊清除按鈕 | - |
-| `.providerConfigLoaded` | 🆕 新增 | Config 載入完成 | - |
+| `.tooltipDismissed` | 🆕 新增 | 關閉 Tooltip | - |
 | `.convertCodeCompleted` | 🆕 新增 | 轉換完成 | - |
 | `.presentBetslip` | 🆕 新增 | 載入 Betslip | - |
+| ~~`.bookieDropdownTapped`~~ | ❌ 廢棄 | ~~點擊 Bookie Dropdown~~ | - |
+| ~~`.bookieSelectorDismissed`~~ | ❌ 廢棄 | ~~關閉 Sheet~~ | - |
+| ~~`.bookieSelected`~~ | ❌ 廢棄 | ~~選擇 Bookie + Country~~ | - |
+| ~~`.providerConfigLoaded`~~ | ❌ 廢棄 | ~~Config 載入完成~~ | - |
 
 ---
 
@@ -132,8 +148,8 @@ struct Feature: Reducer {
     typealias Action = LoadCodeWidget.Action
     
     @Dependency(\.currentRegion) var currentRegion
-    @Dependency(\.loadProviderConfigUseCase) var loadProviderConfigUseCase
     @Dependency(\.convertBookingCodeUseCase) var convertBookingCodeUseCase
+    @Dependency(\.tooltipStorage) var tooltipStorage
     
     private let manager: LoadCodeManager
     
@@ -151,16 +167,16 @@ struct Feature: Reducer {
                 } else {
                     state.selectedCountry = state.availableCountries.first ?? .nigeria
                 }
-                // 新增：如果啟用 Code Converter，設置預設 Bookie
-                if state.enableCodeConverter, let firstConfig = state.providerConfigs.first {
-                    state.selectedBookie = SelectedBookie(from: firstConfig)
+                // 檢查是否顯示 Tooltip
+                if state.enableCodeConverter {
+                    state.isTooltipVisible = tooltipStorage.shouldShowTooltip
                 }
                 return .none
                 
             case .bookingCodeChanged(let rawCode):
                 let filteredCode = manager.filterBookingCode(rawCode)
                 state.bookingCode = filteredCode
-                // 新增：更新 inputState
+                // 更新 inputState
                 if state.enableCodeConverter {
                     state.inputState = filteredCode.isEmpty ? .focus : .typing
                     state.errorMessage = nil // 清除錯誤
@@ -178,15 +194,13 @@ struct Feature: Reducer {
                     }
                 }
                 
-                // 新增：根據是否啟用 Code Converter 決定流程
-                if state.enableCodeConverter, let bookie = state.selectedBookie {
-                    // Code Converter 流程
+                // 根據是否啟用 Code Converter 決定流程
+                if state.enableCodeConverter {
+                    // Code Converter 流程（簡化版 - 只需 bookingCode）
                     state.inputState = .loading
                     state.isLoading = true
                     
                     let input = ConvertBookingCodeInput(
-                        provider: bookie.provider,
-                        country: bookie.country.rawValue,
                         bookingCode: state.bookingCode
                     )
                     return .run { send in
@@ -229,32 +243,6 @@ struct Feature: Reducer {
                 return .none
                 
             // ========== 新增邏輯（Code Converter） ==========
-            case .bookieDropdownTapped:
-                return .run { send in
-                    let result = await loadProviderConfigUseCase.execute()
-                    await send(.providerConfigLoaded(result))
-                }
-                
-            case .bookieSelectorDismissed:
-                state.isBookieSelectorPresented = false
-                return .none
-                
-            case let .bookieSelected(provider, country):
-                guard let config = state.providerConfigs.first(where: { $0.provider == provider }) else {
-                    return .none
-                }
-                state.selectedBookie = SelectedBookie(
-                    provider: provider,
-                    name: config.name,
-                    country: country
-                )
-                state.isBookieSelectorPresented = false
-                // 同步更新 selectedCountry（向後相容）
-                if let region = Region.from(countryCode: country) {
-                    state.selectedCountry = region
-                }
-                return .none
-                
             case .inputFocused:
                 state.inputState = .focus
                 return .none
@@ -273,15 +261,9 @@ struct Feature: Reducer {
                 state.errorMessage = nil
                 return .none
                 
-            case let .providerConfigLoaded(.success(configs)):
-                state.providerConfigs = configs
-                state.isBookieSelectorPresented = true
-                // 同步更新 availableCountries（向後相容）
-                state.availableCountries = configs.flatMap { $0.regions }
-                return .none
-                
-            case let .providerConfigLoaded(.failure(error)):
-                state.errorMessage = error.localizedDescription
+            case .tooltipDismissed:
+                tooltipStorage.dismissTooltip()
+                state.isTooltipVisible = false
                 return .none
                 
             case let .convertCodeCompleted(.success(output)):
@@ -320,17 +302,9 @@ extension LoadCodeWidget.State {
     var isLoadButtonEnabled: Bool {
         guard !bookingCode.isEmpty else { return false }
         if enableCodeConverter {
-            return selectedBookie != nil && inputState.isLoadButtonEnabled
+            return inputState.isLoadButtonEnabled
         }
         return true
-    }
-    
-    /// Dropdown 顯示文字
-    var dropdownDisplayText: String {
-        if enableCodeConverter, let bookie = selectedBookie {
-            return bookie.displayText
-        }
-        return selectedCountry.description
     }
     
     /// 是否顯示清除按鈕
@@ -345,3 +319,53 @@ extension LoadCodeWidget.State {
     }
 }
 ```
+
+---
+
+## TooltipStorage Dependency
+
+```swift
+struct TooltipStorage {
+    private let userDefaults: UserDefaults
+    private let key = "CodeConverter.TooltipDismissed"
+    
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
+    }
+    
+    var shouldShowTooltip: Bool {
+        !userDefaults.bool(forKey: key)
+    }
+    
+    func dismissTooltip() {
+        userDefaults.set(true, forKey: key)
+    }
+}
+
+// TCA Dependency
+extension DependencyValues {
+    var tooltipStorage: TooltipStorage {
+        get { self[TooltipStorageKey.self] }
+        set { self[TooltipStorageKey.self] = newValue }
+    }
+}
+
+private enum TooltipStorageKey: DependencyKey {
+    static let liveValue = TooltipStorage()
+}
+```
+
+---
+
+## 廢棄項目清單
+
+| 項目 | 類型 | 原因 |
+|------|------|------|
+| `selectedBookie` | State | 不再需要選擇 Bookie |
+| `providerConfigs` | State | 不再需要 Config 資料 |
+| `isBookieSelectorPresented` | State | 不再需要 Sheet |
+| `bookieDropdownTapped` | Action | 不再需要 Dropdown |
+| `bookieSelected` | Action | 不再需要選擇 |
+| `bookieSelectorDismissed` | Action | 不再需要關閉 Sheet |
+| `providerConfigLoaded` | Action | 不再需要載入 Config |
+| `loadProviderConfigUseCase` | Dependency | API 已廢棄 |

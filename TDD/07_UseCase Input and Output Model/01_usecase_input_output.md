@@ -1,52 +1,22 @@
 # UseCase Input and Output Model
 
-## LoadProviderConfigUseCase
+## ⚠️ BE 新設計更新 (2025-01)
 
-### Input Model
-
-```swift
-struct LoadProviderConfigInput: Equatable {
-    // 無參數
-}
-```
-
-**說明**：此 UseCase 不需要任何輸入參數，直接取得所有可用的 Provider Config。
+| 變更項目 | 說明 |
+|----------|------|
+| **LoadProviderConfigUseCase 廢棄** | Config API 已廢棄 |
+| **ConvertBookingCodeInput 簡化** | 只需 `bookingCode`，移除 `provider` 和 `country` |
 
 ---
 
-### Output Model
+## ~~LoadProviderConfigUseCase~~ ❌ 廢棄
 
 ```swift
-struct LoadProviderConfigOutput: Equatable {
-    let providerConfigs: [ProviderConfig]
-}
-```
-
-| 屬性 | 類型 | 說明 |
-|------|------|------|
-| `providerConfigs` | `[ProviderConfig]` | 所有可用的 Provider 設定列表 |
-
----
-
-### UseCase 定義
-
-```swift
-protocol LoadProviderConfigUseCaseProtocol {
-    func execute() async -> Result<LoadProviderConfigOutput, Error>
-}
-
-struct LoadProviderConfigUseCase: LoadProviderConfigUseCaseProtocol {
-    let repository: CodeConverterRepositoryProtocol
-    
-    func execute() async -> Result<LoadProviderConfigOutput, Error> {
-        do {
-            let configs = try await repository.getProviderCountryConfig()
-            return .success(LoadProviderConfigOutput(providerConfigs: configs))
-        } catch {
-            return .failure(error)
-        }
-    }
-}
+// ❌ 廢棄 - Config API 已不再使用
+// struct LoadProviderConfigInput: Equatable { }
+// struct LoadProviderConfigOutput: Equatable {
+//     let providerConfigs: [ProviderConfig]
+// }
 ```
 
 ---
@@ -57,17 +27,19 @@ struct LoadProviderConfigUseCase: LoadProviderConfigUseCaseProtocol {
 
 ```swift
 struct ConvertBookingCodeInput: Equatable {
-    let provider: String
-    let country: String
     let bookingCode: String
+    
+    // ❌ 已移除
+    // let provider: String
+    // let country: String
 }
 ```
 
 | 屬性 | 類型 | 說明 |
 |------|------|------|
-| `provider` | `String` | 競品 Provider 代碼（如 bet9ja） |
-| `country` | `String` | 國家代碼（如 NG） |
-| `bookingCode` | `String` | 競品 Booking Code |
+| `bookingCode` | `String` | 任意 Booking Code（BE 自動識別 Provider） |
+| ~~`provider`~~ | ~~`String`~~ | ❌ 已移除 |
+| ~~`country`~~ | ~~`String`~~ | ❌ 已移除 |
 
 ---
 
@@ -76,14 +48,14 @@ struct ConvertBookingCodeInput: Equatable {
 ```swift
 struct ConvertBookingCodeOutput: Equatable {
     let convertResult: ConvertResult
-    let betslipData: BetslipData
+    let liabilities: LiabilitiesResult
 }
 ```
 
 | 屬性 | 類型 | 說明 |
 |------|------|------|
 | `convertResult` | `ConvertResult` | 轉換結果（shareCode, successCnt, failCnt） |
-| `betslipData` | `BetslipData` | Betslip 資料（既有 Domain Model） |
+| `liabilities` | `LiabilitiesResult` | Liabilities 檢查結果（既有流程） |
 
 ---
 
@@ -100,22 +72,24 @@ struct ConvertBookingCodeUseCase: ConvertBookingCodeUseCaseProtocol {
     
     func execute(_ input: ConvertBookingCodeInput) async -> Result<ConvertBookingCodeOutput, Error> {
         do {
-            // 1. 轉換 Booking Code
+            // 1. 轉換 Booking Code（只需 bookingCode）
             let convertResult = try await codeConverterRepository.convertCode(
-                provider: input.provider,
-                country: input.country,
                 bookingCode: input.bookingCode
             )
             
-            // 2. 檢查 Liabilities（既有流程）
-            _ = try await betslipRepository.checkLiabilities(shareCode: convertResult.shareCode)
+            // 檢查是否全部失敗
+            guard !convertResult.isAllFailed else {
+                throw CodeConverterError.allSelectionsFailed
+            }
             
-            // 3. 取得 Betslip Data（既有流程）
-            let betslipData = try await betslipRepository.getBetslipData(shareCode: convertResult.shareCode)
+            // 2. 檢查 Liabilities（既有流程 - 使用返回的 shareCode）
+            let liabilities = try await betslipRepository.checkLiabilities(
+                shareCode: convertResult.shareCode
+            )
             
             return .success(ConvertBookingCodeOutput(
                 convertResult: convertResult,
-                betslipData: betslipData
+                liabilities: liabilities
             ))
         } catch {
             return .failure(error)
@@ -131,9 +105,8 @@ struct ConvertBookingCodeUseCase: ConvertBookingCodeUseCaseProtocol {
 ```swift
 enum CodeConverterError: Error, Equatable {
     case invalidParameter
-    case codeNotFound(bookieName: String)
-    case providerNotSupported
-    case countryNotSupported
+    case codeNotFound
+    case allSelectionsFailed
     case timeout
     case internalError
     case unknown
@@ -142,12 +115,10 @@ enum CodeConverterError: Error, Equatable {
         switch self {
         case .invalidParameter:
             return "Invalid parameter"
-        case .codeNotFound(let bookieName):
-            return "We couldn't find this booking code on \(bookieName). Please check and try again."
-        case .providerNotSupported:
-            return "Provider not supported"
-        case .countryNotSupported:
-            return "Country not supported"
+        case .codeNotFound:
+            return "We couldn't find this booking code. Please check and try again."
+        case .allSelectionsFailed:
+            return "All selections failed to convert"
         case .timeout:
             return "Request timeout. Please try again."
         case .internalError:
@@ -157,12 +128,10 @@ enum CodeConverterError: Error, Equatable {
         }
     }
     
-    static func from(bizCode: Int, bookieName: String = "") -> CodeConverterError {
+    static func from(bizCode: Int) -> CodeConverterError {
         switch bizCode {
         case 10001: return .invalidParameter
-        case 10002: return .codeNotFound(bookieName: bookieName)
-        case 10003: return .providerNotSupported
-        case 10004: return .countryNotSupported
+        case 10002: return .codeNotFound
         case 10005: return .timeout
         case 10006: return .internalError
         default: return .unknown
@@ -171,27 +140,27 @@ enum CodeConverterError: Error, Equatable {
 }
 ```
 
+### 廢棄的 Error Cases
+
+| Error Case | 原因 |
+|------------|------|
+| ~~`providerNotSupported`~~ | 不再需要 Provider 驗證 |
+| ~~`countryNotSupported`~~ | 不再需要 Country 驗證 |
+| ~~`codeNotFound(bookieName:)`~~ | 簡化為不帶 bookieName |
+
 ---
 
 ## Dependency Injection
 
 ```swift
 extension DependencyValues {
-    var loadProviderConfigUseCase: LoadProviderConfigUseCaseProtocol {
-        get { self[LoadProviderConfigUseCaseKey.self] }
-        set { self[LoadProviderConfigUseCaseKey.self] = newValue }
-    }
-    
     var convertBookingCodeUseCase: ConvertBookingCodeUseCaseProtocol {
         get { self[ConvertBookingCodeUseCaseKey.self] }
         set { self[ConvertBookingCodeUseCaseKey.self] = newValue }
     }
-}
-
-private enum LoadProviderConfigUseCaseKey: DependencyKey {
-    static let liveValue: LoadProviderConfigUseCaseProtocol = LoadProviderConfigUseCase(
-        repository: CodeConverterRepository()
-    )
+    
+    // ❌ 廢棄
+    // var loadProviderConfigUseCase: LoadProviderConfigUseCaseProtocol { ... }
 }
 
 private enum ConvertBookingCodeUseCaseKey: DependencyKey {
@@ -202,3 +171,16 @@ private enum ConvertBookingCodeUseCaseKey: DependencyKey {
 }
 ```
 
+---
+
+## 廢棄項目清單
+
+| 項目 | 類型 | 原因 |
+|------|------|------|
+| `LoadProviderConfigUseCase` | UseCase | Config API 已廢棄 |
+| `LoadProviderConfigInput` | Input Model | 對應 UseCase 已廢棄 |
+| `LoadProviderConfigOutput` | Output Model | 對應 UseCase 已廢棄 |
+| `provider` 參數 | Input Field | BE 自動識別 |
+| `country` 參數 | Input Field | BE 自動識別 |
+| `providerNotSupported` | Error Case | 無需驗證 |
+| `countryNotSupported` | Error Case | 無需驗證 |

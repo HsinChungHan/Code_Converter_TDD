@@ -1,142 +1,40 @@
 # Domain Model
 
+## ⚠️ BE 新設計更新 (2025-01)
+
+| 變更項目 | 說明 |
+|----------|------|
+| **ProviderConfig 廢棄** | 不再需要 Provider Config 資料 |
+| **SelectedBookie 廢棄** | 不再需要選擇 Bookie |
+| **CountryCode 簡化** | 仍保留但不再用於 Bookie 選擇 |
+
+---
+
 ## 模型總覽
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                         Domain Models                           │
 ├─────────────────────────────────────────────────────────────────┤
-│  ProviderConfig        Provider 設定（來自 API）                 │
-│  SelectedBookie        已選擇的 Bookie（UI State）              │
 │  ConvertResult         轉換結果（來自 API）                      │
 │  WidgetInputState      Widget 輸入狀態（6 種狀態）               │
-│  CountryCode           國家代碼（Value Object）                  │
 ├─────────────────────────────────────────────────────────────────┤
 │                     既有復用的 Models                            │
 ├─────────────────────────────────────────────────────────────────┤
 │  Region                現有國家/地區 enum                        │
 │  LoadCodeModel.CodeResult  現有載入結果                          │
 │  EventDetailOutcomeElement 現有選項元素                          │
+├─────────────────────────────────────────────────────────────────┤
+│                     廢棄的 Models                                │
+├─────────────────────────────────────────────────────────────────┤
+│  ❌ ProviderConfig      已廢棄 - 不再需要 Provider 設定           │
+│  ❌ SelectedBookie      已廢棄 - 不再需要 Bookie 選擇            │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## 新增的 Domain Models
-
-### ProviderConfig
-
-對應 API: `GET /orders/converter/config/providerCountries`
-
-```swift
-/// Provider 設定（來自 API）
-struct ProviderConfig: Equatable, Identifiable {
-    let id: String  // 使用 provider 作為 id
-    let provider: String
-    let name: String
-    let countries: [CountryCode]
-    
-    /// 轉換為 Region 列表（向後相容用）
-    var regions: [Region] {
-        countries.compactMap { Region.from(countryCode: $0) }
-    }
-    
-    /// 是否只有單一國家
-    var isSingleCountry: Bool {
-        countries.count == 1
-    }
-}
-```
-
-### CountryCode
-
-```swift
-/// 國家代碼 Value Object
-enum CountryCode: String, Equatable, CaseIterable {
-    case nigeria = "NG"
-    case ghana = "GH"
-    case kenya = "KE"
-    case tanzania = "TZ"
-    case uganda = "UG"
-    case zambia = "ZM"
-    case ethiopia = "ET"
-    case cameroon = "CM"
-    case senegal = "SN"
-    case ivoryCoast = "CI"
-    
-    /// 國家名稱（顯示用）
-    var displayName: String {
-        switch self {
-        case .nigeria: return "Nigeria"
-        case .ghana: return "Ghana"
-        case .kenya: return "Kenya"
-        case .tanzania: return "Tanzania"
-        case .uganda: return "Uganda"
-        case .zambia: return "Zambia"
-        case .ethiopia: return "Ethiopia"
-        case .cameroon: return "Cameroon"
-        case .senegal: return "Senegal"
-        case .ivoryCoast: return "Ivory Coast"
-        }
-    }
-    
-    /// 國旗 Emoji（可選）
-    var flag: String {
-        switch self {
-        case .nigeria: return "🇳🇬"
-        case .ghana: return "🇬🇭"
-        case .kenya: return "🇰🇪"
-        case .tanzania: return "🇹🇿"
-        case .uganda: return "🇺🇬"
-        case .zambia: return "🇿🇲"
-        case .ethiopia: return "🇪🇹"
-        case .cameroon: return "🇨🇲"
-        case .senegal: return "🇸🇳"
-        case .ivoryCoast: return "🇨🇮"
-        }
-    }
-}
-```
-
-### SelectedBookie
-
-```swift
-/// 已選擇的 Bookie（UI State 用）
-struct SelectedBookie: Equatable {
-    let provider: String    // e.g. "bet9ja"
-    let name: String        // e.g. "Bet9ja"
-    let country: CountryCode
-    
-    /// 顯示文字（用於 Dropdown）
-    var displayText: String {
-        "\(name) \(country.rawValue)"  // e.g. "Bet9ja NG"
-    }
-    
-    /// 短顯示（名稱太長時用）
-    var shortDisplayText: String {
-        let maxLength = 12
-        if name.count > maxLength {
-            return "\(name.prefix(maxLength))… \(country.rawValue)"
-        }
-        return displayText
-    }
-    
-    /// 從 ProviderConfig + CountryCode 建立
-    init(provider: String, name: String, country: CountryCode) {
-        self.provider = provider
-        self.name = name
-        self.country = country
-    }
-    
-    /// 從 ProviderConfig 建立（使用第一個國家）
-    init?(from config: ProviderConfig) {
-        guard let firstCountry = config.countries.first else { return nil }
-        self.provider = config.provider
-        self.name = config.name
-        self.country = firstCountry
-    }
-}
-```
 
 ### WidgetInputState
 
@@ -217,17 +115,8 @@ enum WidgetInputState: Equatable {
 /// 轉換結果（來自 API）
 struct ConvertResult: Equatable {
     let shareCode: String
-    let selections: [Selection]
-    
-    /// 失敗數量
-    var failCnt: Int {
-        selections.filter { $0.isFailed }.count
-    }
-    
-    /// 成功數量
-    var successCnt: Int {
-        selections.filter { !$0.isFailed }.count
-    }
+    let successCnt: Int
+    let failCnt: Int
     
     /// 是否部分失敗
     var hasPartialFailure: Bool {
@@ -236,21 +125,7 @@ struct ConvertResult: Equatable {
     
     /// 是否全部失敗
     var isAllFailed: Bool {
-        failCnt == selections.count
-    }
-}
-
-extension ConvertResult {
-    /// 單一選項
-    struct Selection: Equatable {
-        let eventId: String
-        let sportId: Int
-        let marketId: Int
-        let selectionId: Int
-        let odds: Double
-        let specialBetValue: String?
-        let isFailed: Bool
-        let failReason: String?
+        successCnt == 0 && failCnt > 0
     }
 }
 ```
@@ -259,93 +134,90 @@ extension ConvertResult {
 
 ## 既有復用的 Models
 
-### Region（擴展）
+### Region（無需擴展）
 
 ```swift
-extension Region {
-    /// 從 CountryCode 建立
-    static func from(countryCode: CountryCode) -> Region? {
-        switch countryCode {
-        case .nigeria: return .nigeria
-        case .ghana: return .ghana
-        // ... 其他 mapping
-        default: return nil
-        }
-    }
-    
-    /// 轉換為 CountryCode
-    var countryCode: CountryCode? {
-        switch self {
-        case .nigeria: return .nigeria
-        case .ghana: return .ghana
-        // ... 其他 mapping
-        default: return nil
-        }
-    }
-}
+// 保持現有 Region enum 不變
+// 不再需要從 CountryCode 轉換
 ```
 
 ---
 
 ## DTO → Domain Model 轉換
 
-### ProviderCountryDTO → ProviderConfig
-
-```swift
-/// API Response DTO
-struct ProviderCountryDTO: Decodable {
-    let provider: String
-    let name: String
-    let countries: [String]
-}
-
-extension ProviderConfig {
-    init(from dto: ProviderCountryDTO) {
-        self.id = dto.provider
-        self.provider = dto.provider
-        self.name = dto.name
-        self.countries = dto.countries.compactMap { CountryCode(rawValue: $0) }
-    }
-}
-```
-
 ### CodeConverterResponseDTO → ConvertResult
 
 ```swift
 /// API Response DTO
 struct CodeConverterResponseDTO: Decodable {
-    let shareCode: String
-    let selections: [SelectionDTO]
+    let bizCode: Int
+    let message: String
+    let data: CodeConverterDataDTO?
 }
 
-struct SelectionDTO: Decodable {
-    let eventId: String
-    let sportId: Int
-    let marketId: Int
-    let selectionId: Int
-    let odds: Double
-    let specialBetValue: String?
-    let isFailed: Bool
-    let failReason: String?
+struct CodeConverterDataDTO: Decodable {
+    let shareCode: String
+    let successCnt: Int
+    let failCnt: Int
 }
 
 extension ConvertResult {
-    init(from dto: CodeConverterResponseDTO) {
+    init(from dto: CodeConverterDataDTO) {
         self.shareCode = dto.shareCode
-        self.selections = dto.selections.map { Selection(from: $0) }
-    }
-}
-
-extension ConvertResult.Selection {
-    init(from dto: SelectionDTO) {
-        self.eventId = dto.eventId
-        self.sportId = dto.sportId
-        self.marketId = dto.marketId
-        self.selectionId = dto.selectionId
-        self.odds = dto.odds
-        self.specialBetValue = dto.specialBetValue
-        self.isFailed = dto.isFailed
-        self.failReason = dto.failReason
+        self.successCnt = dto.successCnt
+        self.failCnt = dto.failCnt
     }
 }
 ```
+
+---
+
+## 廢棄的 Domain Models
+
+### ~~ProviderConfig~~ ❌ 廢棄
+
+```swift
+// ❌ 廢棄 - 不再需要
+// 原用途：對應 API: GET /orders/converter/config/providerCountries
+// struct ProviderConfig: Equatable, Identifiable {
+//     let id: String
+//     let provider: String
+//     let name: String
+//     let countries: [CountryCode]
+// }
+```
+
+### ~~SelectedBookie~~ ❌ 廢棄
+
+```swift
+// ❌ 廢棄 - 不再需要
+// 原用途：儲存已選擇的 Bookie
+// struct SelectedBookie: Equatable {
+//     let provider: String
+//     let name: String
+//     let country: CountryCode
+// }
+```
+
+### ~~CountryCode~~ ❌ 廢棄
+
+```swift
+// ❌ 廢棄 - 不再需要
+// 原用途：國家代碼 Value Object
+// enum CountryCode: String, Equatable, CaseIterable {
+//     case nigeria = "NG"
+//     case ghana = "GH"
+//     // ...
+// }
+```
+
+---
+
+## 廢棄項目清單
+
+| 項目 | 類型 | 原因 |
+|------|------|------|
+| `ProviderConfig` | Domain Model | Config API 已廢棄 |
+| `SelectedBookie` | Domain Model | 不再需要選擇 Bookie |
+| `CountryCode` | Value Object | 不再需要國家代碼 |
+| `ProviderCountryDTO` | DTO | 對應 API 已廢棄 |

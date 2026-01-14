@@ -2,7 +2,17 @@
 
 ## 觸發時機
 
-用戶點擊 Load 按鈕，執行 Code2Code 轉換流程。
+用戶輸入 Booking Code 後點擊 Load 按鈕，執行 Code2Code 轉換流程。
+
+---
+
+## ⚠️ BE 新設計更新 (2025-01)
+
+| 變更項目 | 舊版 | 新版 |
+|----------|------|------|
+| **Request 參數** | `{provider, country, bookingCode}` | `{bookingCode}` 只需 bookingCode |
+| **Provider/Country** | 需先選擇 Bookie | ❌ 移除 - BE 自動識別 |
+| **後續流程** | 自行處理 | 走原有 load code 流程 |
 
 ---
 
@@ -28,7 +38,7 @@ sequenceDiagram
         User->>Widget: 點擊輸入框
         Widget->>User: 顯示 Focus 狀態 (綠色邊框)
         note over Widget: 📐 Figma: 1.0.2 Typing
-        User->>Widget: 輸入 Booking Code
+        User->>Widget: 輸入任意 Booking Code
         note over Widget: 📐 Figma: 1.0.4 Filled
         Widget->>User: 顯示 Filled 狀態 (Load 按鈕啟用)
     end
@@ -42,21 +52,21 @@ sequenceDiagram
         note right of Widget: "Conversion may take up to 10 seconds..."
         
         Widget->>BE: POST /orders/converter/code
-        note over Widget,BE: Request: {provider, country, bookingCode}
+        note over Widget,BE: Request: {bookingCode}
         
         alt Convert API Success
             BE-->>Widget: {bizCode: 10000, data: {shareCode, successCnt, failCnt}}
             note over Widget: 記錄 failCnt 用於後續 Toast 顯示
             
-            %% Check Liabilities [既有流程]
-            note over Widget,BE: Check Liabilities [既有流程]
+            %% Check Liabilities [原有流程]
+            note over Widget,BE: Check Liabilities [原有 Load Code 流程]
             Widget->>BE: GET /bookingCode/[shareCode]/liabilities
             
             alt Liabilities API Success
                 BE-->>Widget: {isTrusted: true/false}
                 
-                %% Get Betslip Data [既有流程]
-                note over Widget,BE: Get Betslip Data [既有流程]
+                %% Get Betslip Data [原有流程]
+                note over Widget,BE: Get Betslip Data [原有 Load Code 流程]
                 Widget->>BE: GET /orders/share/[shareCode]
                 
                 alt Share API Success
@@ -113,7 +123,7 @@ sequenceDiagram
         User->>Widget: 點擊輸入框
         Widget->>User: 顯示 Focus 狀態 (綠色邊框)
         note over Widget: 📐 Figma: 1.0.2 Typing
-        User->>Widget: 輸入 Booking Code
+        User->>Widget: 輸入任意 Booking Code
         note over Widget: 📐 Figma: 1.0.4 Filled
         Widget->>User: 顯示 Filled 狀態 (Load 按鈕啟用)
     end
@@ -127,21 +137,21 @@ sequenceDiagram
         note right of Widget: "Conversion may take up to 10 seconds..."
         
         Widget->>BE: POST /orders/converter/code
-        note over Widget,BE: Request: {provider, country, bookingCode}
+        note over Widget,BE: Request: {bookingCode}
         
         alt Convert API Success
             BE-->>Widget: {bizCode: 10000, data: {shareCode, successCnt, failCnt}}
             note over Widget: 記錄 failCnt 用於後續 Toast 顯示
             
-            %% Check Liabilities [既有流程]
-            note over Widget,BE: Check Liabilities [既有流程]
+            %% Check Liabilities [原有流程]
+            note over Widget,BE: Check Liabilities [原有 Load Code 流程]
             Widget->>BE: GET /bookingCode/[shareCode]/liabilities
             
             alt Liabilities API Success
                 BE-->>Widget: {isTrusted: true/false}
                 
-                %% Get Betslip Data [既有流程]
-                note over Widget,BE: Get Betslip Data [既有流程]
+                %% Get Betslip Data [原有流程]
+                note over Widget,BE: Get Betslip Data [原有 Load Code 流程]
                 Widget->>BE: GET /orders/share/[shareCode]
                 
                 alt Share API Success
@@ -197,8 +207,8 @@ sequenceDiagram
 | 順序 | API | Method | Figma 狀態 | 失敗處理 |
 |:----:|-----|--------|------------|----------|
 | 1 | `/orders/converter/code` | `POST` | 1.0.5 Loading | 1.0.6 Error |
-| 2 | `/bookingCode/[shareCode]/liabilities` | `GET` | [既有流程] | Betslip 既有錯誤 UI |
-| 3 | `/orders/share/[shareCode]` | `GET` | [既有流程] | Betslip 既有錯誤 UI |
+| 2 | `/bookingCode/[shareCode]/liabilities` | `GET` | [原有流程] | Betslip 既有錯誤 UI |
+| 3 | `/orders/share/[shareCode]` | `GET` | [原有流程] | Betslip 既有錯誤 UI |
 
 ---
 
@@ -220,24 +230,24 @@ sequenceDiagram
 
     UI->>Feature: .loadBookingCode
     
-    Note over Feature: 檢查 enableCodeConverter<br/>已選 Bookie + 輸入 Code
+    Note over Feature: 檢查 enableCodeConverter<br/>+ 輸入的 Code
     
     Feature->>Feature: state.inputState = .loading
     Feature->>Feature: state.isLoading = true
     
     Feature->>UC: execute(input)
-    Note right of Feature: input = ConvertBookingCodeInput<br/>(provider, country, bookingCode)
+    Note right of Feature: input = ConvertBookingCodeInput(bookingCode)
     
     %% Step 1: Code2Code 轉換
-    UC->>CCRepo: convertCode(request)
+    UC->>CCRepo: convertCode(bookingCode)
     CCRepo->>CCClient: postConvertCode(request)
-    CCClient->>ConvertAPI: POST request
+    CCClient->>ConvertAPI: POST request {bookingCode}
     ConvertAPI-->>CCClient: 200 OK with CodeConverterResponseDTO
     CCClient-->>CCRepo: CodeConverterResponseDTO
     Note over CCRepo: DTO → Domain Model
     CCRepo-->>UC: ConvertResult
     
-    %% Step 2: Liabilities 檢查 (使用 shareCode)
+    %% Step 2: Liabilities 檢查 (使用 shareCode) - 原有流程
     UC->>BSRepo: checkLiabilities(shareCode)
     BSRepo->>BSClient: fetchLiabilities(shareCode)
     BSClient->>LiabAPI: GET /bookingCode/{shareCode}/liabilities
@@ -275,24 +285,24 @@ sequenceDiagram
 
     UI->>Feature: .loadBookingCode
     
-    Note over Feature: 檢查 enableCodeConverter<br/>已選 Bookie + 輸入 Code
+    Note over Feature: 檢查 enableCodeConverter<br/>+ 輸入的 Code
     
     Feature->>Feature: state.inputState = .loading
     Feature->>Feature: state.isLoading = true
     
     Feature->>UC: execute(input)
-    Note right of Feature: input = ConvertBookingCodeInput<br/>(provider, country, bookingCode)
+    Note right of Feature: input = ConvertBookingCodeInput(bookingCode)
     
     %% Step 1: Code2Code 轉換
-    UC->>CCRepo: convertCode(request)
+    UC->>CCRepo: convertCode(bookingCode)
     CCRepo->>CCClient: postConvertCode(request)
-    CCClient->>ConvertAPI: POST request
+    CCClient->>ConvertAPI: POST request {bookingCode}
     ConvertAPI-->>CCClient: 200 OK with CodeConverterResponseDTO
     CCClient-->>CCRepo: CodeConverterResponseDTO
     Note over CCRepo: DTO → Domain Model
     CCRepo-->>UC: ConvertResult
     
-    %% Step 2: Liabilities 檢查 (使用 shareCode)
+    %% Step 2: Liabilities 檢查 (使用 shareCode) - 原有流程
     UC->>BSRepo: checkLiabilities(shareCode)
     BSRepo->>BSClient: fetchLiabilities(shareCode)
     BSClient->>LiabAPI: GET /bookingCode/{shareCode}/liabilities
@@ -327,11 +337,11 @@ Content-Type: application/json
 Authorization: Bearer {token}
 
 {
-  "provider": "bet9ja",
-  "country": "NG",
   "bookingCode": "3RA3FA"
 }
 ```
+
+> ⚠️ **注意**: `provider` 和 `country` 參數已移除，BE 會自動識別。
 
 ### Convert Code Response (200 OK)
 
@@ -368,26 +378,6 @@ sequenceDiagram
     UI->>Betslip: 導航至 Betslip（僅載入成功的 selections）
 ```
 
-<details>
-<summary>📝 Mermaid 語法</summary>
-
-```text
-sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
-    participant Betslip as BetslipPage
-
-    Feature-->>UI: .presentBetslip(shareCode, failCnt: 2)
-    
-    Note over UI: failCnt > 0，顯示 Partial Error Toast
-    
-    UI->>UI: 顯示 "2 selections failed to convert" Toast
-    
-    UI->>Betslip: 導航至 Betslip（僅載入成功的 selections）
-```
-
-</details>
-
 ---
 
 ## Error Handling
@@ -405,47 +395,18 @@ sequenceDiagram
     
     Feature->>UC: execute(input)
     
-    UC->>CCRepo: convertCode(request)
-    CCRepo-->>UC: throw CodeConverterError.codeNotFound(bookieName)
+    UC->>CCRepo: convertCode(bookingCode)
+    CCRepo-->>UC: throw CodeConverterError.codeNotFound
     
     UC-->>Feature: .failure(CodeConverterError.codeNotFound)
     
     Feature->>Feature: state.inputState = .error(message)
-    Feature->>Feature: state.errorMessage = "We couldn't find this booking code on Bet9ja. Please check and try again."
+    Feature->>Feature: state.errorMessage = "We couldn't find this booking code. Please check and try again."
     
     Feature-->>UI: State 更新
     
     Note over UI: 顯示紅色邊框 + 錯誤訊息
 ```
-
-<details>
-<summary>📝 Mermaid 語法</summary>
-
-```text
-sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
-    participant UC as ConvertBookingCodeUseCase
-    participant CCRepo as CodeConverterRepository
-
-    UI->>Feature: .loadBookingCode
-    
-    Feature->>UC: execute(input)
-    
-    UC->>CCRepo: convertCode(request)
-    CCRepo-->>UC: throw CodeConverterError.codeNotFound(bookieName)
-    
-    UC-->>Feature: .failure(CodeConverterError.codeNotFound)
-    
-    Feature->>Feature: state.inputState = .error(message)
-    Feature->>Feature: state.errorMessage = "We couldn't find this booking code on Bet9ja. Please check and try again."
-    
-    Feature-->>UI: State 更新
-    
-    Note over UI: 顯示紅色邊框 + 錯誤訊息
-```
-
-</details>
 
 ### 2. All Selections Failed (CC003)
 
@@ -507,11 +468,9 @@ struct ConvertBookingCodeUseCase {
     
     func execute(_ input: ConvertBookingCodeInput) async -> Result<ConvertBookingCodeOutput, Error> {
         do {
-            // Step 1: Code2Code 轉換
+            // Step 1: Code2Code 轉換（只需 bookingCode）
             let convertResult = try await codeConverterRepo.convertCode(
-                provider: input.provider,
-                country: input.country,
-                code: input.bookingCode
+                bookingCode: input.bookingCode
             )
             
             // 檢查是否全部失敗
@@ -519,7 +478,7 @@ struct ConvertBookingCodeUseCase {
                 throw CodeConverterError.allSelectionsFailed
             }
             
-            // Step 2: Liabilities 檢查（使用返回的 shareCode）
+            // Step 2: Liabilities 檢查（使用返回的 shareCode）- 原有流程
             let liabilities = try await betslipRepo.checkLiabilities(
                 shareCode: convertResult.shareCode
             )
@@ -539,9 +498,11 @@ struct ConvertBookingCodeUseCase {
 
 ```swift
 struct ConvertBookingCodeInput {
-    let provider: String
-    let country: String
     let bookingCode: String
+    
+    // 已移除
+    // let provider: String
+    // let country: String
 }
 
 struct ConvertBookingCodeOutput: Equatable {
@@ -549,3 +510,13 @@ struct ConvertBookingCodeOutput: Equatable {
     let liabilities: LiabilitiesResult
 }
 ```
+
+---
+
+## 廢棄項目
+
+| 項目 | 說明 |
+|------|------|
+| `provider` 參數 | 不再需要傳遞 |
+| `country` 參數 | 不再需要傳遞 |
+| `selectedBookie` 檢查 | 不再需要 |

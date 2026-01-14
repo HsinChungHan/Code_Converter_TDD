@@ -70,8 +70,8 @@ sequenceDiagram
     participant Client as CodeConverterClient
     participant Repo as CodeConverterRepository
     participant UC as ConvertBookingCodeUseCase
-    participant Feature as LoadCodeWidget.Feature
-    participant UI as LoadCodeWidgetView
+    participant Feature as LoadBookingCodeSection.Feature
+    participant UI as LoadBookingCodeSectionView
 
     API-->>Client: 404 Not Found
     Client-->>Repo: throw APIError.notFound
@@ -96,8 +96,8 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     participant API as API
-    participant Feature as LoadCodeWidget.Feature
-    participant UI as LoadCodeWidgetView
+    participant Feature as LoadBookingCodeSection.Feature
+    participant UI as LoadBookingCodeSectionView
     participant Toast as PartialErrorToast
     participant Betslip as BetslipPage
 
@@ -120,8 +120,8 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    participant Feature as LoadCodeWidget.Feature
-    participant UI as LoadCodeWidgetView
+    participant Feature as LoadBookingCodeSection.Feature
+    participant UI as LoadBookingCodeSectionView
 
     Note over Feature: convertResult.isAllFailed == true
     
@@ -243,7 +243,7 @@ struct PartialErrorToast: View {
 ### 顯示邏輯
 
 ```swift
-// 在 LoadCodeWidgetView 或 Parent View 中
+// 在 LoadBookingCodeSectionView 或 Parent View 中
 .toast(isPresenting: $showPartialErrorToast) {
     PartialErrorToast(failedCount: store.convertResult?.failCnt ?? 0)
 }

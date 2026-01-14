@@ -1,8 +1,8 @@
-site_name: Code Converter Phase 1 - TDD
-site_description: Technical Design Document for Code Converter Feature
-site_author: Reed Hsin
+site_name: Code Converter - TDD Documentation
+site_description: Technical Design Documentation for Code Converter Feature
+site_author: iOS Team
+
 docs_dir: TDD
-site_dir: site
 
 theme:
   name: material
@@ -13,22 +13,22 @@ theme:
       accent: lime
       toggle:
         icon: material/brightness-4
-        name: 切換到淺色模式
+        name: 切換至淺色模式
     - scheme: default
       primary: deep purple
       accent: lime
       toggle:
         icon: material/brightness-7
-        name: 切換到深色模式
+        name: 切換至深色模式
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - search.suggest
     - search.highlight
-    - search.share
     - content.code.copy
-    - content.tabs.link
+    - content.code.annotate
 
 plugins:
   - search:
@@ -39,8 +39,6 @@ plugins:
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -62,39 +60,46 @@ nav:
   - 首頁: index.md
   - 概述:
     - Overview: 00_Overview/01_overview.md
-  - 架構設計:
-    - 完整流程序列圖: 01_Integrated Service-Level Sequence Diagram/01_full_integration_flow.md
+  - 整合流程:
+    - Full Integration Flow: 01_Integrated Service-Level Sequence Diagram/01_full_integration_flow.md
+  - 架構:
     - Clean Architecture: 02_Architecture/01_clean_architecture_diagram.md
-    - 模組職責: 03_Module Responsibility/01_module_responsibility.md
+  - 模組職責:
+    - Module Responsibility: 03_Module Responsibility/01_module_responsibility.md
   - Domain Model:
     - Domain Model: 04_Domain Model/01_domain_model.md
     - Domain Model UML: 04_Domain Model/02_domain_model_uml.md
-  - LoadCodeWidget:
-    - 序列圖:
-      - 載入 Provider Config: 05_Module Sequence Diagram/Module Sequence Diagrams/01_data_initialization_load_provider_config.md
-      - 轉換 Code: 05_Module Sequence Diagram/Module Sequence Diagrams/02_data_interaction_convert_code.md
-      - Bookie 選擇: 05_Module Sequence Diagram/Module Sequence Diagrams/03_data_interaction_bookie_selection.md
-    - View 實作: 05_Module Sequence Diagram/LoadCodeWidget/01_view_implementation.md
-    - 設計規格: 05_Module Sequence Diagram/LoadCodeWidget/02_view_design_specs.md
-    - State ↔ Figma 對照: 05_Module Sequence Diagram/LoadCodeWidget/03_state_to_figma_mapping.md
-  - TCA Feature:
-    - State & Action: 06_Feature State and Action (TCA)/01_feature_state_action.md
+  - Module Sequence:
+    - LoadBookingCodeSection:
+      - 版本變更紀錄: 05_Module Sequence Diagram/LoadBookingCodeSection/00_version_changelog.md
+      - View Implementation: 05_Module Sequence Diagram/LoadBookingCodeSection/01_view_implementation.md
+      - View Design Specs: 05_Module Sequence Diagram/LoadBookingCodeSection/02_view_design_specs.md
+      - State to Figma Mapping: 05_Module Sequence Diagram/LoadBookingCodeSection/03_state_to_figma_mapping.md
+      - Figma to Design System: 05_Module Sequence Diagram/LoadBookingCodeSection/04_figma_to_design_system_mapping.md
+      - ⭐ UI 替換策略 (01_09): 05_Module Sequence Diagram/LoadBookingCodeSection/05_ui_replacement_strategy_01_09.md
+      - 🚀 UI-Only 實作計劃: 05_Module Sequence Diagram/LoadBookingCodeSection/06_ui_only_implementation_plan.md
+    - Data Flow:
+      - ❌ Load Provider Config (廢棄): 05_Module Sequence Diagram/Module Sequence Diagrams/01_data_initialization_load_provider_config.md
+      - Convert Code: 05_Module Sequence Diagram/Module Sequence Diagrams/02_data_interaction_convert_code.md
+      - ❌ Bookie Selection (廢棄): 05_Module Sequence Diagram/Module Sequence Diagrams/03_data_interaction_bookie_selection.md
+      - 🆕 Tooltip Display Logic: 05_Module Sequence Diagram/Module Sequence Diagrams/04_tooltip_display_logic.md
+  - Feature (TCA):
+    - State and Action: 06_Feature State and Action (TCA)/01_feature_state_action.md
   - UseCase:
-    - Input/Output Model: 07_UseCase Input and Output Model/01_usecase_input_output.md
+    - Input and Output: 07_UseCase Input and Output Model/01_usecase_input_output.md
   - API:
-    - API 規格: 08_API Spec and Mapping/01_api_spec.md
+    - API Spec: 08_API Spec and Mapping/01_api_spec.md
     - DTO Mapping: 08_API Spec and Mapping/02_dto_mapping.md
-  - 錯誤處理:
+  - Error Handling:
     - Error Handling: 09_Error Handling/01_error_handling.md
   - 測試:
     - Test Scenarios: 10_Test Scenarios/01_test_scenarios.md
-  - 風險與問題:
-    - Risks & Questions: 11_Risks and Questions/01_risks_and_questions.md
-  - Sprint 規劃:
+  - 風險:
+    - Risks and Questions: 11_Risks and Questions/01_risks_and_questions.md
+  - Sprint Plan:
     - 5 Day Sprint Plan: 12_Sprint Plan/01_5day_sprint_plan.md
 
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/HsinChungHan
-
+      link: https://github.com

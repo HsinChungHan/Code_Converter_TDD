@@ -4,7 +4,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                   LoadCodeWidgetView 復用策略                          │
+│                   LoadBookingCodeSectionView 復用策略                          │
 ├────────────────────────────────────────────────────────────────────────┤
 │  核心原則：最大化復用 LoadBookingCodeSectionView 的結構               │
 │                                                                        │
@@ -18,7 +18,7 @@
 
 ## 現有 vs 新增對照
 
-### LoadBookingCodeSectionView → LoadCodeWidgetView
+### LoadBookingCodeSectionView → LoadBookingCodeSectionView
 
 ```swift
 // 現有
@@ -37,8 +37,8 @@ struct LoadBookingCodeSectionView: View {
 }
 
 // 新增（擴展）
-struct LoadCodeWidgetView: View {
-    let store: StoreOf<LoadCodeWidget.Feature>
+struct LoadBookingCodeSectionView: View {
+    let store: StoreOf<LoadBookingCodeSection.Feature>
     @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
@@ -107,16 +107,13 @@ private struct CountryDropdownView: View {
 // 新增（擴展）
 private struct BookieDropdownView: View {
     let selectedBookie: SelectedBookie?
-    let enableCodeConverter: Bool
-    let selectedCountry: Region  // 向後相容
     let onTap: () -> Void
 
     var body: some View {
         Button(action: onTap) {
             HStack(spacing: 8) {
-                // 根據 enableCodeConverter 決定顯示內容
-                if enableCodeConverter, let bookie = selectedBookie {
-                    // 新功能：顯示 Bookie + Country
+                if let bookie = selectedBookie {
+                    // 顯示 Bookie + Country
                     VStack(alignment: .leading, spacing: 2) {
                         Text(bookie.name)
                             .font(.system(size: 12))
@@ -126,9 +123,9 @@ private struct BookieDropdownView: View {
                             .foregroundColor(.secondary)
                     }
                 } else {
-                    // 向後相容：只顯示 Country
-                    Text(selectedCountry.description)
+                    Text("Select Bookie")
                         .font(.system(size: 12))
+                        .foregroundColor(.secondary)
                 }
                 
                 Spacer()
@@ -293,55 +290,4 @@ private struct ErrorMessageView: View {
 }
 ```
 
----
-
-## 向後相容性保證
-
-### 1. Feature 初始化相容
-
-```swift
-// 原有呼叫方式仍然有效
-let store = Store(initialState: LoadCodeWidget.State()) {
-    LoadCodeWidget.Feature()
-}
-
-// 新功能呼叫方式
-let store = Store(initialState: LoadCodeWidget.State(enableCodeConverter: true)) {
-    LoadCodeWidget.Feature()
-}
-```
-
-### 2. State 預設值
-
-所有新增屬性都有合理的預設值，不影響原有邏輯：
-
-```swift
-extension LoadCodeWidget.State {
-    init(
-        // 原有（保持預設）
-        bookingCode: String = "",
-        selectedCountry: Region = .current,
-        isLoading: Bool = false,
-        contentState: SectionContentState = .loaded,
-        availableCountries: [Region] = [.ghana, .nigeria],
-        
-        // 新增（預設關閉）
-        enableCodeConverter: Bool = false,  // ← 預設關閉！
-        selectedBookie: SelectedBookie? = nil,
-        providerConfigs: [ProviderConfig] = [],
-        inputState: WidgetInputState = .default,
-        isBookieSelectorPresented: Bool = false,
-        errorMessage: String? = nil,
-        convertResult: ConvertResult? = nil
-    )
-}
-```
-
-### 3. 漸進式遷移
-
-| 入口點 | Phase 1 | Phase 2 | Phase 3 |
-|--------|---------|---------|---------|
-| 首頁 Widget | `enableCodeConverter = true` | 完成 | 完成 |
-| Code Center | 暫用舊元件 | 替換為新元件 | 移除舊元件 |
-| Betslip | 暫用舊元件 | 替換為新元件 | 移除舊元件 |
 
