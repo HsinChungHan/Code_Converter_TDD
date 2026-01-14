@@ -1,5 +1,15 @@
 # Test Scenarios
 
+## ⚠️ BE 新設計更新 (2025-01-14)
+
+| 變更項目 | 說明 |
+|----------|------|
+| **移除 Bookie 相關測試** | `SelectedBookie`, `bookieDropdownTapped`, `bookieSelected` 測試已移除 |
+| **移除 Config 相關測試** | `LoadProviderConfig` 測試已移除 |
+| **新增 Tooltip 測試** | 新增 Tooltip 顯示邏輯測試 |
+
+---
+
 ## 測試分類
 
 | 類別 | 範圍 | 工具 |
@@ -59,76 +69,16 @@ class WidgetInputStateTests: XCTestCase {
 }
 ```
 
-### 2. SelectedBookie Tests
-
-```swift
-class SelectedBookieTests: XCTestCase {
-    
-    func test_displayText_format() {
-        let bookie = SelectedBookie(provider: "bet9ja", name: "Bet9ja", country: .nigeria)
-        
-        XCTAssertEqual(bookie.displayText, "Bet9ja NG")
-    }
-    
-    func test_shortDisplayText_truncates_long_name() {
-        let bookie = SelectedBookie(provider: "longbookie", name: "Very Long Bookie Name", country: .nigeria)
-        
-        XCTAssertEqual(bookie.shortDisplayText, "Very Long Bo… NG")
-    }
-    
-    func test_init_from_providerConfig_uses_first_country() {
-        let config = ProviderConfig(
-            id: "betway",
-            provider: "betway",
-            name: "Betway",
-            countries: [.ghana, .nigeria, .kenya]
-        )
-        
-        let bookie = SelectedBookie(from: config)
-        
-        XCTAssertEqual(bookie?.country, .ghana)
-    }
-    
-    func test_init_from_empty_providerConfig_returns_nil() {
-        let config = ProviderConfig(
-            id: "empty",
-            provider: "empty",
-            name: "Empty",
-            countries: []
-        )
-        
-        XCTAssertNil(SelectedBookie(from: config))
-    }
-}
-```
-
-### 3. ConvertResult Tests
+### 2. ConvertResult Tests
 
 ```swift
 class ConvertResultTests: XCTestCase {
     
-    func test_failCnt_counts_failed_selections() {
-        let result = ConvertResult(
-            shareCode: "ABC123",
-            selections: [
-                .mock(isFailed: false),
-                .mock(isFailed: true),
-                .mock(isFailed: true),
-                .mock(isFailed: false)
-            ]
-        )
-        
-        XCTAssertEqual(result.failCnt, 2)
-        XCTAssertEqual(result.successCnt, 2)
-    }
-    
     func test_hasPartialFailure_when_some_failed() {
         let result = ConvertResult(
             shareCode: "ABC123",
-            selections: [
-                .mock(isFailed: false),
-                .mock(isFailed: true)
-            ]
+            successCnt: 5,
+            failCnt: 2
         )
         
         XCTAssertTrue(result.hasPartialFailure)
@@ -138,14 +88,59 @@ class ConvertResultTests: XCTestCase {
     func test_isAllFailed_when_all_failed() {
         let result = ConvertResult(
             shareCode: "ABC123",
-            selections: [
-                .mock(isFailed: true),
-                .mock(isFailed: true)
-            ]
+            successCnt: 0,
+            failCnt: 5
         )
         
         XCTAssertTrue(result.isAllFailed)
         XCTAssertFalse(result.hasPartialFailure)
+    }
+    
+    func test_success_when_no_failures() {
+        let result = ConvertResult(
+            shareCode: "ABC123",
+            successCnt: 5,
+            failCnt: 0
+        )
+        
+        XCTAssertFalse(result.hasPartialFailure)
+        XCTAssertFalse(result.isAllFailed)
+    }
+}
+```
+
+### 3. TooltipStorage Tests
+
+```swift
+class TooltipStorageTests: XCTestCase {
+    
+    var userDefaults: UserDefaults!
+    var storage: TooltipStorage!
+    
+    override func setUp() {
+        super.setUp()
+        userDefaults = UserDefaults(suiteName: "test")
+        userDefaults.removePersistentDomain(forName: "test")
+        storage = TooltipStorage(userDefaults: userDefaults)
+    }
+    
+    func test_shouldShowTooltip_returns_true_initially() {
+        XCTAssertTrue(storage.shouldShowTooltip)
+    }
+    
+    func test_dismissTooltip_sets_flag() {
+        storage.dismissTooltip()
+        
+        XCTAssertFalse(storage.shouldShowTooltip)
+    }
+    
+    func test_shouldShowTooltip_persists_after_dismiss() {
+        storage.dismissTooltip()
+        
+        // 重新創建 storage 模擬 app 重啟
+        let newStorage = TooltipStorage(userDefaults: userDefaults)
+        
+        XCTAssertFalse(newStorage.shouldShowTooltip)
     }
 }
 ```
@@ -154,47 +149,56 @@ class ConvertResultTests: XCTestCase {
 
 ## TCA Feature Tests
 
-### 1. Happy Path: Load Provider Config
+### 1. Happy Path: Convert Booking Code
 
 ```swift
 @MainActor
 class LoadCodeWidgetFeatureTests: XCTestCase {
     
-    func test_bookieDropdownTapped_loads_config_and_shows_sheet() async {
-        let mockConfigs = [
-            ProviderConfig(id: "bet9ja", provider: "bet9ja", name: "Bet9ja", countries: [.nigeria])
-        ]
+    func test_loadBookingCode_converts_and_presents_betslip() async {
+        let mockOutput = ConvertBookingCodeOutput(
+            convertResult: ConvertResult(shareCode: "FCOM123", successCnt: 5, failCnt: 0),
+            liabilities: .mock
+        )
         
-        let store = TestStore(initialState: LoadCodeWidget.State(enableCodeConverter: true)) {
+        let store = TestStore(initialState: LoadCodeWidget.State(
+            bookingCode: "3RA3FA",
+            enableCodeConverter: true
+        )) {
             LoadCodeWidget.Feature()
         } withDependencies: {
-            $0.loadProviderConfigUseCase = .init { .success(mockConfigs) }
+            $0.convertBookingCodeUseCase = .init { _ in .success(mockOutput) }
         }
         
-        await store.send(.bookieDropdownTapped)
-        
-        await store.receive(.providerConfigLoaded(.success(mockConfigs))) {
-            $0.providerConfigs = mockConfigs
-            $0.isBookieSelectorPresented = true
-            $0.availableCountries = [.nigeria]
+        await store.send(.loadBookingCode) {
+            $0.inputState = .loading
+            $0.isLoading = true
         }
+        
+        await store.receive(.convertCodeCompleted(.success(mockOutput))) {
+            $0.isLoading = false
+            $0.inputState = .filled
+            $0.bookingCode = ""
+            $0.convertResult = mockOutput.convertResult
+        }
+        
+        await store.receive(.presentBetslip(shareCode: "FCOM123", failCnt: 0))
     }
 }
 ```
 
-### 2. Happy Path: Convert Booking Code
+### 2. Partial Success: Shows Toast
 
 ```swift
-func test_loadBookingCode_with_codeConverter_converts_and_presents_betslip() async {
+func test_loadBookingCode_partial_success_shows_toast() async {
     let mockOutput = ConvertBookingCodeOutput(
-        convertResult: ConvertResult(shareCode: "FCOM123", selections: [.mock(isFailed: false)]),
+        convertResult: ConvertResult(shareCode: "FCOM123", successCnt: 3, failCnt: 2),
         liabilities: .mock
     )
     
     let store = TestStore(initialState: LoadCodeWidget.State(
         bookingCode: "3RA3FA",
-        enableCodeConverter: true,
-        selectedBookie: SelectedBookie(provider: "bet9ja", name: "Bet9ja", country: .nigeria)
+        enableCodeConverter: true
     )) {
         LoadCodeWidget.Feature()
     } withDependencies: {
@@ -213,7 +217,8 @@ func test_loadBookingCode_with_codeConverter_converts_and_presents_betslip() asy
         $0.convertResult = mockOutput.convertResult
     }
     
-    await store.receive(.presentBetslip(shareCode: "FCOM123", failCnt: 0))
+    // failCnt > 0，應顯示 Toast
+    await store.receive(.presentBetslip(shareCode: "FCOM123", failCnt: 2))
 }
 ```
 
@@ -223,13 +228,12 @@ func test_loadBookingCode_with_codeConverter_converts_and_presents_betslip() asy
 func test_loadBookingCode_codeNotFound_shows_error() async {
     let store = TestStore(initialState: LoadCodeWidget.State(
         bookingCode: "INVALID",
-        enableCodeConverter: true,
-        selectedBookie: SelectedBookie(provider: "bet9ja", name: "Bet9ja", country: .nigeria)
+        enableCodeConverter: true
     )) {
         LoadCodeWidget.Feature()
     } withDependencies: {
         $0.convertBookingCodeUseCase = .init { _ in
-            .failure(CodeConverterError.codeNotFound(bookieName: "Bet9ja"))
+            .failure(CodeConverterError.codeNotFound)
         }
     }
     
@@ -238,10 +242,10 @@ func test_loadBookingCode_codeNotFound_shows_error() async {
         $0.isLoading = true
     }
     
-    await store.receive(.convertCodeCompleted(.failure(CodeConverterError.codeNotFound(bookieName: "Bet9ja")))) {
+    await store.receive(.convertCodeCompleted(.failure(CodeConverterError.codeNotFound))) {
         $0.isLoading = false
-        $0.inputState = .error(message: "We couldn't find this booking code on Bet9ja. Please check and try again.")
-        $0.errorMessage = "We couldn't find this booking code on Bet9ja. Please check and try again."
+        $0.inputState = .error(message: "We couldn't find this booking code. Please check and try again.")
+        $0.errorMessage = "We couldn't find this booking code. Please check and try again."
     }
 }
 ```
@@ -279,27 +283,53 @@ func test_inputState_transitions() async {
 }
 ```
 
-### 5. Bookie Selection
+### 5. Tooltip Tests
 
 ```swift
-func test_bookieSelected_updates_state_and_closes_sheet() async {
-    let configs = [
-        ProviderConfig(id: "betway", provider: "betway", name: "Betway", countries: [.ghana, .nigeria])
-    ]
+func test_onAppear_shows_tooltip_if_not_dismissed() async {
+    let store = TestStore(initialState: LoadCodeWidget.State(enableCodeConverter: true)) {
+        LoadCodeWidget.Feature()
+    } withDependencies: {
+        $0.tooltipStorage = TooltipStorage(shouldShowTooltip: true)
+    }
+    
+    await store.send(.onAppear) {
+        $0.isTooltipVisible = true
+    }
+}
+
+func test_onAppear_hides_tooltip_if_dismissed() async {
+    let store = TestStore(initialState: LoadCodeWidget.State(enableCodeConverter: true)) {
+        LoadCodeWidget.Feature()
+    } withDependencies: {
+        $0.tooltipStorage = TooltipStorage(shouldShowTooltip: false)
+    }
+    
+    await store.send(.onAppear) {
+        $0.isTooltipVisible = false
+    }
+}
+
+func test_tooltipDismissed_hides_tooltip_and_persists() async {
+    var dismissCalled = false
     
     let store = TestStore(initialState: LoadCodeWidget.State(
         enableCodeConverter: true,
-        providerConfigs: configs,
-        isBookieSelectorPresented: true
+        isTooltipVisible: true
     )) {
         LoadCodeWidget.Feature()
+    } withDependencies: {
+        $0.tooltipStorage = TooltipStorage(
+            shouldShowTooltip: true,
+            onDismiss: { dismissCalled = true }
+        )
     }
     
-    await store.send(.bookieSelected(provider: "betway", country: .ghana)) {
-        $0.selectedBookie = SelectedBookie(provider: "betway", name: "Betway", country: .ghana)
-        $0.selectedCountry = .ghana  // 向後相容
-        $0.isBookieSelectorPresented = false
+    await store.send(.tooltipDismissed) {
+        $0.isTooltipVisible = false
     }
+    
+    XCTAssertTrue(dismissCalled)
 }
 ```
 
@@ -342,27 +372,30 @@ func test_clear_button_clears_input() {
 }
 ```
 
-### 3. Bookie Selector Sheet
+### 3. Tooltip
 
 ```swift
-func test_dropdown_opens_bookie_selector_sheet() {
+func test_tooltip_shows_on_first_launch() {
     let app = XCUIApplication()
+    app.launchArguments.append("--reset-tooltip")
     app.launch()
     
-    let dropdown = app.buttons["bookieDropdown"]
-    dropdown.tap()
+    let tooltip = app.staticTexts["Insert a booking code from any provider"]
+    XCTAssertTrue(tooltip.waitForExistence(timeout: 2))
     
-    // 驗證 Sheet 出現
-    XCTAssertTrue(app.sheets["bookieSelectorSheet"].waitForExistence(timeout: 2))
+    // 點擊關閉
+    app.buttons["tooltipCloseButton"].tap()
     
-    // 選擇 Bookie
-    app.buttons["Bet9ja"].tap()
+    XCTAssertFalse(tooltip.exists)
+}
+
+func test_tooltip_does_not_show_after_dismissed() {
+    let app = XCUIApplication()
+    // 不重置 tooltip
+    app.launch()
     
-    // 驗證 Sheet 關閉
-    XCTAssertFalse(app.sheets["bookieSelectorSheet"].exists)
-    
-    // 驗證 Dropdown 文字更新
-    XCTAssertTrue(dropdown.label.contains("Bet9ja"))
+    let tooltip = app.staticTexts["Insert a booking code from any provider"]
+    XCTAssertFalse(tooltip.exists)
 }
 ```
 
@@ -371,22 +404,16 @@ func test_dropdown_opens_bookie_selector_sheet() {
 ## Test Data Mocks
 
 ```swift
-extension ConvertResult.Selection {
+extension ConvertResult {
     static func mock(
-        eventId: String = "12345",
-        sportId: Int = 1,
-        isFailed: Bool = false,
-        failReason: String? = nil
+        shareCode: String = "ABC123",
+        successCnt: Int = 5,
+        failCnt: Int = 0
     ) -> Self {
         Self(
-            eventId: eventId,
-            sportId: sportId,
-            marketId: 10,
-            selectionId: 100,
-            odds: 1.85,
-            specialBetValue: nil,
-            isFailed: isFailed,
-            failReason: failReason
+            shareCode: shareCode,
+            successCnt: successCnt,
+            failCnt: failCnt
         )
     }
 }
@@ -396,4 +423,22 @@ extension LiabilitiesResult {
         Self(isValid: true, liabilities: [])
     }
 }
+
+extension TooltipStorage {
+    init(shouldShowTooltip: Bool, onDismiss: @escaping () -> Void = {}) {
+        self._shouldShowTooltip = shouldShowTooltip
+        self._onDismiss = onDismiss
+    }
+}
 ```
+
+---
+
+## 廢棄的測試
+
+| 測試 | 原因 |
+|------|------|
+| `SelectedBookieTests` | `SelectedBookie` 已廢棄 |
+| `test_bookieDropdownTapped_loads_config` | Bookie Dropdown 已移除 |
+| `test_bookieSelected_updates_state` | Bookie 選擇已移除 |
+| `LoadProviderConfigUseCaseTests` | Config API 已廢棄 |

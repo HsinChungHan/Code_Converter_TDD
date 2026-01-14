@@ -1,30 +1,40 @@
 # Clean Architecture 分層圖
 
+## ⚠️ BE 新設計更新 (2025-01-14)
+
+| 變更項目 | 說明 |
+|----------|------|
+| **BookieSelectorSheet 移除** | 不再需要 Bookie 選擇流程 |
+| **LoadProviderConfigUseCase 移除** | Config API 已廢棄 |
+| **ProviderConfig 移除** | 不再需要 Provider 設定 |
+| **TooltipView 新增** | 一次性說明 Tooltip |
+| **TooltipStorage 新增** | Tooltip 狀態儲存 (UserDefaults) |
+
+---
+
 ## 架構總覽
 
 ```mermaid
 flowchart TB
     subgraph UI["UI Layer (SwiftUI)"]
         direction TB
-        LCW[LoadBookingCodeSectionView<br/>擴展自 LoadBookingCodeSectionView]
-        BSS[BookieSelectorSheet<br/>新增 SwiftUI]
+        LCW[LoadCodeWidgetView<br/>擴展自 LoadBookingCodeSectionView]
+        Tooltip[TooltipView<br/>新增 SwiftUI]
         Toast[PartialErrorToast]
     end
     
     subgraph Domain["Domain Layer (TCA)"]
         direction TB
         subgraph Feature["Feature (Thin Reducer)"]
-            LCF[LoadBookingCodeSection.Feature<br/>擴展自 LoadBookingCodeSection.Feature]
+            LCF[LoadCodeWidget.Feature<br/>擴展自 LoadBookingCodeSection.Feature]
         end
         subgraph UseCase["UseCase (Business Logic)"]
-            LPC[LoadProviderConfigUseCase]
             CBC[ConvertBookingCodeUseCase]
         end
     end
     
     subgraph DomainModel["Domain Model Layer"]
         direction TB
-        PC[ProviderConfig]
         CR[ConvertResult]
         WS[WidgetInputState]
     end
@@ -37,6 +47,7 @@ flowchart TB
         BR[BetslipRepository 既有]
         BC[BetslipClient 既有]
         BA[BetslipAPI 既有]
+        TS[TooltipStorage<br/>UserDefaults]
     end
     
     UI --> Domain
@@ -53,28 +64,30 @@ flowchart TB
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    LoadBookingCodeSectionView（新）                          │
+│                    LoadCodeWidgetView（簡化版）                       │
 │    ┌──────────────────────────────────────────────────────────────┐ │
 │    │  擴展自 LoadBookingCodeSectionView 的結構                      │ │
 │    │                                                              │ │
-│    │  ┌─────────────────┐  ┌───────────────────────────────────┐  │ │
-│    │  │ BookieDropdown  │  │ BookingCodeInput                  │  │ │
-│    │  │ (擴展自         │  │ (擴展自 BookingCodeInputView)      │  │ │
-│    │  │ CountryDropdown)│  │                                   │  │ │
-│    │  │                 │  │ + Error 狀態（紅框）               │  │ │
-│    │  │ + Bookie 名稱   │  │ + 清除按鈕 ⊗                      │  │ │
-│    │  │ + Country       │  │ + Loading 提示文字                 │  │ │
-│    │  │ + 點擊開啟 Sheet│  │ + Load 按鈕狀態                   │  │ │
-│    │  └─────────────────┘  └───────────────────────────────────┘  │ │
+│    │  ┌───────────────────────────────────────────────────────┐   │ │
+│    │  │ BookingCodeInput                                      │   │ │
+│    │  │ (擴展自 BookingCodeInputView)                          │   │ │
+│    │  │                                                       │   │ │
+│    │  │ + Error 狀態（紅框）                                   │   │ │
+│    │  │ + 清除按鈕 ⊗                                          │   │ │
+│    │  │ + Loading 提示文字                                     │   │ │
+│    │  │ + Load 按鈕狀態                                        │   │ │
+│    │  └───────────────────────────────────────────────────────┘   │ │
 │    └──────────────────────────────────────────────────────────────┘ │
 │                                                                     │
 │    ┌──────────────────────────────────────────────────────────────┐ │
-│    │  BookieSelectorSheet（新增 SwiftUI）                          │ │
-│    │  - Bottom Sheet                                              │ │
-│    │  - 雙欄選擇器（Bookie + Country）                             │ │
+│    │  TooltipView（新增 SwiftUI）                                  │ │
+│    │  - 首次使用時顯示                                             │ │
+│    │  - 以 Device ID 判斷是否顯示                                  │ │
 │    └──────────────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────────────┘
 ```
+
+> ⚠️ **變更說明**：Bookie Dropdown 和 BookieSelectorSheet 已移除
 
 ---
 
@@ -82,9 +95,9 @@ flowchart TB
 
 | 入口點 | 現有實作 | 替換為 |
 |--------|----------|--------|
-| **首頁 Widget** | `LoadBookingCodeSectionView` | `LoadBookingCodeSectionView`（原地擴展） |
-| **Code Center Load Code Tab** | `LoadCodeViewWrapper` → `LoadCodeViewController` (UIKit) | `LoadBookingCodeSectionView` (SwiftUI) |
-| **首頁 Betslip (Empty)** | 無 / 既有空狀態 | 嵌入 `LoadBookingCodeSectionView` |
+| **首頁 Widget** | `LoadBookingCodeSectionView` | `LoadCodeWidgetView`（原地擴展）+ Tooltip |
+| **Code Center Load Code Tab** | `LoadCodeViewWrapper` → `LoadCodeViewController` (UIKit) | `LoadCodeWidgetView` (SwiftUI) + Tooltip |
+| **首頁 Betslip (Empty)** | 無 / 既有空狀態 | 嵌入 `LoadCodeWidgetView` + Tooltip |
 
 ---
 
@@ -104,26 +117,28 @@ UI → Feature → UseCase → Repository → Client → API
 
 | 元件 | 變更類型 | 說明 |
 |------|----------|------|
-| `LoadBookingCodeSectionView` | **擴展** | → `LoadBookingCodeSectionView`，增加更多狀態 |
-| `CountryDropdownView` | **擴展** | → `BookieDropdownView`，顯示 Bookie + Country |
+| `LoadBookingCodeSectionView` | **擴展** | → `LoadCodeWidgetView`，增加更多狀態 |
 | `BookingCodeInputView` | **擴展** | 增加 Error 狀態、清除按鈕、Loading 提示 |
-| `LoadBookingCodeSection.Feature` | **擴展** | → `LoadBookingCodeSection.Feature`，增加 Provider Config + Convert API |
+| `LoadBookingCodeSection.Feature` | **擴展** | → `LoadCodeWidget.Feature`，增加 Convert API + Tooltip |
 
 ### 新增的元件
 
 | 元件 | 類型 | 說明 |
 |------|------|------|
-| `BookieSelectorSheet` | SwiftUI View | 雙欄選擇器 Bottom Sheet |
-| `LoadProviderConfigUseCase` | UseCase | 取得 Provider Config |
+| `TooltipView` | SwiftUI View | 一次性說明 Tooltip |
 | `ConvertBookingCodeUseCase` | UseCase | Code2Code 轉換 |
 | `CodeConverterRepository` | Repository | Code Converter 資料存取 |
 | `CodeConverterClient` | Client | HTTP 通訊 |
+| `TooltipStorage` | Storage | Tooltip 狀態儲存 (UserDefaults) |
 
 ### 廢棄的元件
 
 | 元件 | 原因 |
 |------|------|
-| `LoadCodeViewController` | 被 `LoadBookingCodeSectionView` (SwiftUI) 替換 |
+| ~~`BookieDropdownView`~~ | 不再需要選擇 Bookie |
+| ~~`BookieSelectorSheet`~~ | 不再需要 Bookie 選擇器 |
+| ~~`LoadProviderConfigUseCase`~~ | Config API 已廢棄 |
+| `LoadCodeViewController` | 被 `LoadCodeWidgetView` (SwiftUI) 替換 |
 | `LoadCodeViewController.xib` | 隨 ViewController 一起廢棄 |
 | `LoadCodeViewWrapper` | 不再需要 UIKit 橋接 |
 
@@ -134,23 +149,35 @@ UI → Feature → UseCase → Repository → Client → API
 ```
 LoadBookingCodeSection/  (擴展自 LoadBookingCode/)
 ├── View/
-│   ├── LoadBookingCodeSectionView.swift          (擴展自 LoadBookingCodeSectionView)
-│   ├── BookieDropdownView.swift          (擴展自 CountryDropdownView)
+│   ├── LoadCodeWidgetView.swift          (擴展自 LoadBookingCodeSectionView)
 │   ├── BookingCodeInputView.swift        (擴展，增加狀態)
-│   └── BookieSelectorSheet.swift         (新增)
+│   ├── TooltipView.swift                 (新增)
+│   └── PartialErrorToast.swift           (新增)
 ├── Feature/
-│   └── LoadBookingCodeSection+Feature.swift      (擴展自 LoadBookingCodeSection+Feature)
+│   └── LoadCodeWidget+Feature.swift      (擴展自 LoadBookingCodeSection+Feature)
 ├── UseCase/
-│   ├── LoadProviderConfigUseCase.swift   (新增)
 │   └── ConvertBookingCodeUseCase.swift   (新增)
 ├── Domain/
-│   ├── ProviderConfig.swift              (新增)
 │   ├── ConvertResult.swift               (新增)
 │   └── WidgetInputState.swift            (新增)
 ├── Repository/
 │   └── CodeConverterRepository.swift     (新增)
 ├── Client/
 │   └── CodeConverterClient.swift         (新增)
+├── Storage/
+│   └── TooltipStorage.swift              (新增)
 └── API/
     └── CodeConverterAPI.swift            (新增)
 ```
+
+---
+
+## 廢棄項目清單
+
+| 項目 | 類型 | 原因 |
+|------|------|------|
+| `BookieSelectorSheet` | View | 不再需要選擇 Bookie |
+| `BookieDropdownView` | View | 不再需要顯示 Dropdown |
+| `LoadProviderConfigUseCase` | UseCase | Config API 已廢棄 |
+| `ProviderConfig` | Domain Model | 不再需要 Provider 設定 |
+| `SelectedBookie` | Domain Model | 不再需要 Bookie 選擇 |

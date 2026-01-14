@@ -1,68 +1,99 @@
 # Error Handling
 
+## ⚠️ BE 新設計更新 (2025-01-14)
+
+| 變更項目 | 說明 |
+|----------|------|
+| **移除 Provider/Country 錯誤** | `unsupportedProvider`, `unsupportedCountry` 已廢棄 |
+| **簡化 codeNotFound** | 不再帶 `bookieName` 參數 |
+
+---
+
 ## 錯誤類型定義
 
 ```swift
-enum CodeConverterError: LocalizedError {
-    /// 找不到 Booking Code（對應 API error code: CC002）
-    case codeNotFound(bookieName: String)
+enum CodeConverterError: LocalizedError, Equatable {
+    /// 參數錯誤
+    case invalidParameter
     
-    /// 所有 selections 都轉換失敗（對應 API error code: CC003）
+    /// 找不到 Booking Code（對應 bizCode: 10002）
+    case codeNotFound
+    
+    /// 所有 selections 都轉換失敗
     case allSelectionsFailed
     
-    /// Provider 不支援
-    case unsupportedProvider
-    
-    /// 國家不支援
-    case unsupportedCountry
-    
     /// 網路錯誤
-    case networkError(underlying: Error)
+    case networkError(message: String)
     
-    /// 伺服器錯誤
-    case serverError(statusCode: Int, message: String?)
+    /// 請求逾時（對應 bizCode: 10005）
+    case timeout
+    
+    /// 伺服器錯誤（對應 bizCode: 10006）
+    case internalError
     
     /// 未知錯誤
-    case unknown(underlying: Error)
+    case unknown
     
     var errorDescription: String? {
         switch self {
-        case .codeNotFound(let bookieName):
-            return "We couldn't find this booking code on \(bookieName). Please check and try again."
+        case .invalidParameter:
+            return "Invalid parameter. Please try again."
+        case .codeNotFound:
+            return "We couldn't find this booking code. Please check and try again."
         case .allSelectionsFailed:
             return "All selections failed to convert. Please try a different code."
-        case .unsupportedProvider:
-            return "This bookie is not supported."
-        case .unsupportedCountry:
-            return "This country is not supported."
-        case .networkError:
-            return "Network error. Please check your connection and try again."
-        case .serverError(_, let message):
-            return message ?? "Server error. Please try again later."
+        case .networkError(let message):
+            return message.isEmpty ? "Network error. Please check your connection and try again." : message
+        case .timeout:
+            return "Request timeout. Please try again."
+        case .internalError:
+            return "Internal error. Please try again later."
         case .unknown:
             return "An unexpected error occurred. Please try again."
         }
     }
+    
+    static func from(bizCode: Int) -> CodeConverterError {
+        switch bizCode {
+        case 10001: return .invalidParameter
+        case 10002: return .codeNotFound
+        case 10005: return .timeout
+        case 10006: return .internalError
+        default: return .unknown
+        }
+    }
 }
+```
+
+### 廢棄的錯誤類型
+
+```swift
+// ❌ 廢棄 - 不再需要
+// case unsupportedProvider
+// case unsupportedCountry
+// case codeNotFound(bookieName: String)  // 簡化為不帶參數
 ```
 
 ---
 
 ## API Error Code 對照
 
-| API Error Code | HTTP Status | CodeConverterError | UI 顯示 |
-|----------------|-------------|-------------------|---------|
-| CC001 | 400 | `.unsupportedProvider` | 不支援的 Bookie |
-| CC002 | 404 | `.codeNotFound(bookieName)` | 找不到 Code（紅框 + 訊息） |
-| CC003 | 200 (partial) | `.allSelectionsFailed` | 全部失敗（紅框 + 訊息） |
-| - | 5xx | `.serverError` | 伺服器錯誤 |
+| bizCode | HTTP Status | CodeConverterError | UI 顯示 |
+|---------|-------------|-------------------|---------|
+| 10001 | 400 | `.invalidParameter` | 參數錯誤 |
+| 10002 | 200 | `.codeNotFound` | 找不到 Code（紅框 + 訊息） |
+| ~~10003~~ | ~~400~~ | ~~`.unsupportedProvider`~~ | ❌ 廢棄 |
+| ~~10004~~ | ~~400~~ | ~~`.unsupportedCountry`~~ | ❌ 廢棄 |
+| 10005 | 200 | `.timeout` | 請求逾時 |
+| 10006 | 200 | `.internalError` | 內部錯誤 |
+| - | 5xx | `.internalError` | 伺服器錯誤 |
 | - | timeout | `.networkError` | 網路錯誤 |
 
 ---
 
 ## 錯誤處理流程
 
-### 1. Code Not Found (CC002)
+### 1. Code Not Found (bizCode: 10002)
 
 ```mermaid
 sequenceDiagram
@@ -70,14 +101,14 @@ sequenceDiagram
     participant Client as CodeConverterClient
     participant Repo as CodeConverterRepository
     participant UC as ConvertBookingCodeUseCase
-    participant Feature as LoadBookingCodeSection.Feature
-    participant UI as LoadBookingCodeSectionView
+    participant Feature as LoadCodeWidget.Feature
+    participant UI as LoadCodeWidgetView
 
-    API-->>Client: 404 Not Found
-    Client-->>Repo: throw APIError.notFound
+    API-->>Client: {bizCode: 10002, message: "CODE_NOT_FOUND"}
+    Client-->>Repo: throw CodeConverterError.codeNotFound
     
     Note over Repo: 轉換為 Domain Error
-    Repo-->>UC: throw CodeConverterError.codeNotFound(bookieName)
+    Repo-->>UC: throw CodeConverterError.codeNotFound
     
     UC-->>Feature: .failure(CodeConverterError.codeNotFound)
     
@@ -96,12 +127,12 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     participant API as API
-    participant Feature as LoadBookingCodeSection.Feature
-    participant UI as LoadBookingCodeSectionView
+    participant Feature as LoadCodeWidget.Feature
+    participant UI as LoadCodeWidgetView
     participant Toast as PartialErrorToast
     participant Betslip as BetslipPage
 
-    API-->>Feature: 200 OK with { failCnt: 2, successCnt: 5 }
+    API-->>Feature: {bizCode: 10000, data: {failCnt: 2, successCnt: 5}}
     
     Feature->>Feature: state.convertResult = result
     Feature->>Feature: state.inputState = .filled
@@ -116,12 +147,12 @@ sequenceDiagram
 
 ---
 
-### 3. All Selections Failed (CC003)
+### 3. All Selections Failed
 
 ```mermaid
 sequenceDiagram
-    participant Feature as LoadBookingCodeSection.Feature
-    participant UI as LoadBookingCodeSectionView
+    participant Feature as LoadCodeWidget.Feature
+    participant UI as LoadCodeWidgetView
 
     Note over Feature: convertResult.isAllFailed == true
     
@@ -141,11 +172,10 @@ sequenceDiagram
 
 | 元件 | 變化 |
 |------|------|
-| 輸入框邊框 | 紅色 (#FF4444) |
+| 輸入框邊框 | 紅色 (#fb4d3d) |
 | 清除按鈕 | 顯示 ⊗ |
 | Load 按鈕 | 綠色（可重試） |
 | 錯誤訊息 | 輸入框下方紅色文字 |
-| Dropdown | 無變化 |
 
 ### 視覺規格
 
@@ -153,13 +183,13 @@ sequenceDiagram
 // 錯誤邊框
 .overlay(
     RoundedRectangle(cornerRadius: 10)
-        .stroke(Color.red, lineWidth: 2)
+        .stroke(Color.warningPrimary, lineWidth: 1)
 )
 
 // 錯誤訊息
 Text(errorMessage)
     .font(.system(size: 12))
-    .foregroundColor(.red)
+    .foregroundColor(.warningPrimary)
     .padding(.top, 8)
 ```
 
@@ -174,7 +204,6 @@ Text(errorMessage)
 | 點擊輸入框 | `inputState = .focus`，清除 errorMessage |
 | 修改輸入 | `inputState = .typing`，清除 errorMessage |
 | 點擊清除按鈕 | 清除輸入 + errorMessage，`inputState = .focus` |
-| 選擇新 Bookie | 保持輸入，清除 errorMessage |
 
 ### Reducer 實作
 
@@ -222,20 +251,23 @@ struct PartialErrorToast: View {
     let failedCount: Int
     
     var body: some View {
-        HStack(spacing: 8) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.orange)
+        HStack(spacing: 4) {
+            Image("icon/exclamation/2")
+                .resizable()
+                .frame(width: 12, height: 12)
+                .foregroundColor(.white)
             
             Text("\(failedCount) selection\(failedCount > 1 ? "s" : "") failed to convert")
-                .font(.system(size: 14))
+                .font(.system(size: 12))
                 .foregroundColor(.white)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.black.opacity(0.8))
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.warningPrimary)
         )
+        .shadow(color: Color.black.opacity(0.25), radius: 12, x: 0, y: 4)
     }
 }
 ```
@@ -243,7 +275,7 @@ struct PartialErrorToast: View {
 ### 顯示邏輯
 
 ```swift
-// 在 LoadBookingCodeSectionView 或 Parent View 中
+// 在 LoadCodeWidgetView 或 Parent View 中
 .toast(isPresenting: $showPartialErrorToast) {
     PartialErrorToast(failedCount: store.convertResult?.failCnt ?? 0)
 }
@@ -267,17 +299,13 @@ case let .presentBetslip(shareCode, failCnt):
 struct CodeConverterErrorEvent: AnalyticsEvent {
     let errorType: String
     let errorCode: String?
-    let provider: String
-    let country: String
     let bookingCode: String  // 已遮蔽敏感資訊
     
-    static func from(error: CodeConverterError, input: ConvertBookingCodeInput) -> Self {
+    static func from(error: CodeConverterError, bookingCode: String) -> Self {
         Self(
             errorType: error.analyticsType,
             errorCode: error.analyticsCode,
-            provider: input.provider,
-            country: input.country,
-            bookingCode: input.bookingCode.prefix(3) + "***"  // 遮蔽
+            bookingCode: String(bookingCode.prefix(3)) + "***"  // 遮蔽
         )
     }
 }
@@ -285,21 +313,36 @@ struct CodeConverterErrorEvent: AnalyticsEvent {
 extension CodeConverterError {
     var analyticsType: String {
         switch self {
+        case .invalidParameter: return "invalid_parameter"
         case .codeNotFound: return "code_not_found"
         case .allSelectionsFailed: return "all_failed"
         case .networkError: return "network_error"
-        case .serverError: return "server_error"
-        default: return "unknown"
+        case .timeout: return "timeout"
+        case .internalError: return "internal_error"
+        case .unknown: return "unknown"
         }
     }
     
     var analyticsCode: String? {
         switch self {
-        case .codeNotFound: return "CC002"
-        case .allSelectionsFailed: return "CC003"
-        case .serverError(let code, _): return "HTTP_\(code)"
+        case .invalidParameter: return "10001"
+        case .codeNotFound: return "10002"
+        case .timeout: return "10005"
+        case .internalError: return "10006"
         default: return nil
         }
     }
 }
 ```
+
+---
+
+## 廢棄項目清單
+
+| 項目 | 類型 | 原因 |
+|------|------|------|
+| `unsupportedProvider` | Error Case | 不再需要 Provider 驗證 |
+| `unsupportedCountry` | Error Case | 不再需要 Country 驗證 |
+| `codeNotFound(bookieName:)` | Error Case | 簡化為不帶 bookieName |
+| Error Code 10003 | API Code | Provider 驗證已移除 |
+| Error Code 10004 | API Code | Country 驗證已移除 |

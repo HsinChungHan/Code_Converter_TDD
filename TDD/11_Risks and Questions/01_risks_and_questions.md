@@ -1,5 +1,15 @@
 # Risks and Questions
 
+## ⚠️ BE 新設計更新 (2025-01-14)
+
+| 變更項目 | 說明 |
+|----------|------|
+| **移除 Config API 相關問題** | Provider Config API 已廢棄 |
+| **移除 Bookie 選擇相關問題** | 不再需要選擇 Bookie/Country |
+| **新增 Tooltip 相關問題** | 新增一次性 Tooltip 功能 |
+
+---
+
 ## 待確認事項
 
 ### 1. 向後相容性
@@ -16,8 +26,8 @@
 | 問題 | 背景 | 影響 | 建議 |
 |------|------|------|------|
 | `POST /orders/converter/code` 返回的 `shareCode` 是否只包含成功的 selections？ | 部分失敗時需要知道如何載入 Betslip | 影響 Betslip 顯示 | 與後端確認 |
-| Provider Config 更新頻率？ | 是否需要緩存 | 影響 API 調用次數 | 建議首次開啟 Sheet 時載入，後續使用緩存 |
-| Provider Config 是否依賴用戶登入？ | 未登入用戶是否可用 | 影響 Guest 用戶體驗 | 與後端確認 |
+| BE 如何識別 Provider？ | 新設計不需傳入 provider/country | 需確認識別邏輯 | 與後端確認 |
+| API 最長等待時間？ | 轉換可能需要較長時間 | 影響 Timeout 設置 | 建議 30 秒 timeout |
 
 ---
 
@@ -25,13 +35,23 @@
 
 | 問題 | 背景 | 影響 | 建議 |
 |------|------|------|------|
-| 多國家 Bookie 的 UI 交互？ | 設計稿顯示雙欄選擇器 | 需確認是先選 Bookie 再選 Country，還是並列顯示 | 參考 Figma 設計 |
 | Partial Failure Toast 顯示時長？ | 需要讓用戶注意到部分失敗 | 影響用戶感知 | 建議 3 秒自動消失 |
-| 長 Bookie 名稱截斷策略？ | Dropdown 空間有限 | 影響可讀性 | 設計稿指定 12 字元後截斷 |
+| Tooltip 內容？ | 需確認說明文字 | 影響用戶理解 | 與 UED 確認最終文案 |
+| Tooltip 樣式規格？ | Figma 設計稿待補 | 影響 UI 實作 | 等待設計稿更新 |
 
 ---
 
-### 4. 效能相關
+### 4. Tooltip 相關
+
+| 問題 | 背景 | 影響 | 建議 |
+|------|------|------|------|
+| Device ID 取得方式？ | 需要判斷是否同一裝置 | 影響 Tooltip 持久化 | 使用 `identifierForVendor` 或 UserDefaults |
+| 跨 App 版本行為？ | 用戶更新 App 後是否重新顯示？ | 影響用戶體驗 | UserDefaults 會保留，不會重新顯示 |
+| 重裝 App 行為？ | 用戶重裝後是否重新顯示？ | 影響用戶體驗 | UserDefaults 會重置，會重新顯示 |
+
+---
+
+### 5. 效能相關
 
 | 問題 | 背景 | 影響 | 建議 |
 |------|------|------|------|
@@ -54,7 +74,7 @@
 | 風險 | 描述 | 緩解措施 |
 |------|------|----------|
 | **Betslip 導航失敗** | 轉換成功但 Betslip 載入失敗 | 增加錯誤處理，回滾到 Error 狀態 |
-| **Provider Config 載入失敗** | 無法開啟 Bookie 選擇器 | 顯示錯誤 Toast，允許重試 |
+| **Tooltip 跨入口同步** | 多個入口需要同步 Tooltip 狀態 | 使用統一的 TooltipStorage |
 
 ### 低風險
 
@@ -71,9 +91,9 @@
 
 | 依賴 | 狀態 | 負責團隊 | 備註 |
 |------|------|----------|------|
-| `GET /orders/converter/config/providerCountries` | 待確認 | Backend | 需確認 Response 格式 |
-| `POST /orders/converter/code` | 待確認 | Backend | 需確認錯誤碼完整性 |
-| Figma 設計稿 | ✅ 已提供 | Design | 已有 Node IDs |
+| `POST /orders/converter/code` | ✅ 已確認 | Backend | 只需 bookingCode 參數 |
+| ~~`GET /orders/converter/config/providerCountries`~~ | ❌ 廢棄 | Backend | 不再需要 |
+| Figma 設計稿 | ⚠️ 待更新 | Design | Tooltip 設計待補 |
 
 ### 內部依賴
 
@@ -81,7 +101,7 @@
 |------|------|------|
 | `BetslipRepository` | ✅ 既有 | 用於 Liabilities 檢查 |
 | `LoadCodeManager` | ✅ 既有 | 保持不變，向後相容 |
-| `Region` enum | ⚠️ 可能需擴展 | 新增 CountryCode mapping |
+| `UserDefaults` | ✅ 既有 | 用於 Tooltip 狀態儲存 |
 
 ---
 
@@ -95,9 +115,9 @@
 
 ### 技術層面
 
-1. **緩存策略**：Provider Config 是否需要持久化緩存？
-2. **離線支援**：離線時是否需要 graceful degradation？
-3. **深連結**：是否需要支援深連結直接帶入 Booking Code？
+1. **離線支援**：離線時是否需要 graceful degradation？
+2. **深連結**：是否需要支援深連結直接帶入 Booking Code？
+3. **Tooltip 動畫**：是否需要入場/出場動畫？
 
 ---
 
@@ -119,8 +139,20 @@
 
 ## Checklist（開發前確認）
 
-- [ ] 與後端確認 API Response 完整格式
-- [ ] 與設計確認多國家 Bookie 選擇交互
+- [x] 與後端確認 API Response 完整格式
+- [x] 確認不再需要 Provider/Country 選擇
+- [ ] 與設計確認 Tooltip 樣式規格
 - [ ] 確認 Feature Flag 需求
 - [ ] 確認 Analytics Events 清單
 - [ ] 確認 Timeout 與重試策略
+
+---
+
+## 廢棄項目清單
+
+| 項目 | 類型 | 原因 |
+|------|------|------|
+| Config API 相關問題 | 待確認事項 | API 已廢棄 |
+| Bookie 選擇交互問題 | 待確認事項 | 不再需要選擇 |
+| Provider Config 緩存問題 | 待確認事項 | 不再需要 Config |
+| 多國家 Bookie UI 問題 | 待確認事項 | 不再需要選擇國家 |
