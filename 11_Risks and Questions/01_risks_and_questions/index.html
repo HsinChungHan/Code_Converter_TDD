@@ -2121,6 +2121,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2166,10 +2177,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
+  <a href="#4-tooltip" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 效能相關
+        4. Tooltip 相關
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 效能相關
       
     </span>
   </a>
@@ -2353,6 +2375,17 @@
     <span class="md-ellipsis">
       
         Checklist（開發前確認）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄項目清單
       
     </span>
   </a>
@@ -2491,6 +2524,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2536,10 +2580,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
+  <a href="#4-tooltip" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 效能相關
+        4. Tooltip 相關
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 效能相關
       
     </span>
   </a>
@@ -2729,6 +2784,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄項目清單
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2747,6 +2813,30 @@
 
 
 <h1 id="risks-and-questions">Risks and Questions<a class="headerlink" href="#risks-and-questions" title="Permanent link">&para;</a></h1>
+<h2 id="be-2025-01-14">⚠️ BE 新設計更新 (2025-01-14)<a class="headerlink" href="#be-2025-01-14" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>變更項目</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>移除 Config API 相關問題</strong></td>
+<td>Provider Config API 已廢棄</td>
+</tr>
+<tr>
+<td><strong>移除 Bookie 選擇相關問題</strong></td>
+<td>不再需要選擇 Bookie/Country</td>
+</tr>
+<tr>
+<td><strong>新增 Tooltip 相關問題</strong></td>
+<td>新增一次性 Tooltip 功能</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="_1">待確認事項<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <h3 id="1">1. 向後相容性<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <table>
@@ -2792,16 +2882,16 @@
 <td>與後端確認</td>
 </tr>
 <tr>
-<td>Provider Config 更新頻率？</td>
-<td>是否需要緩存</td>
-<td>影響 API 調用次數</td>
-<td>建議首次開啟 Sheet 時載入，後續使用緩存</td>
+<td>BE 如何識別 Provider？</td>
+<td>新設計不需傳入 provider/country</td>
+<td>需確認識別邏輯</td>
+<td>與後端確認</td>
 </tr>
 <tr>
-<td>Provider Config 是否依賴用戶登入？</td>
-<td>未登入用戶是否可用</td>
-<td>影響 Guest 用戶體驗</td>
-<td>與後端確認</td>
+<td>API 最長等待時間？</td>
+<td>轉換可能需要較長時間</td>
+<td>影響 Timeout 設置</td>
+<td>建議 30 秒 timeout</td>
 </tr>
 </tbody>
 </table>
@@ -2818,27 +2908,59 @@
 </thead>
 <tbody>
 <tr>
-<td>多國家 Bookie 的 UI 交互？</td>
-<td>設計稿顯示雙欄選擇器</td>
-<td>需確認是先選 Bookie 再選 Country，還是並列顯示</td>
-<td>參考 Figma 設計</td>
-</tr>
-<tr>
 <td>Partial Failure Toast 顯示時長？</td>
 <td>需要讓用戶注意到部分失敗</td>
 <td>影響用戶感知</td>
 <td>建議 3 秒自動消失</td>
 </tr>
 <tr>
-<td>長 Bookie 名稱截斷策略？</td>
-<td>Dropdown 空間有限</td>
-<td>影響可讀性</td>
-<td>設計稿指定 12 字元後截斷</td>
+<td>Tooltip 內容？</td>
+<td>需確認說明文字</td>
+<td>影響用戶理解</td>
+<td>與 UED 確認最終文案</td>
+</tr>
+<tr>
+<td>Tooltip 樣式規格？</td>
+<td>Figma 設計稿待補</td>
+<td>影響 UI 實作</td>
+<td>等待設計稿更新</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h3 id="4">4. 效能相關<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<h3 id="4-tooltip">4. Tooltip 相關<a class="headerlink" href="#4-tooltip" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>背景</th>
+<th>影響</th>
+<th>建議</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device ID 取得方式？</td>
+<td>需要判斷是否同一裝置</td>
+<td>影響 Tooltip 持久化</td>
+<td>使用 <code>identifierForVendor</code> 或 UserDefaults</td>
+</tr>
+<tr>
+<td>跨 App 版本行為？</td>
+<td>用戶更新 App 後是否重新顯示？</td>
+<td>影響用戶體驗</td>
+<td>UserDefaults 會保留，不會重新顯示</td>
+</tr>
+<tr>
+<td>重裝 App 行為？</td>
+<td>用戶重裝後是否重新顯示？</td>
+<td>影響用戶體驗</td>
+<td>UserDefaults 會重置，會重新顯示</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="5">5. 效能相關<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2903,9 +3025,9 @@
 <td>增加錯誤處理，回滾到 Error 狀態</td>
 </tr>
 <tr>
-<td><strong>Provider Config 載入失敗</strong></td>
-<td>無法開啟 Bookie 選擇器</td>
-<td>顯示錯誤 Toast，允許重試</td>
+<td><strong>Tooltip 跨入口同步</strong></td>
+<td>多個入口需要同步 Tooltip 狀態</td>
+<td>使用統一的 TooltipStorage</td>
 </tr>
 </tbody>
 </table>
@@ -2945,22 +3067,22 @@
 </thead>
 <tbody>
 <tr>
-<td><code>GET /orders/converter/config/providerCountries</code></td>
-<td>待確認</td>
+<td><code>POST /orders/converter/code</code></td>
+<td>✅ 已確認</td>
 <td>Backend</td>
-<td>需確認 Response 格式</td>
+<td>只需 bookingCode 參數</td>
 </tr>
 <tr>
-<td><code>POST /orders/converter/code</code></td>
-<td>待確認</td>
+<td>~~<code>GET /orders/converter/config/providerCountries</code>~~</td>
+<td>❌ 廢棄</td>
 <td>Backend</td>
-<td>需確認錯誤碼完整性</td>
+<td>不再需要</td>
 </tr>
 <tr>
 <td>Figma 設計稿</td>
-<td>✅ 已提供</td>
+<td>⚠️ 待更新</td>
 <td>Design</td>
-<td>已有 Node IDs</td>
+<td>Tooltip 設計待補</td>
 </tr>
 </tbody>
 </table>
@@ -2985,9 +3107,9 @@
 <td>保持不變，向後相容</td>
 </tr>
 <tr>
-<td><code>Region</code> enum</td>
-<td>⚠️ 可能需擴展</td>
-<td>新增 CountryCode mapping</td>
+<td><code>UserDefaults</code></td>
+<td>✅ 既有</td>
+<td>用於 Tooltip 狀態儲存</td>
 </tr>
 </tbody>
 </table>
@@ -3001,9 +3123,9 @@
 </ol>
 <h3 id="_11">技術層面<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>緩存策略</strong>：Provider Config 是否需要持久化緩存？</li>
 <li><strong>離線支援</strong>：離線時是否需要 graceful degradation？</li>
 <li><strong>深連結</strong>：是否需要支援深連結直接帶入 Booking Code？</li>
+<li><strong>Tooltip 動畫</strong>：是否需要入場/出場動畫？</li>
 </ol>
 <hr />
 <h2 id="_12">後續迭代考量<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
@@ -3022,12 +3144,46 @@
 <hr />
 <h2 id="checklist">Checklist（開發前確認）<a class="headerlink" href="#checklist" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 與後端確認 API Response 完整格式</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 與設計確認多國家 Bookie 選擇交互</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 與後端確認 API Response 完整格式</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 確認不再需要 Provider/Country 選擇</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 與設計確認 Tooltip 樣式規格</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 確認 Feature Flag 需求</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 確認 Analytics Events 清單</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 確認 Timeout 與重試策略</li>
 </ul>
+<hr />
+<h2 id="_13">廢棄項目清單<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>類型</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Config API 相關問題</td>
+<td>待確認事項</td>
+<td>API 已廢棄</td>
+</tr>
+<tr>
+<td>Bookie 選擇交互問題</td>
+<td>待確認事項</td>
+<td>不再需要選擇</td>
+</tr>
+<tr>
+<td>Provider Config 緩存問題</td>
+<td>待確認事項</td>
+<td>不再需要 Config</td>
+</tr>
+<tr>
+<td>多國家 Bookie UI 問題</td>
+<td>待確認事項</td>
+<td>不再需要選擇國家</td>
+</tr>
+</tbody>
+</table>
 
 
 

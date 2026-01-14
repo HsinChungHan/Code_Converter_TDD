@@ -860,6 +860,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -975,6 +986,17 @@
     <span class="md-ellipsis">
       
         模組分組
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄項目清單
       
     </span>
   </a>
@@ -2374,6 +2396,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2495,6 +2528,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄項目清單
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2513,29 +2557,59 @@
 
 
 <h1 id="clean-architecture">Clean Architecture 分層圖<a class="headerlink" href="#clean-architecture" title="Permanent link">&para;</a></h1>
+<h2 id="be-2025-01-14">⚠️ BE 新設計更新 (2025-01-14)<a class="headerlink" href="#be-2025-01-14" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>變更項目</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BookieSelectorSheet 移除</strong></td>
+<td>不再需要 Bookie 選擇流程</td>
+</tr>
+<tr>
+<td><strong>LoadProviderConfigUseCase 移除</strong></td>
+<td>Config API 已廢棄</td>
+</tr>
+<tr>
+<td><strong>ProviderConfig 移除</strong></td>
+<td>不再需要 Provider 設定</td>
+</tr>
+<tr>
+<td><strong>TooltipView 新增</strong></td>
+<td>一次性說明 Tooltip</td>
+</tr>
+<tr>
+<td><strong>TooltipStorage 新增</strong></td>
+<td>Tooltip 狀態儲存 (UserDefaults)</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="_1">架構總覽<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TB
     subgraph UI["UI Layer (SwiftUI)"]
         direction TB
-        LCW[LoadBookingCodeSectionView&lt;br/&gt;擴展自 LoadBookingCodeSectionView]
-        BSS[BookieSelectorSheet&lt;br/&gt;新增 SwiftUI]
+        LCW[LoadCodeWidgetView&lt;br/&gt;擴展自 LoadBookingCodeSectionView]
+        Tooltip[TooltipView&lt;br/&gt;新增 SwiftUI]
         Toast[PartialErrorToast]
     end
 
     subgraph Domain["Domain Layer (TCA)"]
         direction TB
         subgraph Feature["Feature (Thin Reducer)"]
-            LCF[LoadBookingCodeSection.Feature&lt;br/&gt;擴展自 LoadBookingCodeSection.Feature]
+            LCF[LoadCodeWidget.Feature&lt;br/&gt;擴展自 LoadBookingCodeSection.Feature]
         end
         subgraph UseCase["UseCase (Business Logic)"]
-            LPC[LoadProviderConfigUseCase]
             CBC[ConvertBookingCodeUseCase]
         end
     end
 
     subgraph DomainModel["Domain Model Layer"]
         direction TB
-        PC[ProviderConfig]
         CR[ConvertResult]
         WS[WidgetInputState]
     end
@@ -2548,6 +2622,7 @@
         BR[BetslipRepository 既有]
         BC[BetslipClient 既有]
         BA[BetslipAPI 既有]
+        TS[TooltipStorage&lt;br/&gt;UserDefaults]
     end
 
     UI --&gt; Domain
@@ -2558,28 +2633,31 @@
 <h2 id="_2">復用策略（核心）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="loadbookingcodesectionview">最大化復用 LoadBookingCodeSectionView<a class="headerlink" href="#loadbookingcodesectionview" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────────┐
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                    LoadBookingCodeSectionView（新）                          │
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                    LoadCodeWidgetView（簡化版）                       │
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│    ┌──────────────────────────────────────────────────────────────┐ │
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│    │  擴展自 LoadBookingCodeSectionView 的結構                      │ │
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│    │                                                              │ │
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│    │  ┌─────────────────┐  ┌───────────────────────────────────┐  │ │
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│    │  │ BookieDropdown  │  │ BookingCodeInput                  │  │ │
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│    │  │ (擴展自         │  │ (擴展自 BookingCodeInputView)      │  │ │
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│    │  │ CountryDropdown)│  │                                   │  │ │
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│    │  │                 │  │ + Error 狀態（紅框）               │  │ │
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│    │  │ + Bookie 名稱   │  │ + 清除按鈕 ⊗                      │  │ │
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│    │  │ + Country       │  │ + Loading 提示文字                 │  │ │
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│    │  │ + 點擊開啟 Sheet│  │ + Load 按鈕狀態                   │  │ │
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│    │  └─────────────────┘  └───────────────────────────────────┘  │ │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│    │  ┌───────────────────────────────────────────────────────┐   │ │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│    │  │ BookingCodeInput                                      │   │ │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│    │  │ (擴展自 BookingCodeInputView)                          │   │ │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│    │  │                                                       │   │ │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│    │  │ + Error 狀態（紅框）                                   │   │ │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│    │  │ + 清除按鈕 ⊗                                          │   │ │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│    │  │ + Loading 提示文字                                     │   │ │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│    │  │ + Load 按鈕狀態                                        │   │ │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│    │  └───────────────────────────────────────────────────────┘   │ │
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│    └──────────────────────────────────────────────────────────────┘ │
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│                                                                     │
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│    ┌──────────────────────────────────────────────────────────────┐ │
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│    │  BookieSelectorSheet（新增 SwiftUI）                          │ │
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│    │  - Bottom Sheet                                              │ │
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│    │  - 雙欄選擇器（Bookie + Country）                             │ │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│    │  TooltipView（新增 SwiftUI）                                  │ │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│    │  - 首次使用時顯示                                             │ │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│    │  - 以 Device ID 判斷是否顯示                                  │ │
 <a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│    └──────────────────────────────────────────────────────────────┘ │
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>└─────────────────────────────────────────────────────────────────────┘
 </code></pre></div>
+<blockquote>
+<p>⚠️ <strong>變更說明</strong>：Bookie Dropdown 和 BookieSelectorSheet 已移除</p>
+</blockquote>
 <hr />
 <h2 id="_3">入口點與替換計畫<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
@@ -2594,17 +2672,17 @@
 <tr>
 <td><strong>首頁 Widget</strong></td>
 <td><code>LoadBookingCodeSectionView</code></td>
-<td><code>LoadBookingCodeSectionView</code>（原地擴展）</td>
+<td><code>LoadCodeWidgetView</code>（原地擴展）+ Tooltip</td>
 </tr>
 <tr>
 <td><strong>Code Center Load Code Tab</strong></td>
 <td><code>LoadCodeViewWrapper</code> → <code>LoadCodeViewController</code> (UIKit)</td>
-<td><code>LoadBookingCodeSectionView</code> (SwiftUI)</td>
+<td><code>LoadCodeWidgetView</code> (SwiftUI) + Tooltip</td>
 </tr>
 <tr>
 <td><strong>首頁 Betslip (Empty)</strong></td>
 <td>無 / 既有空狀態</td>
-<td>嵌入 <code>LoadBookingCodeSectionView</code></td>
+<td>嵌入 <code>LoadCodeWidgetView</code> + Tooltip</td>
 </tr>
 </tbody>
 </table>
@@ -2628,12 +2706,7 @@
 <tr>
 <td><code>LoadBookingCodeSectionView</code></td>
 <td><strong>擴展</strong></td>
-<td>→ <code>LoadBookingCodeSectionView</code>，增加更多狀態</td>
-</tr>
-<tr>
-<td><code>CountryDropdownView</code></td>
-<td><strong>擴展</strong></td>
-<td>→ <code>BookieDropdownView</code>，顯示 Bookie + Country</td>
+<td>→ <code>LoadCodeWidgetView</code>，增加更多狀態</td>
 </tr>
 <tr>
 <td><code>BookingCodeInputView</code></td>
@@ -2643,7 +2716,7 @@
 <tr>
 <td><code>LoadBookingCodeSection.Feature</code></td>
 <td><strong>擴展</strong></td>
-<td>→ <code>LoadBookingCodeSection.Feature</code>，增加 Provider Config + Convert API</td>
+<td>→ <code>LoadCodeWidget.Feature</code>，增加 Convert API + Tooltip</td>
 </tr>
 </tbody>
 </table>
@@ -2658,14 +2731,9 @@
 </thead>
 <tbody>
 <tr>
-<td><code>BookieSelectorSheet</code></td>
+<td><code>TooltipView</code></td>
 <td>SwiftUI View</td>
-<td>雙欄選擇器 Bottom Sheet</td>
-</tr>
-<tr>
-<td><code>LoadProviderConfigUseCase</code></td>
-<td>UseCase</td>
-<td>取得 Provider Config</td>
+<td>一次性說明 Tooltip</td>
 </tr>
 <tr>
 <td><code>ConvertBookingCodeUseCase</code></td>
@@ -2682,6 +2750,11 @@
 <td>Client</td>
 <td>HTTP 通訊</td>
 </tr>
+<tr>
+<td><code>TooltipStorage</code></td>
+<td>Storage</td>
+<td>Tooltip 狀態儲存 (UserDefaults)</td>
+</tr>
 </tbody>
 </table>
 <h3 id="_8">廢棄的元件<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
@@ -2694,8 +2767,20 @@
 </thead>
 <tbody>
 <tr>
+<td>~~<code>BookieDropdownView</code>~~</td>
+<td>不再需要選擇 Bookie</td>
+</tr>
+<tr>
+<td>~~<code>BookieSelectorSheet</code>~~</td>
+<td>不再需要 Bookie 選擇器</td>
+</tr>
+<tr>
+<td>~~<code>LoadProviderConfigUseCase</code>~~</td>
+<td>Config API 已廢棄</td>
+</tr>
+<tr>
 <td><code>LoadCodeViewController</code></td>
-<td>被 <code>LoadBookingCodeSectionView</code> (SwiftUI) 替換</td>
+<td>被 <code>LoadCodeWidgetView</code> (SwiftUI) 替換</td>
 </tr>
 <tr>
 <td><code>LoadCodeViewController.xib</code></td>
@@ -2711,26 +2796,64 @@
 <h2 id="_9">模組分組<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>LoadBookingCodeSection/  (擴展自 LoadBookingCode/)
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── View/
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── LoadBookingCodeSectionView.swift          (擴展自 LoadBookingCodeSectionView)
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   ├── BookieDropdownView.swift          (擴展自 CountryDropdownView)
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   ├── BookingCodeInputView.swift        (擴展，增加狀態)
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│   └── BookieSelectorSheet.swift         (新增)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── LoadCodeWidgetView.swift          (擴展自 LoadBookingCodeSectionView)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   ├── BookingCodeInputView.swift        (擴展，增加狀態)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   ├── TooltipView.swift                 (新增)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│   └── PartialErrorToast.swift           (新增)
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>├── Feature/
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   └── LoadBookingCodeSection+Feature.swift      (擴展自 LoadBookingCodeSection+Feature)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   └── LoadCodeWidget+Feature.swift      (擴展自 LoadBookingCodeSection+Feature)
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>├── UseCase/
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   ├── LoadProviderConfigUseCase.swift   (新增)
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   └── ConvertBookingCodeUseCase.swift   (新增)
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>├── Domain/
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   ├── ProviderConfig.swift              (新增)
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│   ├── ConvertResult.swift               (新增)
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│   └── WidgetInputState.swift            (新增)
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>├── Repository/
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│   └── CodeConverterRepository.swift     (新增)
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>├── Client/
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│   └── CodeConverterClient.swift         (新增)
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   └── ConvertBookingCodeUseCase.swift   (新增)
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>├── Domain/
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│   ├── ConvertResult.swift               (新增)
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   └── WidgetInputState.swift            (新增)
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>├── Repository/
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│   └── CodeConverterRepository.swift     (新增)
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>├── Client/
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│   └── CodeConverterClient.swift         (新增)
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>├── Storage/
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│   └── TooltipStorage.swift              (新增)
 <a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>└── API/
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    └── CodeConverterAPI.swift            (新增)
 </code></pre></div>
+<hr />
+<h2 id="_10">廢棄項目清單<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>類型</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BookieSelectorSheet</code></td>
+<td>View</td>
+<td>不再需要選擇 Bookie</td>
+</tr>
+<tr>
+<td><code>BookieDropdownView</code></td>
+<td>View</td>
+<td>不再需要顯示 Dropdown</td>
+</tr>
+<tr>
+<td><code>LoadProviderConfigUseCase</code></td>
+<td>UseCase</td>
+<td>Config API 已廢棄</td>
+</tr>
+<tr>
+<td><code>ProviderConfig</code></td>
+<td>Domain Model</td>
+<td>不再需要 Provider 設定</td>
+</tr>
+<tr>
+<td><code>SelectedBookie</code></td>
+<td>Domain Model</td>
+<td>不再需要 Bookie 選擇</td>
+</tr>
+</tbody>
+</table>
 
 
 

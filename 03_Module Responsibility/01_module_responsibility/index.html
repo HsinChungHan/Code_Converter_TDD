@@ -949,6 +949,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -987,6 +998,17 @@
     <span class="md-ellipsis">
       
         新增的 View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄的 View
       
     </span>
   </a>
@@ -1052,7 +1074,7 @@
   <a href="#usecase-modules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UseCase Modules（新增）
+        UseCase Modules
       
     </span>
   </a>
@@ -1075,6 +1097,17 @@
     <span class="md-ellipsis">
       
         Client Modules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Modules
       
     </span>
   </a>
@@ -1147,6 +1180,17 @@
     <span class="md-ellipsis">
       
         模組依賴關係
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄項目清單
       
     </span>
   </a>
@@ -2457,6 +2501,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01-14)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2495,6 +2550,17 @@
     <span class="md-ellipsis">
       
         新增的 View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄的 View
       
     </span>
   </a>
@@ -2560,7 +2626,7 @@
   <a href="#usecase-modules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UseCase Modules（新增）
+        UseCase Modules
       
     </span>
   </a>
@@ -2583,6 +2649,17 @@
     <span class="md-ellipsis">
       
         Client Modules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Modules
       
     </span>
   </a>
@@ -2661,6 +2738,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        廢棄項目清單
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2679,6 +2767,30 @@
 
 
 <h1 id="module-responsibility">Module Responsibility<a class="headerlink" href="#module-responsibility" title="Permanent link">&para;</a></h1>
+<h2 id="be-2025-01-14">⚠️ BE 新設計更新 (2025-01-14)<a class="headerlink" href="#be-2025-01-14" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>變更項目</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bookie 相關元件移除</strong></td>
+<td><code>BookieDropdownView</code>, <code>BookieSelectorSheet</code> 已廢棄</td>
+</tr>
+<tr>
+<td><strong>Config 相關移除</strong></td>
+<td><code>LoadProviderConfigUseCase</code>, Config API 已廢棄</td>
+</tr>
+<tr>
+<td><strong>Tooltip 新增</strong></td>
+<td>新增 <code>TooltipView</code> 和 <code>TooltipStorage</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="_1">復用策略總覽<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────────────────────────┐
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                         復用優先級                                      │
@@ -2686,7 +2798,8 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  1. 最大復用：擴展現有 LoadBookingCodeSectionView 結構                   │
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  2. 最小改動：保持現有 API 相容性，新增功能以 optional 方式加入           │
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  3. 漸進式替換：先擴展，再逐步替換 LoadCodeViewController                │
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└────────────────────────────────────────────────────────────────────────┘
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  4. 簡化流程：不再需要 Bookie/Country 選擇                              │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>└────────────────────────────────────────────────────────────────────────┘
 </code></pre></div>
 <hr />
 <h2 id="view-modulesui-layer">View Modules（UI Layer）<a class="headerlink" href="#view-modulesui-layer" title="Permanent link">&para;</a></h2>
@@ -2705,13 +2818,7 @@
 <td><strong>LoadCodeWidgetView</strong></td>
 <td><code>LoadBookingCodeSectionView.swift</code></td>
 <td>擴展</td>
-<td>1. 增加 <code>inputState</code> 支援 6 種狀態<br>2. 增加 Error 訊息顯示<br>3. 增加 Loading 提示文字</td>
-</tr>
-<tr>
-<td><strong>BookieDropdownView</strong></td>
-<td><code>CountryDropdownView</code> (private)</td>
-<td>擴展</td>
-<td>1. 顯示 Bookie 名稱 + Country<br>2. 點擊開啟 <code>BookieSelectorSheet</code><br>3. 支援長名稱截斷</td>
+<td>1. 增加 <code>inputState</code> 支援 6 種狀態<br>2. 增加 Error 訊息顯示<br>3. 增加 Loading 提示文字<br>4. 移除 Bookie Dropdown</td>
 </tr>
 <tr>
 <td><strong>BookingCodeInputView</strong></td>
@@ -2732,14 +2839,33 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>BookieSelectorSheet</strong></td>
+<td><strong>TooltipView</strong></td>
 <td>SwiftUI</td>
-<td>1. Bottom Sheet 容器<br>2. 雙欄選擇器（Bookie + Country）<br>3. 處理選擇邏輯（單國家自動關閉、多國家需選擇）</td>
+<td>1. 首次使用時顯示說明<br>2. 點擊關閉後永久不顯示</td>
 </tr>
 <tr>
 <td><strong>PartialErrorToast</strong></td>
 <td>SwiftUI</td>
 <td>1. 顯示「X selections failed to convert」警告</td>
+</tr>
+</tbody>
+</table>
+<h3 id="view_2">廢棄的 View<a class="headerlink" href="#view_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>View 名稱</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>~~<strong>BookieDropdownView</strong>~~</td>
+<td>不再需要選擇 Bookie</td>
+</tr>
+<tr>
+<td>~~<strong>BookieSelectorSheet</strong>~~</td>
+<td>不再需要 Bookie 選擇器</td>
 </tr>
 </tbody>
 </table>
@@ -2760,7 +2886,7 @@
 <td><strong>LoadCodeWidget.Feature</strong></td>
 <td><code>LoadBookingCodeSection+Feature.swift</code></td>
 <td>擴展</td>
-<td>1. LoadProviderConfigUseCase（新增）<br>2. ConvertBookingCodeUseCase（新增）<br>3. 既有的 loadBookingCode 邏輯</td>
+<td>1. ConvertBookingCodeUseCase（新增）<br>2. 既有的 loadBookingCode 邏輯</td>
 </tr>
 </tbody>
 </table>
@@ -2771,6 +2897,7 @@
 <th>屬性</th>
 <th>類型</th>
 <th>原有/新增</th>
+<th>預設值</th>
 <th>說明</th>
 </tr>
 </thead>
@@ -2779,61 +2906,92 @@
 <td><code>bookingCode</code></td>
 <td>String</td>
 <td>✅ 原有</td>
+<td><code>""</code></td>
 <td>輸入的 Booking Code</td>
 </tr>
 <tr>
 <td><code>selectedCountry</code></td>
 <td>Region</td>
-<td>⚠️ 改為 Optional</td>
-<td>需與 Bookie 配合</td>
+<td>✅ 原有</td>
+<td><code>.current</code></td>
+<td>原流程備用</td>
 </tr>
 <tr>
 <td><code>isLoading</code></td>
 <td>Bool</td>
 <td>✅ 原有</td>
+<td><code>false</code></td>
 <td>Loading 狀態</td>
 </tr>
 <tr>
 <td><code>contentState</code></td>
 <td>SectionContentState</td>
 <td>✅ 原有</td>
+<td><code>.loaded</code></td>
 <td>Section 狀態</td>
 </tr>
 <tr>
 <td><code>availableCountries</code></td>
 <td>[Region]</td>
-<td>⚠️ 動態化</td>
-<td>由 API 決定</td>
+<td>✅ 原有</td>
+<td><code>[.ghana, .nigeria]</code></td>
+<td>可用國家</td>
 </tr>
 <tr>
-<td><code>selectedBookie</code></td>
-<td>SelectedBookie?</td>
+<td><code>enableCodeConverter</code></td>
+<td>Bool</td>
 <td>🆕 新增</td>
-<td>已選擇的 Bookie</td>
-</tr>
-<tr>
-<td><code>providerConfigs</code></td>
-<td>[ProviderConfig]</td>
-<td>🆕 新增</td>
-<td>Provider 設定列表</td>
+<td><code>true</code></td>
+<td>是否啟用 Code Converter</td>
 </tr>
 <tr>
 <td><code>inputState</code></td>
 <td>WidgetInputState</td>
 <td>🆕 新增</td>
-<td>Widget 輸入狀態</td>
-</tr>
-<tr>
-<td><code>isBookieSelectorPresented</code></td>
-<td>Bool</td>
-<td>🆕 新增</td>
-<td>Sheet 顯示狀態</td>
+<td><code>.default</code></td>
+<td>6 種輸入狀態</td>
 </tr>
 <tr>
 <td><code>errorMessage</code></td>
 <td>String?</td>
 <td>🆕 新增</td>
+<td><code>nil</code></td>
 <td>錯誤訊息</td>
+</tr>
+<tr>
+<td><code>convertResult</code></td>
+<td>ConvertResult?</td>
+<td>🆕 新增</td>
+<td><code>nil</code></td>
+<td>轉換結果</td>
+</tr>
+<tr>
+<td><code>isTooltipVisible</code></td>
+<td>Bool</td>
+<td>🆕 新增</td>
+<td><code>false</code></td>
+<td>Tooltip 是否顯示</td>
+</tr>
+<tr>
+<td>~~<code>selectedBookie</code>~~</td>
+<td>~~SelectedBookie?~~</td>
+<td>❌ 廢棄</td>
+<td>-</td>
+<td>~~已選 Bookie~~</td>
+</tr>
+<tr>
+<td>~~<code>providerConfigs</code>~~</td>
+<td>~~[ProviderConfig]~~</td>
+<td>❌ 廢棄</td>
+<td>-</td>
+<td>~~Provider 設定~~</td>
+</tr>
+<tr>
+<td>~~<code>isBookieSelectorPresented</code>~~</td>
+<td>~~Bool~~</td>
+<td>❌ 廢棄</td>
+<td>-</td>
+<td>~~Sheet 顯示~~</td>
 </tr>
 </tbody>
 </table>
@@ -2860,27 +3018,22 @@
 <tr>
 <td><code>.countrySelected(Region)</code></td>
 <td>✅ 原有</td>
-<td>選擇國家</td>
+<td>選擇國家（原流程）</td>
 </tr>
 <tr>
 <td><code>.loadBookingCode</code></td>
 <td>✅ 原有</td>
-<td>載入 Booking Code</td>
+<td>點擊 Load 按鈕</td>
 </tr>
 <tr>
-<td><code>.bookieDropdownTapped</code></td>
-<td>🆕 新增</td>
-<td>點擊 Bookie Dropdown</td>
+<td><code>.bookingCodeLoadFailed(String)</code></td>
+<td>✅ 原有</td>
+<td>載入失敗（原流程）</td>
 </tr>
 <tr>
-<td><code>.bookieSelected(provider, country)</code></td>
-<td>🆕 新增</td>
-<td>選擇 Bookie</td>
-</tr>
-<tr>
-<td><code>.bookieSelectorDismissed</code></td>
-<td>🆕 新增</td>
-<td>關閉 Sheet</td>
+<td><code>.bookingCodeLoaded(CodeResult)</code></td>
+<td>✅ 原有</td>
+<td>載入成功（原流程）</td>
 </tr>
 <tr>
 <td><code>.inputFocused</code></td>
@@ -2895,27 +3048,52 @@
 <tr>
 <td><code>.clearButtonTapped</code></td>
 <td>🆕 新增</td>
-<td>清除按鈕</td>
+<td>點擊清除按鈕</td>
 </tr>
 <tr>
-<td><code>.providerConfigLoaded(Result)</code></td>
+<td><code>.tooltipDismissed</code></td>
 <td>🆕 新增</td>
-<td>Config 載入完成</td>
+<td>關閉 Tooltip</td>
 </tr>
 <tr>
 <td><code>.convertCodeCompleted(Result)</code></td>
 <td>🆕 新增</td>
 <td>轉換完成</td>
 </tr>
+<tr>
+<td><code>.presentBetslip(shareCode, failCnt)</code></td>
+<td>🆕 新增</td>
+<td>載入 Betslip</td>
+</tr>
+<tr>
+<td>~~<code>.bookieDropdownTapped</code>~~</td>
+<td>❌ 廢棄</td>
+<td>~~點擊 Bookie Dropdown~~</td>
+</tr>
+<tr>
+<td>~~<code>.bookieSelected(provider, country)</code>~~</td>
+<td>❌ 廢棄</td>
+<td>~~選擇 Bookie + Country~~</td>
+</tr>
+<tr>
+<td>~~<code>.bookieSelectorDismissed</code>~~</td>
+<td>❌ 廢棄</td>
+<td>~~關閉 Sheet~~</td>
+</tr>
+<tr>
+<td>~~<code>.providerConfigLoaded(Result)</code>~~</td>
+<td>❌ 廢棄</td>
+<td>~~Config 載入完成~~</td>
+</tr>
 </tbody>
 </table>
 <hr />
-<h2 id="usecase-modules">UseCase Modules（新增）<a class="headerlink" href="#usecase-modules" title="Permanent link">&para;</a></h2>
+<h2 id="usecase-modules">UseCase Modules<a class="headerlink" href="#usecase-modules" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>UseCase 名稱</th>
-<th>層級</th>
+<th>狀態</th>
 <th>職責</th>
 <th>Input Model</th>
 <th>Output Model</th>
@@ -2924,20 +3102,20 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>LoadProviderConfigUseCase</strong></td>
-<td>Domain Layer</td>
-<td>取得 Provider Country 設定</td>
-<td>無參數</td>
-<td><code>[ProviderConfig]</code></td>
-<td>CodeConverterRepository</td>
-</tr>
-<tr>
 <td><strong>ConvertBookingCodeUseCase</strong></td>
-<td>Domain Layer</td>
+<td>🆕 新增</td>
 <td>1. 執行 Code2Code 轉換<br>2. 整合 Liabilities 檢查<br>3. 取得 Betslip Data</td>
 <td><code>ConvertBookingCodeInput</code></td>
 <td><code>ConvertBookingCodeOutput</code></td>
 <td>1. CodeConverterRepository<br>2. BetslipRepository（既有）</td>
+</tr>
+<tr>
+<td>~~<strong>LoadProviderConfigUseCase</strong>~~</td>
+<td>❌ 廢棄</td>
+<td>~~取得 Provider Country 設定~~</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
 </tr>
 </tbody>
 </table>
@@ -2956,7 +3134,7 @@
 <tr>
 <td><strong>CodeConverterRepository</strong></td>
 <td>🆕 新增</td>
-<td>1. 取得 Provider Config<br>2. 執行 Code2Code 轉換<br>3. DTO → Domain Model 轉換</td>
+<td>1. 執行 Code2Code 轉換<br>2. DTO → Domain Model 轉換</td>
 <td>CodeConverterClient</td>
 </tr>
 <tr>
@@ -2994,6 +3172,26 @@
 </tbody>
 </table>
 <hr />
+<h2 id="storage-modules">Storage Modules<a class="headerlink" href="#storage-modules" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Storage 名稱</th>
+<th>狀態</th>
+<th>技術</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TooltipStorage</strong></td>
+<td>🆕 新增</td>
+<td>UserDefaults</td>
+<td>Tooltip 顯示狀態儲存，以 Device ID 判斷</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="api-modules">API Modules<a class="headerlink" href="#api-modules" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -3007,12 +3205,17 @@
 <tr>
 <td><strong>CodeConverterAPI</strong></td>
 <td>🆕 新增</td>
-<td>1. <code>GET /orders/converter/config/providerCountries</code><br>2. <code>POST /orders/converter/code</code></td>
+<td><code>POST /orders/converter/code</code></td>
 </tr>
 <tr>
 <td><strong>BetslipAPI</strong></td>
 <td>✅ 既有復用</td>
 <td>1. <code>GET /bookingCode/{shareCode}/liabilities</code><br>2. <code>GET /orders/share/{shareCode}</code></td>
+</tr>
+<tr>
+<td>~~<strong>Config API</strong>~~</td>
+<td>❌ 廢棄</td>
+<td>~~<code>GET /orders/converter/config/providerCountries</code>~~</td>
 </tr>
 </tbody>
 </table>
@@ -3027,8 +3230,8 @@
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">enableCodeConverter</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="c1">// 基本結構與原本相同</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="c1">// 根據 enableCodeConverter 決定顯示 Bookie Dropdown 還是 Country Dropdown</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="c1">// 簡化結構：只有輸入框 + Load 按鈕</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="c1">// 不再需要 Bookie Dropdown</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">}</span>
 </code></pre></div>
@@ -3060,22 +3263,82 @@
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>- LoadCodeViewController.swift
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>- LoadCodeViewController.xib
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>- LoadCodeViewWrapper.swift
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>- BookieDropdownView.swift (如已建立)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>- BookieSelectorSheet.swift (如已建立)
 </code></pre></div>
 <hr />
 <h2 id="_3">模組依賴關係<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TD
     LCW[LoadCodeWidgetView] --&gt; LCF[LoadCodeWidget.Feature]
-    BSS[BookieSelectorSheet] --&gt; LCF
-    LCF --&gt; LPCU[LoadProviderConfigUseCase]
+    Tooltip[TooltipView] --&gt; LCF
     LCF --&gt; CBCU[ConvertBookingCodeUseCase]
     LCF --&gt; LCM[LoadCodeManager 既有]
-    LPCU --&gt; CCR[CodeConverterRepository]
-    CBCU --&gt; CCR
+    LCF --&gt; TS[TooltipStorage]
+    CBCU --&gt; CCR[CodeConverterRepository]
     CBCU --&gt; BR[BetslipRepository 既有]
     CCR --&gt; CCC[CodeConverterClient]
     BR --&gt; BC[BetslipClient 既有]
     CCC --&gt; CCA[CodeConverterAPI]
-    BC --&gt; BA[BetslipAPI 既有]</code></pre>
+    BC --&gt; BA[BetslipAPI 既有]
+    TS --&gt; UD[UserDefaults]</code></pre>
+<hr />
+<h2 id="_4">廢棄項目清單<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>類型</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BookieDropdownView</code></td>
+<td>View</td>
+<td>不再需要選擇 Bookie</td>
+</tr>
+<tr>
+<td><code>BookieSelectorSheet</code></td>
+<td>View</td>
+<td>不再需要 Bookie 選擇器</td>
+</tr>
+<tr>
+<td><code>LoadProviderConfigUseCase</code></td>
+<td>UseCase</td>
+<td>Config API 已廢棄</td>
+</tr>
+<tr>
+<td><code>selectedBookie</code></td>
+<td>State</td>
+<td>不再需要 Bookie 選擇</td>
+</tr>
+<tr>
+<td><code>providerConfigs</code></td>
+<td>State</td>
+<td>不再需要 Config 資料</td>
+</tr>
+<tr>
+<td><code>isBookieSelectorPresented</code></td>
+<td>State</td>
+<td>不再需要 Sheet</td>
+</tr>
+<tr>
+<td><code>bookieDropdownTapped</code></td>
+<td>Action</td>
+<td>不再需要 Dropdown</td>
+</tr>
+<tr>
+<td><code>bookieSelected</code></td>
+<td>Action</td>
+<td>不再需要選擇</td>
+</tr>
+<tr>
+<td><code>providerConfigLoaded</code></td>
+<td>Action</td>
+<td>Config API 已廢棄</td>
+</tr>
+</tbody>
+</table>
 
 
 
