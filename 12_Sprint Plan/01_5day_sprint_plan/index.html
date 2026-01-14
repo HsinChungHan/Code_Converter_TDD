@@ -3134,9 +3134,10 @@
 <p><strong>Acceptance Criteria</strong>:
 - [ ] 實作 <code>LoadBookingCodeSection.Feature.State</code> 新增屬性
   - <code>bookingCode: String</code>
-  - <code>conversionState: ConversionState</code>
+  - <code>inputState: WidgetInputState</code>
+  - <code>errorMessage: String?</code>
+  - <code>convertResult: ConvertResult?</code>
   - <code>isTooltipVisible: Bool</code>
-  - <code>hasTooltipBeenDismissed: Bool</code>
 - [ ] 實作 <code>LoadBookingCodeSection.Feature.Action</code> 新增項目
   - <code>.bookingCodeChanged(String)</code>
   - <code>.clearButtonTapped</code>
