@@ -1,20 +1,29 @@
 # Code Converter API Documentation
 
 > **模組**：Code Converter  
-> **最後更新**：2025-01-06
+> **最後更新**：2025-01-14
+
+---
+
+## ⚠️ BE 新設計更新 (2025-01-14)
+
+| 變更項目 | 說明 |
+|----------|------|
+| **Config API 廢棄** | ~~`GET /orders/converter/config/providerCountries`~~ 不再使用 |
+| **Convert API 簡化** | 不再需要 `provider` 和 `country` 參數，只需 `bookingCode` |
 
 ---
 
 ## 目錄
 
-1. [Convert Code2Code](#1-convert-code2code)
-2. [Get Provider Country Config](#2-get-provider-country-config)
+1. [Convert Code2Code](#1-convert-code2code) ✅ 使用中
+2. ~~[Get Provider Country Config](#2-get-provider-country-config)~~ ❌ 廢棄
 
 ---
 
 ## 1. Convert Code2Code
 
-將競品的 Booking Code 轉換為 Fcom 的 Share Code。
+將任意 Booking Code 轉換為 Fcom 的 Share Code。
 
 ### 基本資訊
 
@@ -22,7 +31,7 @@
 |------|------|
 | **Method** | `POST` |
 | **Endpoint** | `/orders/converter/code` |
-| **Description** | Convert competitor booking code to share code, returns bookingCode as shareCode |
+| **Description** | Convert any booking code to share code, BE will auto-detect provider |
 
 ---
 
@@ -39,31 +48,9 @@
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `provider` | String | ✅ Required | 競品 Provider Code |
-| `country` | String | ✅ Required | Country Code |
-| `bookingCode` | String | ✅ Required | 競品 Booking Code |
-
-#### `provider` 可用值
-
-| Value | Description |
-|-------|-------------|
-| `fcom` | Fcom (Football.com) |
-| `sporty` | Sporty |
-| `bet9ja` | Bet9ja |
-| `betking` | BetKing |
-| `msport` | MSport |
-
-#### `country` 可用值
-
-| Value | Description |
-|-------|-------------|
-| `ALL` | 所有國家 |
-| `NG` | Nigeria |
-| `KE` | Kenya |
-| `UG` | Uganda |
-| `GH` | Ghana |
-| `ZM` | Zambia |
-| `TZ` | Tanzania |
+| ~~`provider`~~ | ~~String~~ | ❌ 已移除 | ~~競品 Provider Code~~ **BE 自動識別** |
+| ~~`country`~~ | ~~String~~ | ❌ 已移除 | ~~Country Code~~ **BE 自動識別** |
+| `bookingCode` | String | ✅ Required | 任意 Booking Code |
 
 ---
 
@@ -89,13 +76,23 @@
 
 ### Example
 
-#### Request
+#### Request (新版 - 2025-01-14)
 
 ```bash
 curl -X POST '/orders/converter/code' \
   -H 'Content-Type: application/json' \
   -H 'uid: user123' \
   -H 'OperId: operator456' \
+  -d '{
+    "bookingCode": "3RA3FA"
+  }'
+```
+
+#### ~~Request (舊版 - 已廢棄)~~
+
+```bash
+# ❌ 已廢棄 - 不再需要 provider 和 country
+curl -X POST '/orders/converter/code' \
   -d '{
     "provider": "bet9ja",
     "country": "NG",
@@ -130,138 +127,63 @@ curl -X POST '/orders/converter/code' \
 
 ---
 
-## 2. Get Provider Country Config
+### 後續流程
 
-取得支援的 Provider 及其對應的國家設定。
+Convert API 成功後，需走原有 Load Code 流程：
 
-### 基本資訊
+| 順序 | API | 說明 |
+|:----:|-----|------|
+| 1 | `POST /orders/converter/code` | 轉換 Booking Code → 取得 shareCode |
+| 2 | `GET /bookingCode/{shareCode}/liabilities` | 檢查 Liabilities（既有流程） |
+| 3 | `GET /orders/share/{shareCode}` | 取得 Betslip Data（既有流程） |
+
+---
+
+## 2. Get Provider Country Config ❌ 廢棄
+
+> ⚠️ **此 API 已廢棄** (2025-01-14)
+>
+> BE 新設計不再需要選擇 Provider/Country，此 API 不再使用。
+
+### ~~基本資訊~~
 
 | 項目 | 說明 |
 |------|------|
-| **Method** | `GET` |
-| **Endpoint** | `/orders/converter/config/providerCountries` |
-| **Description** | Get supported countries per provider from config |
-
----
-
-### Request
-
-此 API 無需任何參數。
-
----
-
-### Response
-
-#### Success 200
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `bizCode` | Number | Response code (10000 = Success) |
-| `message` | String | Response message |
-| `data` | Array | Provider country config 列表 |
-
-#### Data Item (Provider Config)
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `provider` | String | Provider code |
-| `name` | String | Provider 顯示名稱 |
-| `countries` | Array\<String\> | 支援的國家代碼列表 |
-
-#### `provider` 可用值
-
-| Value | Description |
-|-------|-------------|
-| `fcom` | Fcom (Football.com) |
-| `sporty` | Sporty |
-| `bet9ja` | Bet9ja |
-| `betking` | BetKing |
-| `msport` | MSport |
-
-#### `countries` 可用值
-
-| Value | Description |
-|-------|-------------|
-| `ALL` | 所有國家（通常用於 Fcom） |
-| `NG` | Nigeria |
-| `KE` | Kenya |
-| `UG` | Uganda |
-| `GH` | Ghana |
-| `ZM` | Zambia |
-| `TZ` | Tanzania |
-
----
-
-### Example
-
-#### Request
-
-```bash
-curl -X GET '/orders/converter/config/providerCountries'
-```
-
-#### Response - Success
-
-```json
-{
-  "bizCode": 10000,
-  "message": "SUCCESS",
-  "data": [
-    {
-      "provider": "fcom",
-      "name": "F.com",
-      "countries": ["ALL"]
-    },
-    {
-      "provider": "betking",
-      "name": "BetKing",
-      "countries": ["NG"]
-    },
-    {
-      "provider": "bet9ja",
-      "name": "Bet9ja",
-      "countries": ["NG"]
-    },
-    {
-      "provider": "msport",
-      "name": "MSport",
-      "countries": ["NG", "GH", "UG", "ZM"]
-    },
-    {
-      "provider": "sporty",
-      "name": "Sporty",
-      "countries": ["NG", "GH"]
-    }
-  ]
-}
-```
+| **Method** | ~~`GET`~~ |
+| **Endpoint** | ~~`/orders/converter/config/providerCountries`~~ |
+| **Status** | ❌ **廢棄** |
 
 ---
 
 ## Error Codes
 
-| bizCode | message | Description |
-|---------|---------|-------------|
-| 10000 | SUCCESS | 請求成功 |
-| 10001 | INVALID_PARAMETER | 參數錯誤 |
-| 10002 | CODE_NOT_FOUND | 找不到指定的 Booking Code |
-| 10003 | PROVIDER_NOT_SUPPORTED | 不支援的 Provider |
-| 10004 | COUNTRY_NOT_SUPPORTED | 不支援的 Country |
-| 10005 | TIMEOUT | 請求逾時 |
-| 10006 | INTERNAL_ERROR | 內部錯誤 |
+| bizCode | message | Description | 狀態 |
+|---------|---------|-------------|------|
+| 10000 | SUCCESS | 請求成功 | ✅ |
+| 10001 | INVALID_PARAMETER | 參數錯誤 | ✅ |
+| 10002 | CODE_NOT_FOUND | 找不到指定的 Booking Code | ✅ |
+| ~~10003~~ | ~~PROVIDER_NOT_SUPPORTED~~ | ~~不支援的 Provider~~ | ❌ 廢棄 |
+| ~~10004~~ | ~~COUNTRY_NOT_SUPPORTED~~ | ~~不支援的 Country~~ | ❌ 廢棄 |
+| 10005 | TIMEOUT | 請求逾時 | ✅ |
+| 10006 | INTERNAL_ERROR | 內部錯誤 | ✅ |
 
-> ⚠️ **Note**: Error codes 需與 BE 確認實際定義
+---
+
+## 廢棄項目清單
+
+| 項目 | 類型 | 原因 |
+|------|------|------|
+| `GET /orders/converter/config/providerCountries` | API | BE 新設計不需要 |
+| `provider` 參數 | Request Field | BE 自動識別 |
+| `country` 參數 | Request Field | BE 自動識別 |
+| `PROVIDER_NOT_SUPPORTED` (10003) | Error Code | 無需驗證 |
+| `COUNTRY_NOT_SUPPORTED` (10004) | Error Code | 無需驗證 |
 
 ---
 
 ## 附錄：圖片來源
 
-| 檔案 | 說明 |
-|------|------|
-| `1_API_ConverterCodeToCode.png` | Convert Code2Code API 文件截圖 |
-| `2_API_GetProviderCountryConfig.png` | Get Provider Country Config API 文件截圖 |
-
-
-
-
-
+| 檔案 | 說明 | 狀態 |
+|------|------|------|
+| `1_API_ConverterCodeToCode.png` | Convert Code2Code API 文件截圖 | ⚠️ 舊版截圖 |
+| `2_API_GetProviderCountryConfig.png` | Get Provider Country Config API 文件截圖 | ❌ 廢棄 |
