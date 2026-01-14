@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Technical Design Document for Code Converter Feature">
+        <meta name="description" content="Technical Design Documentation for Code Converter Feature">
       
       
-        <meta name="author" content="Reed Hsin">
+        <meta name="author" content="iOS Team">
       
       
       
-        <link rel="prev" href="../../../04_Domain%20Model/02_domain_model_uml/">
+        <link rel="prev" href="../../LoadBookingCodeSection/06_ui_only_implementation_plan/">
       
       
         <link rel="next" href="../02_data_interaction_convert_code/">
@@ -23,15 +23,15 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>載入 Provider Config - Code Converter Phase 1 - TDD</title>
+        <title>❌ Load Provider Config (廢棄) - Code Converter - TDD Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="頁首">
-    <a href="../../.." title="Code Converter Phase 1 - TDD" class="md-header__button md-logo" aria-label="Code Converter Phase 1 - TDD" data-md-component="logo">
+    <a href="../../.." title="Code Converter - TDD Documentation" class="md-header__button md-logo" aria-label="Code Converter - TDD Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,13 +106,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Code Converter Phase 1 - TDD
+            Code Converter - TDD Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              載入 Provider Config
+              ❌ Load Provider Config (廢棄)
             
           </span>
         </div>
@@ -125,9 +125,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換到淺色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換至淺色模式"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="切換到淺色模式" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="切換至淺色模式" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -135,9 +135,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換到深色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換至深色模式"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="切換到深色模式" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="切換至深色模式" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -169,16 +169,13 @@
       </label>
       <nav class="md-search__options" aria-label="搜尋">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
-          </a>
-        
         <button type="reset" class="md-search__icon md-icon" title="清除" aria-label="清除" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -261,7 +258,47 @@
           
   
   
-  架構設計
+  整合流程
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../02_Architecture/01_clean_architecture_diagram/" class="md-tabs__link">
+          
+  
+  
+  架構
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../03_Module%20Responsibility/01_module_responsibility/" class="md-tabs__link">
+          
+  
+  
+  模組職責
 
         </a>
       </li>
@@ -308,11 +345,11 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../../LoadBookingCodeSection/00_version_changelog/" class="md-tabs__link">
           
   
   
-  Sequence Diagram
+  Module Sequence
 
         </a>
       </li>
@@ -335,7 +372,7 @@
           
   
   
-  TCA Feature
+  Feature (TCA)
 
         </a>
       </li>
@@ -395,7 +432,7 @@
           
   
   
-  錯誤處理
+  Error Handling
 
         </a>
       </li>
@@ -435,7 +472,7 @@
           
   
   
-  風險與問題
+  風險
 
         </a>
       </li>
@@ -455,7 +492,7 @@
           
   
   
-  Sprint 規劃
+  Sprint Plan
 
         </a>
       </li>
@@ -485,13 +522,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="導覽列" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Code Converter Phase 1 - TDD" class="md-nav__button md-logo" aria-label="Code Converter Phase 1 - TDD" data-md-component="logo">
+    <a href="../../.." title="Code Converter - TDD Documentation" class="md-nav__button md-logo" aria-label="Code Converter - TDD Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Code Converter Phase 1 - TDD
+    Code Converter - TDD Documentation
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -644,7 +681,7 @@
   <span class="md-ellipsis">
     
   
-    架構設計
+    整合流程
   
 
     
@@ -660,7 +697,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    架構設計
+    整合流程
   
 
           </label>
@@ -680,63 +717,7 @@
   <span class="md-ellipsis">
     
   
-    完整流程序列圖
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../02_Architecture/01_clean_architecture_diagram/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Clean Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../03_Module%20Responsibility/01_module_responsibility/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    模組職責
+    Full Integration Flow
   
 
     
@@ -789,7 +770,7 @@
   <span class="md-ellipsis">
     
   
-    Domain Model
+    架構
   
 
     
@@ -802,6 +783,184 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    架構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_Architecture/01_clean_architecture_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clean Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模組職責
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    模組職責
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_Module%20Responsibility/01_module_responsibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Responsibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -899,17 +1058,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    Sequence Diagram
+    Module Sequence
   
 
     
@@ -920,16 +1079,277 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Sequence Diagram
+    Module Sequence
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LoadBookingCodeSection
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LoadBookingCodeSection
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/00_version_changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本變更紀錄
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/01_view_implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    View Implementation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/02_view_design_specs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    View Design Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/03_state_to_figma_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State to Figma Mapping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/04_figma_to_design_system_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Figma to Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/05_ui_replacement_strategy_01_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⭐ UI 替換策略 (01_09)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/06_ui_only_implementation_plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 UI-Only 實作計劃
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
             
               
                 
@@ -956,17 +1376,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    序列圖
+    Data Flow
   
 
     
@@ -977,12 +1397,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    序列圖
+    Data Flow
   
 
           </label>
@@ -1011,7 +1431,7 @@
   <span class="md-ellipsis">
     
   
-    載入 Provider Config
+    ❌ Load Provider Config (廢棄)
   
 
     
@@ -1029,7 +1449,7 @@
   <span class="md-ellipsis">
     
   
-    載入 Provider Config
+    ❌ Load Provider Config (廢棄)
   
 
     
@@ -1058,107 +1478,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        觸發時機
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-user-facing-sequence-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1️⃣ User-Facing Sequence Diagram
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1️⃣ User-Facing Sequence Diagram">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#figma-frame" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Figma Frame 對應表
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Provider 類型對照表
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-codebase-level-sequence-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2️⃣ Codebase-Level Sequence Diagram
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-requestresponse" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Request/Response
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API Request/Response">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#request" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Request
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#response-200-ok" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Response (200 OK)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#state" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        State 變更
+        ⚠️ 此文件已廢棄
       
     </span>
   </a>
@@ -1169,30 +1489,19 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        錯誤處理
+        廢棄內容
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code 實作參考
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Code 實作參考">
+    <nav class="md-nav" aria-label="廢棄內容">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usecase" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UseCase
+        ~~原觸發時機~~
       
     </span>
   </a>
@@ -1200,10 +1509,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
+  <a href="#api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Repository
+        ~~原 API~~
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ~~原流程~~
       
     </span>
   </a>
@@ -1212,6 +1532,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        新文件位置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相關廢棄項目
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1238,7 +1580,7 @@
   <span class="md-ellipsis">
     
   
-    轉換 Code
+    Convert Code
   
 
     
@@ -1266,7 +1608,35 @@
   <span class="md-ellipsis">
     
   
-    Bookie 選擇
+    ❌ Bookie Selection (廢棄)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_tooltip_display_logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🆕 Tooltip Display Logic
   
 
     
@@ -1283,296 +1653,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../LoadBookingCodeSection/01_view_implementation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    View 實作
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../LoadBookingCodeSection/02_view_design_specs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    設計規格
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../LoadBookingCodeSection/03_state_to_figma_mapping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    State ↔ Figma 對照
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../LoadBookingCodeSection/04_figma_to_design_system_mapping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Figma → DesignSystem Mapping
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    TCA Feature
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    TCA Feature
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../06_Feature%20State%20and%20Action%20%28TCA%29/01_feature_state_action/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    State & Action
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    UseCase
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    UseCase
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../07_UseCase%20Input%20and%20Output%20Model/01_usecase_input_output/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Input/Output Model
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1617,7 +1697,7 @@
   <span class="md-ellipsis">
     
   
-    API
+    Feature (TCA)
   
 
     
@@ -1630,6 +1710,184 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Feature (TCA)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06_Feature%20State%20and%20Action%20%28TCA%29/01_feature_state_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State and Action
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UseCase
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UseCase
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07_UseCase%20Input%20and%20Output%20Model/01_usecase_input_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input and Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1653,7 +1911,7 @@
   <span class="md-ellipsis">
     
   
-    API 規格
+    API Spec
   
 
     
@@ -1724,17 +1982,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    錯誤處理
+    Error Handling
   
 
     
@@ -1745,12 +2003,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
   
-    錯誤處理
+    Error Handling
   
 
           </label>
@@ -1813,10 +2071,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
             
   
   
@@ -1834,8 +2092,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1902,17 +2160,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
         
           
-          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    風險與問題
+    風險
   
 
     
@@ -1923,12 +2181,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
             <span class="md-nav__icon md-icon"></span>
             
   
-    風險與問題
+    風險
   
 
           </label>
@@ -1948,7 +2206,7 @@
   <span class="md-ellipsis">
     
   
-    Risks & Questions
+    Risks and Questions
   
 
     
@@ -1991,17 +2249,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_14" >
         
           
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Sprint 規劃
+    Sprint Plan
   
 
     
@@ -2012,12 +2270,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_12">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Sprint 規劃
+    Sprint Plan
   
 
           </label>
@@ -2088,107 +2346,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        觸發時機
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-user-facing-sequence-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1️⃣ User-Facing Sequence Diagram
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1️⃣ User-Facing Sequence Diagram">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#figma-frame" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Figma Frame 對應表
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Provider 類型對照表
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-codebase-level-sequence-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2️⃣ Codebase-Level Sequence Diagram
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-requestresponse" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Request/Response
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API Request/Response">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#request" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Request
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#response-200-ok" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Response (200 OK)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#state" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        State 變更
+        ⚠️ 此文件已廢棄
       
     </span>
   </a>
@@ -2199,30 +2357,19 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        錯誤處理
+        廢棄內容
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code 實作參考
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Code 實作參考">
+    <nav class="md-nav" aria-label="廢棄內容">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usecase" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UseCase
+        ~~原觸發時機~~
       
     </span>
   </a>
@@ -2230,10 +2377,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#repository" class="md-nav__link">
+  <a href="#api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Repository
+        ~~原 API~~
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ~~原流程~~
       
     </span>
   </a>
@@ -2242,6 +2400,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        新文件位置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相關廢棄項目
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2262,366 +2442,91 @@
 
 
 
-<h1 id="module-sequence-diagram-load-provider-config">Module Sequence Diagram: Load Provider Config<a class="headerlink" href="#module-sequence-diagram-load-provider-config" title="Permanent link">&para;</a></h1>
-<h2 id="_1">觸發時機<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>用戶點擊 Bookie Dropdown 時，載入 Provider Config 並顯示 Bookie Selector Sheet。</p>
-<hr />
-<h2 id="1-user-facing-sequence-diagram">1️⃣ User-Facing Sequence Diagram<a class="headerlink" href="#1-user-facing-sequence-diagram" title="Permanent link">&para;</a></h2>
-<p>此圖展示從用戶視角的互動流程，包含 Figma 設計對應。</p>
-<pre class="mermaid"><code>sequenceDiagram
-    actor User
-
-    box rgb(173, 216, 230) App
-        participant Widget as Load Code Widget
-        participant Selector as Bookie Selector Sheet
-    end
-
-    participant BE as Backend
-
-    %% 選擇 Bookie (含 Config API)
-    rect rgb(255, 250, 240)
-        note over User,Selector: 選擇 Bookie 流程
-        note over Selector: 📐 Figma: 1.0.3 開啟選單
-        User-&gt;&gt;Widget: 點擊 Bookie Dropdown
-        Widget-&gt;&gt;BE: GET /orders/converter/config/providerCountries
-
-        alt Config API Success
-            BE--&gt;&gt;Widget: {bizCode: 10000, data: [{provider, name, countries}...]}
-            Widget-&gt;&gt;Selector: 開啟 Bottom Sheet
-
-            alt ALL 國家 Provider (如 Fcom)
-                note over Selector: 📐 Figma: 1.0.3 (node: 26921:96820)
-                User-&gt;&gt;Selector: 選擇 Provider
-                note over Selector: Country 預設為 ALL，無需選擇
-            else 單一國家 Provider (如 Bet9ja)
-                note over Selector: 📐 Figma: 1.0.3 單一國家 Bookie
-                User-&gt;&gt;Selector: 選擇 Provider
-                note over Selector: Country 自動選定，無需選擇
-            else 多國家 Provider (如 MSport)
-                note over Selector: 📐 Figma: 1.0.3 多國家 Bookie
-                User-&gt;&gt;Selector: 選擇 Provider
-                Selector-&gt;&gt;User: 顯示 Country 列表
-                note over Selector: 📐 Figma: 1.0.3 選擇 Country
-                User-&gt;&gt;Selector: 選擇 Country
-            end
-
-            note over Selector: 📐 Figma: 1.0.3 (node: 26921:96820)
-            User-&gt;&gt;Selector: 點擊 Submit 按鈕
-            note over Selector: 📐 Figma: 1.0.3 結果-最終狀態
-            Selector--&gt;&gt;Widget: 關閉 Sheet + 回傳 {provider, country}
-            Widget-&gt;&gt;User: 更新顯示已選 Provider
-
-        else Config API Failure
-            BE--&gt;&gt;Widget: error response
-            Widget-&gt;&gt;User: 顯示 "Config Load Failed" 錯誤 (Stop)
-        end
-    end</code></pre>
-<details>
-<summary>📝 Mermaid 語法</summary>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sequenceDiagram
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    actor User
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    box rgb(173, 216, 230) App
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        participant Widget as Load Code Widget
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        participant Selector as Bookie Selector Sheet
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    end
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    participant BE as Backend
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    %% 選擇 Bookie (含 Config API)
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    rect rgb(255, 250, 240)
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        note over User,Selector: 選擇 Bookie 流程
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        note over Selector: 📐 Figma: 1.0.3 開啟選單
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        User-&gt;&gt;Widget: 點擊 Bookie Dropdown
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        Widget-&gt;&gt;BE: GET /orders/converter/config/providerCountries
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        alt Config API Success
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>            BE--&gt;&gt;Widget: {bizCode: 10000, data: [{provider, name, countries}...]}
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            Widget-&gt;&gt;Selector: 開啟 Bottom Sheet
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            alt ALL 國家 Provider (如 Fcom)
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>                note over Selector: 📐 Figma: 1.0.3 (node: 26921:96820)
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>                User-&gt;&gt;Selector: 選擇 Provider
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>                note over Selector: Country 預設為 ALL，無需選擇
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            else 單一國家 Provider (如 Bet9ja)
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>                note over Selector: 📐 Figma: 1.0.3 單一國家 Bookie
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>                User-&gt;&gt;Selector: 選擇 Provider
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>                note over Selector: Country 自動選定，無需選擇
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>            else 多國家 Provider (如 MSport)
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>                note over Selector: 📐 Figma: 1.0.3 多國家 Bookie
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>                User-&gt;&gt;Selector: 選擇 Provider
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>                Selector-&gt;&gt;User: 顯示 Country 列表
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>                note over Selector: 📐 Figma: 1.0.3 選擇 Country
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>                User-&gt;&gt;Selector: 選擇 Country
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>            end
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>            note over Selector: 📐 Figma: 1.0.3 (node: 26921:96820)
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>            User-&gt;&gt;Selector: 點擊 Submit 按鈕
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>            note over Selector: 📐 Figma: 1.0.3 結果-最終狀態
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>            Selector--&gt;&gt;Widget: 關閉 Sheet + 回傳 {provider, country}
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>            Widget-&gt;&gt;User: 更新顯示已選 Provider
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        else Config API Failure
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>            BE--&gt;&gt;Widget: error response
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>            Widget-&gt;&gt;User: 顯示 &quot;Config Load Failed&quot; 錯誤 (Stop)
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        end
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    end
-</code></pre></div>
-
-</details>
-
-<h3 id="figma-frame">Figma Frame 對應表<a class="headerlink" href="#figma-frame" title="Permanent link">&para;</a></h3>
+<h1 id="module-sequence-diagram-load-provider-config">~~Module Sequence Diagram: Load Provider Config~~ ❌ 廢棄<a class="headerlink" href="#module-sequence-diagram-load-provider-config" title="Permanent link">&para;</a></h1>
+<h2 id="_1">⚠️ 此文件已廢棄<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>流程階段</th>
-<th>Figma Frame</th>
-<th>Node ID</th>
+<th>項目</th>
+<th>說明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>開啟選單</td>
-<td>1.0.3</td>
-<td><code>26753:64425</code></td>
+<td><strong>廢棄原因</strong></td>
+<td>BE 新設計不再需要 Provider Config API</td>
 </tr>
 <tr>
-<td>單一國家 Bookie</td>
-<td>1.0.3</td>
-<td><code>26753:64562</code></td>
+<td><strong>廢棄日期</strong></td>
+<td>2025-01</td>
 </tr>
 <tr>
-<td>多國家 Bookie</td>
-<td>1.0.3</td>
-<td><code>26753:64699</code></td>
-</tr>
-<tr>
-<td>選擇 Country</td>
-<td>1.0.3</td>
-<td><code>26753:64836</code></td>
-</tr>
-<tr>
-<td>Submit 按鈕</td>
-<td>1.0.3</td>
-<td><code>26921:96820</code></td>
-</tr>
-<tr>
-<td>結果 - 最終狀態</td>
-<td>1.0.3</td>
-<td><code>26753:85011</code></td>
+<td><strong>替代方案</strong></td>
+<td>無需替代，直接輸入 Booking Code 即可轉換</td>
 </tr>
 </tbody>
 </table>
-<h3 id="provider">Provider 類型對照表<a class="headerlink" href="#provider" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="_2">廢棄內容<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">~~原觸發時機~~<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>~~用戶點擊 Bookie Dropdown 時，載入 Provider Config 並顯示 Bookie Selector Sheet。~~</p>
+<h3 id="api">~~原 API~~<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>❌ 廢棄: GET /orders/converter/config/providerCountries
+</code></pre></div>
+<h3 id="_4">~~原流程~~<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>❌ 廢棄: 
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>User → 點擊 Bookie Dropdown → 載入 Config → 開啟 Bookie Selector Sheet
+</code></pre></div>
+<hr />
+<h2 id="_5">新文件位置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>Tooltip 相關邏輯請參考：</p>
+<ul>
+<li><a href="../04_tooltip_display_logic/">04_tooltip_display_logic.md</a></li>
+</ul>
+<hr />
+<h2 id="_6">相關廢棄項目<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
+<th>項目</th>
 <th>類型</th>
-<th>範例</th>
-<th><code>countries</code> 值</th>
-<th>Country 選擇行為</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>ALL 國家</strong></td>
-<td>Fcom</td>
-<td><code>["ALL"]</code></td>
-<td>預設為 ALL，無需選擇</td>
+<td><code>LoadProviderConfigUseCase</code></td>
+<td>UseCase</td>
 </tr>
 <tr>
-<td><strong>單一國家</strong></td>
-<td>Bet9ja</td>
-<td><code>["NG"]</code></td>
-<td>自動選定，無需選擇</td>
+<td><code>ProviderConfig</code></td>
+<td>Domain Model</td>
 </tr>
 <tr>
-<td><strong>多國家</strong></td>
-<td>MSport</td>
-<td><code>["NG", "GH", "UG", "ZM"]</code></td>
-<td>需要選擇 Country</td>
+<td><code>ProviderCountryConfigDTO</code></td>
+<td>DTO</td>
+</tr>
+<tr>
+<td><code>BookieSelectorSheet</code></td>
+<td>UI</td>
+</tr>
+<tr>
+<td><code>BookieDropdownView</code></td>
+<td>UI</td>
+</tr>
+<tr>
+<td><code>.bookieDropdownTapped</code></td>
+<td>Action</td>
+</tr>
+<tr>
+<td><code>providerConfigs</code></td>
+<td>State</td>
+</tr>
+<tr>
+<td><code>isBookieSelectorPresented</code></td>
+<td>State</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="2-codebase-level-sequence-diagram">2️⃣ Codebase-Level Sequence Diagram<a class="headerlink" href="#2-codebase-level-sequence-diagram" title="Permanent link">&para;</a></h2>
-<p>此圖展示 Clean Architecture 各層之間的呼叫關係。</p>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadBookingCodeSectionView
-    participant Feature as LoadBookingCodeSection.Feature
-    participant UC as LoadProviderConfigUseCase
-    participant Repo as CodeConverterRepository
-    participant Client as CodeConverterClient
-    participant API as GET /orders/converter/config/providerCountries
-
-    UI-&gt;&gt;Feature: .bookieDropdownTapped
-
-    Feature-&gt;&gt;UC: execute()
-
-    UC-&gt;&gt;Repo: getProviderConfigs()
-
-    Repo-&gt;&gt;Client: fetchProviderCountries()
-
-    Client-&gt;&gt;API: GET request
-    API--&gt;&gt;Client: 200 OK with ProviderCountryDTO[]
-
-    Client--&gt;&gt;Repo: [ProviderCountryDTO]
-
-    Note over Repo: DTO → Domain Model 轉換
-    Repo--&gt;&gt;UC: [ProviderConfig]
-
-    UC--&gt;&gt;Feature: .success([ProviderConfig])
-
-    Feature-&gt;&gt;Feature: state.providerConfigs = configs
-    Feature-&gt;&gt;Feature: state.isBookieSelectorPresented = true
-    Feature-&gt;&gt;Feature: state.availableCountries = configs.flatMap(\.regions)
-
-    Feature--&gt;&gt;UI: State 更新
-
-    UI-&gt;&gt;UI: 顯示 BookieSelectorSheet</code></pre>
-<details>
-<summary>📝 Mermaid 語法</summary>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sequenceDiagram
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    participant UI as LoadBookingCodeSectionView
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    participant Feature as LoadBookingCodeSection.Feature
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    participant UC as LoadProviderConfigUseCase
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    participant Repo as CodeConverterRepository
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    participant Client as CodeConverterClient
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    participant API as GET /orders/converter/config/providerCountries
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    UI-&gt;&gt;Feature: .bookieDropdownTapped
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    Feature-&gt;&gt;UC: execute()
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    UC-&gt;&gt;Repo: getProviderConfigs()
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    Repo-&gt;&gt;Client: fetchProviderCountries()
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    Client-&gt;&gt;API: GET request
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    API--&gt;&gt;Client: 200 OK with ProviderCountryDTO[]
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    Client--&gt;&gt;Repo: [ProviderCountryDTO]
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    Note over Repo: DTO → Domain Model 轉換
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    Repo--&gt;&gt;UC: [ProviderConfig]
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    UC--&gt;&gt;Feature: .success([ProviderConfig])
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    Feature-&gt;&gt;Feature: state.providerConfigs = configs
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    Feature-&gt;&gt;Feature: state.isBookieSelectorPresented = true
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    Feature-&gt;&gt;Feature: state.availableCountries = configs.flatMap(\.regions)
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    Feature--&gt;&gt;UI: State 更新
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    UI-&gt;&gt;UI: 顯示 BookieSelectorSheet
-</code></pre></div>
-
-</details>
-
-<hr />
-<h2 id="api-requestresponse">API Request/Response<a class="headerlink" href="#api-requestresponse" title="Permanent link">&para;</a></h2>
-<h3 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="err">GET /orders/converter/config/providerCountries</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="err">Authorization: Bearer {token}</span>
-</code></pre></div>
-<h3 id="response-200-ok">Response (200 OK)<a class="headerlink" href="#response-200-ok" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;bizCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bet9ja&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bet9ja&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="nt">&quot;countries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;NG&quot;</span><span class="p">]</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">      </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;betway&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Betway&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span><span class="nt">&quot;countries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;GH&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;NG&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;KE&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;TZ&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;UG&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ZM&quot;</span><span class="p">]</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">      </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fcom&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fcom&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">      </span><span class="nt">&quot;countries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ALL&quot;</span><span class="p">]</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">  </span><span class="p">]</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="p">}</span>
-</code></pre></div>
-<hr />
-<h2 id="state">State 變更<a class="headerlink" href="#state" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Before</th>
-<th>After</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>providerConfigs = []</code></td>
-<td><code>providerConfigs = [ProviderConfig(...), ...]</code></td>
-</tr>
-<tr>
-<td><code>isBookieSelectorPresented = false</code></td>
-<td><code>isBookieSelectorPresented = true</code></td>
-</tr>
-<tr>
-<td><code>availableCountries = [.ghana, .nigeria]</code></td>
-<td><code>availableCountries = [所有 API 返回的國家]</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="_2">錯誤處理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadBookingCodeSectionView
-    participant Feature as LoadBookingCodeSection.Feature
-    participant UC as LoadProviderConfigUseCase
-    participant Repo as CodeConverterRepository
-
-    UI-&gt;&gt;Feature: .bookieDropdownTapped
-
-    Feature-&gt;&gt;UC: execute()
-
-    UC-&gt;&gt;Repo: getProviderConfigs()
-
-    Repo--&gt;&gt;UC: throw NetworkError
-
-    UC--&gt;&gt;Feature: .failure(error)
-
-    Feature-&gt;&gt;Feature: state.errorMessage = error.localizedDescription
-
-    Feature--&gt;&gt;UI: State 更新
-
-    Note over UI: 顯示錯誤 Toast（不開啟 Sheet）</code></pre>
-<hr />
-<h2 id="code">Code 實作參考<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
-<h3 id="usecase">UseCase<a class="headerlink" href="#usecase" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">LoadProviderConfigUseCase</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p">@</span><span class="n">Dependency</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">codeConverterRepository</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">repository</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">execute</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="n">ProviderConfig</span><span class="p">],</span><span class="w"> </span><span class="n">Error</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">configs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="n">getProviderConfigs</span><span class="p">()</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="n">configs</span><span class="p">)</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">CodeConverterRepository</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="p">@</span><span class="n">Dependency</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">codeConverterClient</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">client</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">getProviderConfigs</span><span class="p">()</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">ProviderConfig</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">dtos</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">fetchProviderCountries</span><span class="p">()</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">dtos</span><span class="p">.</span><span class="bp">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ProviderConfig</span><span class="p">(</span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="nv">$0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">}</span>
-</code></pre></div>
 
 
 
@@ -2639,8 +2544,6 @@
             </div>
           
           
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -2676,7 +2579,7 @@
       
       
     
-    <a href="https://github.com/HsinChungHan" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+    <a href="https://github.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
@@ -2695,10 +2598,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "\u7f3a\u5c11\u5b57\u8a5e", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "\u7f3a\u5c11\u5b57\u8a5e", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

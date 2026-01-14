@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../01_data_initialization_load_provider_config/">
+        <link rel="prev" href="../03_data_interaction_bookie_selection/">
       
       
-        <link rel="next" href="../03_data_interaction_bookie_selection/">
+        <link rel="next" href="../../../06_Feature%20State%20and%20Action%20%28TCA%29/01_feature_state_action/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Convert Code - Code Converter - TDD Documentation</title>
+        <title>🆕 Tooltip Display Logic - Code Converter - TDD Documentation</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#module-sequence-diagram-convert-booking-code-code2code" class="md-skip">
+        <a href="#module-sequence-diagram-tooltip-display-logic" class="md-skip">
           跳轉到
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Convert Code
+              🆕 Tooltip Display Logic
             
           </span>
         </div>
@@ -1440,37 +1440,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Convert Code
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../02_data_interaction_convert_code/" class="md-nav__link">
         
   
   
@@ -1486,259 +1459,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目錄
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        觸發時機
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#be-2025-01" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⚠️ BE 新設計更新 (2025-01)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-user-facing-sequence-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1️⃣ User-Facing Sequence Diagram
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1️⃣ User-Facing Sequence Diagram">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#figma-frame" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Figma Frame 對應表
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API 調用順序
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-codebase-level-sequence-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2️⃣ Codebase-Level Sequence Diagram
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-requestresponse" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Request/Response
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API Request/Response">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#convert-code-request" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Convert Code Request
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#convert-code-response-200-ok" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Convert Code Response (200 OK)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#partial-failure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Partial Failure 流程
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Error Handling
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Error Handling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-code-not-found-cc002" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Code Not Found (CC002)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-all-selections-failed-cc003" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. All Selections Failed (CC003)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-network-error" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Network Error
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#state" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        State 變更對照
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code 實作參考
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Code 實作參考">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usecase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        UseCase
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#inputoutput-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Input/Output Model
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        廢棄項目
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1776,10 +1496,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../04_tooltip_display_logic/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🆕 Tooltip Display Logic
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1795,6 +1542,209 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        觸發時機
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-user-facing-sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1️⃣ User-Facing Sequence Diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1️⃣ User-Facing Sequence Diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#figma-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Figma Frame 對應表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-codebase-level-sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣ Codebase-Level Sequence Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tooltip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tooltip 行為規格
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tooltip 行為規格">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顯示規則
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        儲存機制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入口點列表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State 變更
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code 實作參考
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code 實作參考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tooltipstorage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TooltipStorage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reducer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reducer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tooltipview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TooltipView
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2504,17 +2454,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#be-2025-01" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⚠️ BE 新設計更新 (2025-01)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#1-user-facing-sequence-diagram" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2531,17 +2470,6 @@
     <span class="md-ellipsis">
       
         Figma Frame 對應表
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API 調用順序
       
     </span>
   </a>
@@ -2565,22 +2493,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-requestresponse" class="md-nav__link">
+  <a href="#tooltip" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API Request/Response
+        Tooltip 行為規格
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="API Request/Response">
+    <nav class="md-nav" aria-label="Tooltip 行為規格">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#convert-code-request" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Convert Code Request
+        顯示規則
       
     </span>
   </a>
@@ -2588,49 +2516,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#convert-code-response-200-ok" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Convert Code Response (200 OK)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#partial-failure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Partial Failure 流程
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Error Handling
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Error Handling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-code-not-found-cc002" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Code Not Found (CC002)
+        儲存機制
       
     </span>
   </a>
@@ -2638,21 +2527,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-all-selections-failed-cc003" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. All Selections Failed (CC003)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-network-error" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Network Error
+        入口點列表
       
     </span>
   </a>
@@ -2668,7 +2546,7 @@
   <a href="#state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        State 變更對照
+        State 變更
       
     </span>
   </a>
@@ -2688,10 +2566,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usecase" class="md-nav__link">
+  <a href="#tooltipstorage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UseCase
+        TooltipStorage
       
     </span>
   </a>
@@ -2699,10 +2577,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#inputoutput-model" class="md-nav__link">
+  <a href="#state_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Input/Output Model
+        State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reducer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reducer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tooltipview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TooltipView
       
     </span>
   </a>
@@ -2711,17 +2622,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        廢棄項目
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2742,117 +2642,42 @@
 
 
 
-<h1 id="module-sequence-diagram-convert-booking-code-code2code">Module Sequence Diagram: Convert Booking Code (Code2Code)<a class="headerlink" href="#module-sequence-diagram-convert-booking-code-code2code" title="Permanent link">&para;</a></h1>
+<h1 id="module-sequence-diagram-tooltip-display-logic">Module Sequence Diagram: Tooltip Display Logic<a class="headerlink" href="#module-sequence-diagram-tooltip-display-logic" title="Permanent link">&para;</a></h1>
 <h2 id="_1">觸發時機<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>用戶輸入 Booking Code 後點擊 Load 按鈕，執行 Code2Code 轉換流程。</p>
-<hr />
-<h2 id="be-2025-01">⚠️ BE 新設計更新 (2025-01)<a class="headerlink" href="#be-2025-01" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>變更項目</th>
-<th>舊版</th>
-<th>新版</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Request 參數</strong></td>
-<td><code>{provider, country, bookingCode}</code></td>
-<td><code>{bookingCode}</code> 只需 bookingCode</td>
-</tr>
-<tr>
-<td><strong>Provider/Country</strong></td>
-<td>需先選擇 Bookie</td>
-<td>❌ 移除 - BE 自動識別</td>
-</tr>
-<tr>
-<td><strong>後續流程</strong></td>
-<td>自行處理</td>
-<td>走原有 load code 流程</td>
-</tr>
-</tbody>
-</table>
+<p>Load Code Widget 出現時，檢查是否需要顯示引導 Tooltip。</p>
 <hr />
 <h2 id="1-user-facing-sequence-diagram">1️⃣ User-Facing Sequence Diagram<a class="headerlink" href="#1-user-facing-sequence-diagram" title="Permanent link">&para;</a></h2>
-<p>此圖展示從用戶視角的完整轉換流程，包含 Figma 設計對應。</p>
+<p>此圖展示從用戶視角的 Tooltip 顯示流程。</p>
 <pre class="mermaid"><code>sequenceDiagram
     actor User
 
     box rgb(173, 216, 230) App
         participant Widget as Load Code Widget
-        participant Betslip as Betslip
+        participant Tooltip as Tooltip View
     end
 
-    participant BE as Backend
+    participant Storage as Device Storage
 
-    %% 輸入 Booking Code
-    rect rgb(240, 255, 240)
-        note over User,Widget: 輸入 Booking Code
-        note over Widget: 📐 Figma: 1.0.1 Focus
-        User-&gt;&gt;Widget: 點擊輸入框
-        Widget-&gt;&gt;User: 顯示 Focus 狀態 (綠色邊框)
-        note over Widget: 📐 Figma: 1.0.2 Typing
-        User-&gt;&gt;Widget: 輸入任意 Booking Code
-        note over Widget: 📐 Figma: 1.0.4 Filled
-        Widget-&gt;&gt;User: 顯示 Filled 狀態 (Load 按鈕啟用)
-    end
+    %% Widget 出現
+    rect rgb(255, 250, 240)
+        note over User,Storage: Tooltip 顯示邏輯
+        note over Widget: 📐 Figma: 1.0.0 Homepage Load Code Tooltip
 
-    %% 轉換流程
-    rect rgb(255, 245, 238)
-        note over User,BE: 轉換流程
-        User-&gt;&gt;Widget: 點擊 Load 按鈕
-        note over Widget: 📐 Figma: 1.0.5 Loading
-        Widget-&gt;&gt;User: 顯示 Loading 狀態
-        note right of Widget: "Conversion may take up to 10 seconds..."
+        Widget-&gt;&gt;Storage: 檢查 Device ID 是否已關閉 Tooltip
 
-        Widget-&gt;&gt;BE: POST /orders/converter/code
-        note over Widget,BE: Request: {bookingCode}
+        alt 首次使用（未關閉過）
+            Storage--&gt;&gt;Widget: shouldShowTooltip = true
+            Widget-&gt;&gt;Tooltip: 顯示 Tooltip
+            note over Tooltip: 💡 "Insert a booking code from any provider"
 
-        alt Convert API Success
-            BE--&gt;&gt;Widget: {bizCode: 10000, data: {shareCode, successCnt, failCnt}}
-            note over Widget: 記錄 failCnt 用於後續 Toast 顯示
+            User-&gt;&gt;Tooltip: 點擊關閉按鈕 (✕)
+            Tooltip-&gt;&gt;Storage: 儲存 Device ID（標記已關閉）
+            Tooltip--&gt;&gt;Widget: 隱藏 Tooltip
+            note over Widget: Tooltip 不再顯示
 
-            %% Check Liabilities [原有流程]
-            note over Widget,BE: Check Liabilities [原有 Load Code 流程]
-            Widget-&gt;&gt;BE: GET /bookingCode/[shareCode]/liabilities
-
-            alt Liabilities API Success
-                BE--&gt;&gt;Widget: {isTrusted: true/false}
-
-                %% Get Betslip Data [原有流程]
-                note over Widget,BE: Get Betslip Data [原有 Load Code 流程]
-                Widget-&gt;&gt;BE: GET /orders/share/[shareCode]
-
-                alt Share API Success
-                    BE--&gt;&gt;Widget: {betslipData: selections}
-
-                    %% 彈出 Betslip 並且顯示轉換結果
-                    note over Widget,Betslip: 彈出 Betslip 並且顯示轉換結果
-                    note over Widget: 📐 Figma: 1.0.8 Success
-                    Widget-&gt;&gt;Betslip: Pop up Betslip (載入 selections)
-                    note over Betslip: 📐 Figma: Betslip Success
-                    Betslip-&gt;&gt;User: 顯示 Betslip
-
-                    opt failCnt &gt; 0 (部分轉換失敗)
-                        note over Betslip: 📐 Figma: Betslip Partial
-                        Betslip-&gt;&gt;User: 顯示 Toast "⚠ X selections failed to convert"
-                    end
-
-                else Share API Failure
-                    BE--&gt;&gt;Widget: error response
-                    Widget-&gt;&gt;User: 按照 Betslip 既有流程顯示錯誤 UI (Stop)
-                end
-
-            else Liabilities API Failure
-                BE--&gt;&gt;Widget: error response
-                Widget-&gt;&gt;User: 按照 Betslip 既有流程顯示錯誤 UI (Stop)
-            end
-
-        else Convert API Error
-            note over Widget: 📐 Figma: 1.0.6 Error
-            BE--&gt;&gt;Widget: error response
-            Widget-&gt;&gt;User: 顯示 Error 狀態 (Stop)
+        else 已關閉過
+            Storage--&gt;&gt;Widget: shouldShowTooltip = false
+            note over Widget: 不顯示 Tooltip
         end
     end</code></pre>
 <details>
@@ -2863,80 +2688,33 @@
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    box rgb(173, 216, 230) App
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        participant Widget as Load Code Widget
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        participant Betslip as Betslip
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        participant Tooltip as Tooltip View
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    end
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    participant BE as Backend
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    participant Storage as Device Storage
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    %% 輸入 Booking Code
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    rect rgb(240, 255, 240)
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        note over User,Widget: 輸入 Booking Code
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        note over Widget: 📐 Figma: 1.0.1 Focus
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        User-&gt;&gt;Widget: 點擊輸入框
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        Widget-&gt;&gt;User: 顯示 Focus 狀態 (綠色邊框)
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        note over Widget: 📐 Figma: 1.0.2 Typing
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        User-&gt;&gt;Widget: 輸入任意 Booking Code
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        note over Widget: 📐 Figma: 1.0.4 Filled
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        Widget-&gt;&gt;User: 顯示 Filled 狀態 (Load 按鈕啟用)
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    end
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    %% Widget 出現
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    rect rgb(255, 250, 240)
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        note over User,Storage: Tooltip 顯示邏輯
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        note over Widget: 📐 Figma: 1.0.0 Homepage Load Code Tooltip
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        Widget-&gt;&gt;Storage: 檢查 Device ID 是否已關閉 Tooltip
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        alt 首次使用（未關閉過）
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>            Storage--&gt;&gt;Widget: shouldShowTooltip = true
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            Widget-&gt;&gt;Tooltip: 顯示 Tooltip
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>            note over Tooltip: 💡 &quot;Insert a booking code from any provider&quot;
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    %% 轉換流程
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    rect rgb(255, 245, 238)
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        note over User,BE: 轉換流程
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        User-&gt;&gt;Widget: 點擊 Load 按鈕
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        note over Widget: 📐 Figma: 1.0.5 Loading
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        Widget-&gt;&gt;User: 顯示 Loading 狀態
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        note right of Widget: &quot;Conversion may take up to 10 seconds...&quot;
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        Widget-&gt;&gt;BE: POST /orders/converter/code
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        note over Widget,BE: Request: {bookingCode}
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        alt Convert API Success
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>            BE--&gt;&gt;Widget: {bizCode: 10000, data: {shareCode, successCnt, failCnt}}
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>            note over Widget: 記錄 failCnt 用於後續 Toast 顯示
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>            %% Check Liabilities [原有流程]
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>            note over Widget,BE: Check Liabilities [原有 Load Code 流程]
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>            Widget-&gt;&gt;BE: GET /bookingCode/[shareCode]/liabilities
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>            alt Liabilities API Success
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>                BE--&gt;&gt;Widget: {isTrusted: true/false}
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>                %% Get Betslip Data [原有流程]
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>                note over Widget,BE: Get Betslip Data [原有 Load Code 流程]
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>                Widget-&gt;&gt;BE: GET /orders/share/[shareCode]
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>                alt Share API Success
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>                    BE--&gt;&gt;Widget: {betslipData: selections}
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>                    %% 彈出 Betslip 並且顯示轉換結果
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>                    note over Widget,Betslip: 彈出 Betslip 並且顯示轉換結果
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>                    note over Widget: 📐 Figma: 1.0.8 Success
-<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>                    Widget-&gt;&gt;Betslip: Pop up Betslip (載入 selections)
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>                    note over Betslip: 📐 Figma: Betslip Success
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>                    Betslip-&gt;&gt;User: 顯示 Betslip
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
-<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>                    opt failCnt &gt; 0 (部分轉換失敗)
-<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>                        note over Betslip: 📐 Figma: Betslip Partial
-<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>                        Betslip-&gt;&gt;User: 顯示 Toast &quot;⚠ X selections failed to convert&quot;
-<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>                    end
-<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
-<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>                else Share API Failure
-<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>                    BE--&gt;&gt;Widget: error response
-<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>                    Widget-&gt;&gt;User: 按照 Betslip 既有流程顯示錯誤 UI (Stop)
-<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>                end
-<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
-<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>            else Liabilities API Failure
-<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>                BE--&gt;&gt;Widget: error response
-<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>                Widget-&gt;&gt;User: 按照 Betslip 既有流程顯示錯誤 UI (Stop)
-<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>            end
-<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
-<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>        else Convert API Error
-<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>            note over Widget: 📐 Figma: 1.0.6 Error
-<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>            BE--&gt;&gt;Widget: error response
-<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>            Widget-&gt;&gt;User: 顯示 Error 狀態 (Stop)
-<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>        end
-<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    end
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>            User-&gt;&gt;Tooltip: 點擊關閉按鈕 (✕)
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>            Tooltip-&gt;&gt;Storage: 儲存 Device ID（標記已關閉）
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            Tooltip--&gt;&gt;Widget: 隱藏 Tooltip
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            note over Widget: Tooltip 不再顯示
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        else 已關閉過
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>            Storage--&gt;&gt;Widget: shouldShowTooltip = false
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>            note over Widget: 不顯示 Tooltip
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        end
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    end
 </code></pre></div>
 
 </details>
@@ -2948,92 +2726,13 @@
 <th>流程階段</th>
 <th>Figma Frame</th>
 <th>Node ID</th>
-<th>Widget 狀態</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>輸入框聚焦</td>
-<td>1.0.1</td>
-<td><code>26769:88868</code></td>
-<td>Focus</td>
-</tr>
-<tr>
-<td>正在輸入</td>
-<td>1.0.2</td>
-<td>-</td>
-<td>Typing</td>
-</tr>
-<tr>
-<td>輸入完成</td>
-<td>1.0.4</td>
-<td><code>26453:93265</code></td>
-<td>Filled</td>
-</tr>
-<tr>
-<td>轉換中</td>
-<td>1.0.5</td>
-<td>-</td>
-<td>Loading</td>
-</tr>
-<tr>
-<td>轉換失敗</td>
-<td>1.0.6</td>
-<td>-</td>
-<td>Error</td>
-</tr>
-<tr>
-<td>轉換成功</td>
-<td>1.0.8</td>
-<td><code>26453:93267</code></td>
-<td>→ Betslip</td>
-</tr>
-<tr>
-<td>Betslip 成功</td>
-<td>-</td>
-<td><code>26428:71768</code></td>
-<td>failCnt == 0</td>
-</tr>
-<tr>
-<td>Betslip 部分成功</td>
-<td>-</td>
-<td><code>26428:71769</code></td>
-<td>failCnt &gt; 0</td>
-</tr>
-</tbody>
-</table>
-<h3 id="api">API 調用順序<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">順序</th>
-<th>API</th>
-<th>Method</th>
-<th>Figma 狀態</th>
-<th>失敗處理</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">1</td>
-<td><code>/orders/converter/code</code></td>
-<td><code>POST</code></td>
-<td>1.0.5 Loading</td>
-<td>1.0.6 Error</td>
-</tr>
-<tr>
-<td style="text-align: center;">2</td>
-<td><code>/bookingCode/[shareCode]/liabilities</code></td>
-<td><code>GET</code></td>
-<td>[原有流程]</td>
-<td>Betslip 既有錯誤 UI</td>
-</tr>
-<tr>
-<td style="text-align: center;">3</td>
-<td><code>/orders/share/[shareCode]</code></td>
-<td><code>GET</code></td>
-<td>[原有流程]</td>
-<td>Betslip 既有錯誤 UI</td>
+<td>Tooltip 顯示</td>
+<td>1.0.0</td>
+<td><code>Homepage Load Code Tooltip</code></td>
 </tr>
 </tbody>
 </table>
@@ -3043,287 +2742,79 @@
 <pre class="mermaid"><code>sequenceDiagram
     participant UI as LoadCodeWidgetView
     participant Feature as LoadCodeWidget.Feature
-    participant UC as ConvertBookingCodeUseCase
-    participant CCRepo as CodeConverterRepository
-    participant CCClient as CodeConverterClient
-    participant ConvertAPI as POST /orders/converter/code
-    participant BSRepo as BetslipRepository (既有)
-    participant BSClient as BetslipClient (既有)
-    participant LiabAPI as GET /bookingCode/{shareCode}/liabilities
+    participant Storage as TooltipStorage
+    participant UserDefaults as UserDefaults
 
-    UI-&gt;&gt;Feature: .loadBookingCode
+    UI-&gt;&gt;Feature: .onAppear
 
-    Note over Feature: 檢查 enableCodeConverter&lt;br/&gt;+ 輸入的 Code
+    Feature-&gt;&gt;Storage: shouldShowTooltip
+    Storage-&gt;&gt;UserDefaults: bool(forKey: "CodeConverter.TooltipDismissed")
 
-    Feature-&gt;&gt;Feature: state.inputState = .loading
-    Feature-&gt;&gt;Feature: state.isLoading = true
+    alt 未關閉過
+        UserDefaults--&gt;&gt;Storage: false
+        Storage--&gt;&gt;Feature: shouldShowTooltip = true
+        Feature-&gt;&gt;Feature: state.isTooltipVisible = true
+        Feature--&gt;&gt;UI: State 更新
+        UI-&gt;&gt;UI: 顯示 TooltipView
 
-    Feature-&gt;&gt;UC: execute(input)
-    Note right of Feature: input = ConvertBookingCodeInput(bookingCode)
+        Note over UI: 用戶點擊關閉
+        UI-&gt;&gt;Feature: .tooltipDismissed
+        Feature-&gt;&gt;Storage: dismissTooltip()
+        Storage-&gt;&gt;UserDefaults: set(true, forKey: "CodeConverter.TooltipDismissed")
+        Feature-&gt;&gt;Feature: state.isTooltipVisible = false
+        Feature--&gt;&gt;UI: State 更新
+        UI-&gt;&gt;UI: 隱藏 TooltipView
 
-    %% Step 1: Code2Code 轉換
-    UC-&gt;&gt;CCRepo: convertCode(bookingCode)
-    CCRepo-&gt;&gt;CCClient: postConvertCode(request)
-    CCClient-&gt;&gt;ConvertAPI: POST request {bookingCode}
-    ConvertAPI--&gt;&gt;CCClient: 200 OK with CodeConverterResponseDTO
-    CCClient--&gt;&gt;CCRepo: CodeConverterResponseDTO
-    Note over CCRepo: DTO → Domain Model
-    CCRepo--&gt;&gt;UC: ConvertResult
-
-    %% Step 2: Liabilities 檢查 (使用 shareCode) - 原有流程
-    UC-&gt;&gt;BSRepo: checkLiabilities(shareCode)
-    BSRepo-&gt;&gt;BSClient: fetchLiabilities(shareCode)
-    BSClient-&gt;&gt;LiabAPI: GET /bookingCode/{shareCode}/liabilities
-    LiabAPI--&gt;&gt;BSClient: 200 OK
-    BSClient--&gt;&gt;BSRepo: LiabilitiesDTO
-    BSRepo--&gt;&gt;UC: LiabilitiesResult
-
-    %% Step 3: 回傳結果
-    UC--&gt;&gt;Feature: .success(ConvertBookingCodeOutput)
-
-    Feature-&gt;&gt;Feature: state.isLoading = false
-    Feature-&gt;&gt;Feature: state.inputState = .filled
-    Feature-&gt;&gt;Feature: state.bookingCode = ""
-    Feature-&gt;&gt;Feature: state.convertResult = output.convertResult
-
-    Feature--&gt;&gt;UI: .presentBetslip(shareCode, failCnt)
-
-    Note over UI: 導航至 Betslip Page</code></pre>
+    else 已關閉過
+        UserDefaults--&gt;&gt;Storage: true
+        Storage--&gt;&gt;Feature: shouldShowTooltip = false
+        Feature-&gt;&gt;Feature: state.isTooltipVisible = false
+        Feature--&gt;&gt;UI: State 更新
+        Note over UI: 不顯示 TooltipView
+    end</code></pre>
 <details>
 <summary>📝 Mermaid 語法</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sequenceDiagram
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    participant UI as LoadCodeWidgetView
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    participant Feature as LoadCodeWidget.Feature
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    participant UC as ConvertBookingCodeUseCase
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    participant CCRepo as CodeConverterRepository
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    participant CCClient as CodeConverterClient
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    participant ConvertAPI as POST /orders/converter/code
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    participant BSRepo as BetslipRepository (既有)
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    participant BSClient as BetslipClient (既有)
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    participant LiabAPI as GET /bookingCode/{shareCode}/liabilities
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    participant Storage as TooltipStorage
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    participant UserDefaults as UserDefaults
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    UI-&gt;&gt;Feature: .onAppear
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    Feature-&gt;&gt;Storage: shouldShowTooltip
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    Storage-&gt;&gt;UserDefaults: bool(forKey: &quot;CodeConverter.TooltipDismissed&quot;)
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    UI-&gt;&gt;Feature: .loadBookingCode
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    Note over Feature: 檢查 enableCodeConverter&lt;br/&gt;+ 輸入的 Code
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    Feature-&gt;&gt;Feature: state.inputState = .loading
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    Feature-&gt;&gt;Feature: state.isLoading = true
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    alt 未關閉過
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        UserDefaults--&gt;&gt;Storage: false
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        Storage--&gt;&gt;Feature: shouldShowTooltip = true
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        Feature-&gt;&gt;Feature: state.isTooltipVisible = true
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        Feature--&gt;&gt;UI: State 更新
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        UI-&gt;&gt;UI: 顯示 TooltipView
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    Feature-&gt;&gt;UC: execute(input)
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    Note right of Feature: input = ConvertBookingCodeInput(bookingCode)
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    %% Step 1: Code2Code 轉換
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    UC-&gt;&gt;CCRepo: convertCode(bookingCode)
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    CCRepo-&gt;&gt;CCClient: postConvertCode(request)
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    CCClient-&gt;&gt;ConvertAPI: POST request {bookingCode}
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    ConvertAPI--&gt;&gt;CCClient: 200 OK with CodeConverterResponseDTO
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    CCClient--&gt;&gt;CCRepo: CodeConverterResponseDTO
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    Note over CCRepo: DTO → Domain Model
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    CCRepo--&gt;&gt;UC: ConvertResult
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    %% Step 2: Liabilities 檢查 (使用 shareCode) - 原有流程
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    UC-&gt;&gt;BSRepo: checkLiabilities(shareCode)
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    BSRepo-&gt;&gt;BSClient: fetchLiabilities(shareCode)
-<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    BSClient-&gt;&gt;LiabAPI: GET /bookingCode/{shareCode}/liabilities
-<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    LiabAPI--&gt;&gt;BSClient: 200 OK
-<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    BSClient--&gt;&gt;BSRepo: LiabilitiesDTO
-<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    BSRepo--&gt;&gt;UC: LiabilitiesResult
-<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
-<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    %% Step 3: 回傳結果
-<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    UC--&gt;&gt;Feature: .success(ConvertBookingCodeOutput)
-<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
-<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    Feature-&gt;&gt;Feature: state.isLoading = false
-<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>    Feature-&gt;&gt;Feature: state.inputState = .filled
-<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    Feature-&gt;&gt;Feature: state.bookingCode = &quot;&quot;
-<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>    Feature-&gt;&gt;Feature: state.convertResult = output.convertResult
-<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
-<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>    Feature--&gt;&gt;UI: .presentBetslip(shareCode, failCnt)
-<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
-<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>    Note over UI: 導航至 Betslip Page
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        Note over UI: 用戶點擊關閉
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        UI-&gt;&gt;Feature: .tooltipDismissed
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        Feature-&gt;&gt;Storage: dismissTooltip()
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        Storage-&gt;&gt;UserDefaults: set(true, forKey: &quot;CodeConverter.TooltipDismissed&quot;)
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        Feature-&gt;&gt;Feature: state.isTooltipVisible = false
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        Feature--&gt;&gt;UI: State 更新
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        UI-&gt;&gt;UI: 隱藏 TooltipView
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    else 已關閉過
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        UserDefaults--&gt;&gt;Storage: true
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        Storage--&gt;&gt;Feature: shouldShowTooltip = false
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        Feature-&gt;&gt;Feature: state.isTooltipVisible = false
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        Feature--&gt;&gt;UI: State 更新
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        Note over UI: 不顯示 TooltipView
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    end
 </code></pre></div>
 
 </details>
 
 <hr />
-<h2 id="api-requestresponse">API Request/Response<a class="headerlink" href="#api-requestresponse" title="Permanent link">&para;</a></h2>
-<h3 id="convert-code-request">Convert Code Request<a class="headerlink" href="#convert-code-request" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="err">POST /orders/converter/code</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="err">Content-Type: application/json</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="err">Authorization: Bearer {token}</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="err">{</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="err">  &quot;bookingCode&quot;: &quot;3RA3FA&quot;</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="err">}</span>
-</code></pre></div>
-<blockquote>
-<p>⚠️ <strong>注意</strong>: <code>provider</code> 和 <code>country</code> 參數已移除，BE 會自動識別。</p>
-</blockquote>
-<h3 id="convert-code-response-200-ok">Convert Code Response (200 OK)<a class="headerlink" href="#convert-code-response-200-ok" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;bizCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">&quot;shareCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FCOM123ABC&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">&quot;successCnt&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">&quot;failCnt&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
-</code></pre></div>
-<hr />
-<h2 id="partial-failure">Partial Failure 流程<a class="headerlink" href="#partial-failure" title="Permanent link">&para;</a></h2>
-<p>當部分 selections 轉換失敗時 (<code>failCnt &gt; 0</code>)：</p>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
-    participant Betslip as BetslipPage
-
-    Feature--&gt;&gt;UI: .presentBetslip(shareCode, failCnt: 2)
-
-    Note over UI: failCnt &gt; 0，顯示 Partial Error Toast
-
-    UI-&gt;&gt;UI: 顯示 "2 selections failed to convert" Toast
-
-    UI-&gt;&gt;Betslip: 導航至 Betslip（僅載入成功的 selections）</code></pre>
-<hr />
-<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
-<h3 id="1-code-not-found-cc002">1. Code Not Found (CC002)<a class="headerlink" href="#1-code-not-found-cc002" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
-    participant UC as ConvertBookingCodeUseCase
-    participant CCRepo as CodeConverterRepository
-
-    UI-&gt;&gt;Feature: .loadBookingCode
-
-    Feature-&gt;&gt;UC: execute(input)
-
-    UC-&gt;&gt;CCRepo: convertCode(bookingCode)
-    CCRepo--&gt;&gt;UC: throw CodeConverterError.codeNotFound
-
-    UC--&gt;&gt;Feature: .failure(CodeConverterError.codeNotFound)
-
-    Feature-&gt;&gt;Feature: state.inputState = .error(message)
-    Feature-&gt;&gt;Feature: state.errorMessage = "We couldn't find this booking code. Please check and try again."
-
-    Feature--&gt;&gt;UI: State 更新
-
-    Note over UI: 顯示紅色邊框 + 錯誤訊息</code></pre>
-<h3 id="2-all-selections-failed-cc003">2. All Selections Failed (CC003)<a class="headerlink" href="#2-all-selections-failed-cc003" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
-
-    Note over Feature: convertResult.isAllFailed == true
-
-    Feature-&gt;&gt;Feature: state.inputState = .error(message)
-    Feature-&gt;&gt;Feature: state.errorMessage = "All selections failed to convert"
-
-    Feature--&gt;&gt;UI: State 更新
-
-    Note over UI: 顯示紅色邊框 + 錯誤訊息&lt;br/&gt;不導航至 Betslip</code></pre>
-<h3 id="3-network-error">3. Network Error<a class="headerlink" href="#3-network-error" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as LoadCodeWidgetView
-    participant Feature as LoadCodeWidget.Feature
-    participant UC as ConvertBookingCodeUseCase
-
-    UI-&gt;&gt;Feature: .loadBookingCode
-
-    Feature-&gt;&gt;UC: execute(input)
-
-    UC--&gt;&gt;Feature: .failure(NetworkError)
-
-    Feature-&gt;&gt;Feature: state.inputState = .error(message)
-    Feature-&gt;&gt;Feature: state.errorMessage = "Network error. Please try again."
-
-    Feature--&gt;&gt;UI: State 更新</code></pre>
-<hr />
-<h2 id="state">State 變更對照<a class="headerlink" href="#state" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>階段</th>
-<th>inputState</th>
-<th>isLoading</th>
-<th>bookingCode</th>
-<th>errorMessage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>點擊 Load</td>
-<td><code>.loading</code></td>
-<td><code>true</code></td>
-<td>"3RA3FA"</td>
-<td><code>nil</code></td>
-</tr>
-<tr>
-<td>成功</td>
-<td><code>.filled</code></td>
-<td><code>false</code></td>
-<td><code>""</code></td>
-<td><code>nil</code></td>
-</tr>
-<tr>
-<td>失敗</td>
-<td><code>.error(msg)</code></td>
-<td><code>false</code></td>
-<td>"3RA3FA"</td>
-<td>"We couldn't..."</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="code">Code 實作參考<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
-<h3 id="usecase">UseCase<a class="headerlink" href="#usecase" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">ConvertBookingCodeUseCase</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p">@</span><span class="n">Dependency</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">codeConverterRepository</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">codeConverterRepo</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="p">@</span><span class="n">Dependency</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">betslipRepository</span><span class="p">)</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">betslipRepo</span><span class="w">  </span><span class="c1">// 既有</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">input</span><span class="p">:</span><span class="w"> </span><span class="n">ConvertBookingCodeInput</span><span class="p">)</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">Result</span><span class="p">&lt;</span><span class="n">ConvertBookingCodeOutput</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">            </span><span class="c1">// Step 1: Code2Code 轉換（只需 bookingCode）</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">convertResult</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">codeConverterRepo</span><span class="p">.</span><span class="n">convertCode</span><span class="p">(</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">                </span><span class="n">bookingCode</span><span class="p">:</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">bookingCode</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">            </span><span class="p">)</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">            </span><span class="c1">// 檢查是否全部失敗</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">            </span><span class="k">guard</span><span class="w"> </span><span class="o">!</span><span class="n">convertResult</span><span class="p">.</span><span class="n">isAllFailed</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="n">CodeConverterError</span><span class="p">.</span><span class="n">allSelectionsFailed</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">            </span><span class="p">}</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">            </span><span class="c1">// Step 2: Liabilities 檢查（使用返回的 shareCode）- 原有流程</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nv">liabilities</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">betslipRepo</span><span class="p">.</span><span class="n">checkLiabilities</span><span class="p">(</span>
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">                </span><span class="n">shareCode</span><span class="p">:</span><span class="w"> </span><span class="n">convertResult</span><span class="p">.</span><span class="n">shareCode</span>
-<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">            </span><span class="p">)</span>
-<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
-<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="n">ConvertBookingCodeOutput</span><span class="p">(</span>
-<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">                </span><span class="n">convertResult</span><span class="p">:</span><span class="w"> </span><span class="n">convertResult</span><span class="p">,</span>
-<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">                </span><span class="n">liabilities</span><span class="p">:</span><span class="w"> </span><span class="n">liabilities</span>
-<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">            </span><span class="p">))</span>
-<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="inputoutput-model">Input/Output Model<a class="headerlink" href="#inputoutput-model" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">ConvertBookingCodeInput</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">bookingCode</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="c1">// 已移除</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="c1">// let provider: String</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="c1">// let country: String</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">ConvertBookingCodeOutput</span><span class="p">:</span><span class="w"> </span><span class="nb">Equatable</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">convertResult</span><span class="p">:</span><span class="w"> </span><span class="n">ConvertResult</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">liabilities</span><span class="p">:</span><span class="w"> </span><span class="n">LiabilitiesResult</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">}</span>
-</code></pre></div>
-<hr />
-<h2 id="_2">廢棄項目<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="tooltip">Tooltip 行為規格<a class="headerlink" href="#tooltip" title="Permanent link">&para;</a></h2>
+<h3 id="_2">顯示規則<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3333,19 +2824,160 @@
 </thead>
 <tbody>
 <tr>
-<td><code>provider</code> 參數</td>
-<td>不再需要傳遞</td>
+<td><strong>顯示條件</strong></td>
+<td>功能上線後首次使用，且未關閉過</td>
 </tr>
 <tr>
-<td><code>country</code> 參數</td>
-<td>不再需要傳遞</td>
+<td><strong>顯示位置</strong></td>
+<td>Load Code Widget 輸入框上方</td>
 </tr>
 <tr>
-<td><code>selectedBookie</code> 檢查</td>
-<td>不再需要</td>
+<td><strong>跨入口同步</strong></td>
+<td>任一入口關閉後，所有入口皆不再顯示</td>
 </tr>
 </tbody>
 </table>
+<h3 id="_3">儲存機制<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>儲存位置</strong></td>
+<td>UserDefaults (App Sandbox)</td>
+</tr>
+<tr>
+<td><strong>Key</strong></td>
+<td><code>CodeConverter.TooltipDismissed</code></td>
+</tr>
+<tr>
+<td><strong>Value</strong></td>
+<td><code>Bool</code> (true = 已關閉)</td>
+</tr>
+<tr>
+<td><strong>跨裝置同步</strong></td>
+<td>不同步（每個 Device 獨立）</td>
+</tr>
+<tr>
+<td><strong>重裝 App</strong></td>
+<td>會重置（首次安裝顯示 Tooltip）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">入口點列表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>入口</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首頁 Widget</td>
+<td>Homepage 的 Load Code Section</td>
+</tr>
+<tr>
+<td>Code Center</td>
+<td>Load Code Tab</td>
+</tr>
+<tr>
+<td>Betslip Empty</td>
+<td>空 Betslip 狀態</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="state">State 變更<a class="headerlink" href="#state" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isTooltipVisible = ?</code></td>
+<td><code>isTooltipVisible = !storage.isDismissed</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="code">Code 實作參考<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
+<h3 id="tooltipstorage">TooltipStorage<a class="headerlink" href="#tooltipstorage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">TooltipStorage</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">userDefaults</span><span class="p">:</span><span class="w"> </span><span class="n">UserDefaults</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">key</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;CodeConverter.TooltipDismissed&quot;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kd">init</span><span class="p">(</span><span class="n">userDefaults</span><span class="p">:</span><span class="w"> </span><span class="n">UserDefaults</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">standard</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="kc">self</span><span class="p">.</span><span class="n">userDefaults</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">userDefaults</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">shouldShowTooltip</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="o">!</span><span class="n">userDefaults</span><span class="p">.</span><span class="n">bool</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">dismissTooltip</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="n">userDefaults</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="n">forKey</span><span class="p">:</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="state_1">State<a class="headerlink" href="#state_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">@</span><span class="n">ObservableState</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">State</span><span class="p">:</span><span class="w"> </span><span class="nb">Equatable</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="c1">// ... 其他屬性</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="c1">/// Tooltip 是否顯示</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">isTooltipVisible</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="action">Action<a class="headerlink" href="#action" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">enum</span><span class="w"> </span><span class="nc">Action</span><span class="p">:</span><span class="w"> </span><span class="nb">Equatable</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="c1">// ... 其他 Action</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="c1">/// Tooltip 被關閉</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">tooltipDismissed</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="reducer">Reducer<a class="headerlink" href="#reducer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">onAppear</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">isTooltipVisible</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">tooltipStorage</span><span class="p">.</span><span class="n">shouldShowTooltip</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="kr">none</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">tooltipDismissed</span><span class="p">:</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="n">tooltipStorage</span><span class="p">.</span><span class="n">dismissTooltip</span><span class="p">()</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">isTooltipVisible</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="kr">none</span>
+</code></pre></div>
+<h3 id="tooltipview">TooltipView<a class="headerlink" href="#tooltipview" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">TooltipView</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">onDismiss</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Void</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="n">HStack</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;💡 Insert a booking code from any provider&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">                </span><span class="p">.</span><span class="n">font</span><span class="p">(.</span><span class="n">caption</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">                </span><span class="p">.</span><span class="n">foregroundColor</span><span class="p">(.</span><span class="n">white</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">            </span><span class="n">Spacer</span><span class="p">()</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">            </span><span class="n">Button</span><span class="p">(</span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="n">onDismiss</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">                </span><span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;xmark&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">                    </span><span class="p">.</span><span class="n">foregroundColor</span><span class="p">(.</span><span class="n">white</span><span class="p">.</span><span class="n">opacity</span><span class="p">(</span><span class="mf">0.7</span><span class="p">))</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">        </span><span class="p">.</span><span class="n">padding</span><span class="p">(.</span><span class="n">horizontal</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">        </span><span class="p">.</span><span class="n">padding</span><span class="p">(.</span><span class="n">vertical</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">        </span><span class="p">.</span><span class="n">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">black</span><span class="p">.</span><span class="n">opacity</span><span class="p">(</span><span class="mf">0.8</span><span class="p">))</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">        </span><span class="p">.</span><span class="n">cornerRadius</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="p">}</span>
+</code></pre></div>
 
 
 

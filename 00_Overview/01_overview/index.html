@@ -6,10 +6,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Technical Design Document for Code Converter Feature">
+        <meta name="description" content="Technical Design Documentation for Code Converter Feature">
       
       
-        <meta name="author" content="Reed Hsin">
+        <meta name="author" content="iOS Team">
       
       
       
@@ -23,15 +23,15 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Overview - Code Converter Phase 1 - TDD</title>
+        <title>Overview - Code Converter - TDD Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="頁首">
-    <a href="../.." title="Code Converter Phase 1 - TDD" class="md-header__button md-logo" aria-label="Code Converter Phase 1 - TDD" data-md-component="logo">
+    <a href="../.." title="Code Converter - TDD Documentation" class="md-header__button md-logo" aria-label="Code Converter - TDD Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +106,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Code Converter Phase 1 - TDD
+            Code Converter - TDD Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -125,9 +125,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換到淺色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換至淺色模式"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="切換到淺色模式" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="切換至淺色模式" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -135,9 +135,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換到深色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換至深色模式"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="切換到深色模式" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="切換至深色模式" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -169,16 +169,13 @@
       </label>
       <nav class="md-search__options" aria-label="搜尋">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
-          </a>
-        
         <button type="reset" class="md-search__icon md-icon" title="清除" aria-label="清除" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -263,7 +260,47 @@
           
   
   
-  架構設計
+  整合流程
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../02_Architecture/01_clean_architecture_diagram/" class="md-tabs__link">
+          
+  
+  
+  架構
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_Module%20Responsibility/01_module_responsibility/" class="md-tabs__link">
+          
+  
+  
+  模組職責
 
         </a>
       </li>
@@ -306,11 +343,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../05_Module%20Sequence%20Diagram/Module%20Sequence%20Diagrams/01_data_initialization_load_provider_config/" class="md-tabs__link">
+        <a href="../../05_Module%20Sequence%20Diagram/LoadBookingCodeSection/00_version_changelog/" class="md-tabs__link">
           
   
   
-  Sequence Diagram
+  Module Sequence
 
         </a>
       </li>
@@ -333,7 +370,7 @@
           
   
   
-  TCA Feature
+  Feature (TCA)
 
         </a>
       </li>
@@ -393,7 +430,7 @@
           
   
   
-  錯誤處理
+  Error Handling
 
         </a>
       </li>
@@ -433,7 +470,7 @@
           
   
   
-  風險與問題
+  風險
 
         </a>
       </li>
@@ -453,7 +490,7 @@
           
   
   
-  Sprint 規劃
+  Sprint Plan
 
         </a>
       </li>
@@ -483,13 +520,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="導覽列" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Code Converter Phase 1 - TDD" class="md-nav__button md-logo" aria-label="Code Converter Phase 1 - TDD" data-md-component="logo">
+    <a href="../.." title="Code Converter - TDD Documentation" class="md-nav__button md-logo" aria-label="Code Converter - TDD Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Code Converter Phase 1 - TDD
+    Code Converter - TDD Documentation
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -656,6 +693,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -667,7 +715,46 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tooltip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tooltip 功能
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tooltip 功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        行為描述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tooltip-ui-figma-100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tooltip UI (參考 Figma 1.0.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         入口點
@@ -678,7 +765,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         復用策略（核心設計決策）
@@ -701,7 +788,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         元件對照表
@@ -728,7 +815,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         技術架構
@@ -767,7 +854,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         實作優先級
@@ -828,7 +915,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         測試策略
@@ -839,10 +926,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         風險與待確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        簡化後的流程圖
       
     </span>
   </a>
@@ -897,7 +995,7 @@
   <span class="md-ellipsis">
     
   
-    架構設計
+    整合流程
   
 
     
@@ -913,7 +1011,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    架構設計
+    整合流程
   
 
           </label>
@@ -933,63 +1031,7 @@
   <span class="md-ellipsis">
     
   
-    完整流程序列圖
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../02_Architecture/01_clean_architecture_diagram/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Clean Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../03_Module%20Responsibility/01_module_responsibility/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    模組職責
+    Full Integration Flow
   
 
     
@@ -1042,7 +1084,7 @@
   <span class="md-ellipsis">
     
   
-    Domain Model
+    架構
   
 
     
@@ -1055,6 +1097,184 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    架構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Architecture/01_clean_architecture_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clean Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模組職責
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    模組職責
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Module%20Responsibility/01_module_responsibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Responsibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1149,17 +1369,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Sequence Diagram
+    Module Sequence
   
 
     
@@ -1170,12 +1390,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Sequence Diagram
+    Module Sequence
   
 
           </label>
@@ -1203,17 +1423,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_1" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_1" >
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    序列圖
+    LoadBookingCodeSection
   
 
     
@@ -1224,12 +1444,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
             <span class="md-nav__icon md-icon"></span>
             
   
-    序列圖
+    LoadBookingCodeSection
   
 
           </label>
@@ -1242,14 +1462,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/Module%20Sequence%20Diagrams/01_data_initialization_load_provider_config/" class="md-nav__link">
+      <a href="../../05_Module%20Sequence%20Diagram/LoadBookingCodeSection/00_version_changelog/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    載入 Provider Config
+    版本變更紀錄
   
 
     
@@ -1258,70 +1478,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/Module%20Sequence%20Diagrams/02_data_interaction_convert_code/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    轉換 Code
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../05_Module%20Sequence%20Diagram/Module%20Sequence%20Diagrams/03_data_interaction_bookie_selection/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bookie 選擇
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1341,7 +1497,7 @@
   <span class="md-ellipsis">
     
   
-    View 實作
+    View Implementation
   
 
     
@@ -1369,7 +1525,7 @@
   <span class="md-ellipsis">
     
   
-    設計規格
+    View Design Specs
   
 
     
@@ -1397,7 +1553,7 @@
   <span class="md-ellipsis">
     
   
-    State ↔ Figma 對照
+    State to Figma Mapping
   
 
     
@@ -1425,7 +1581,63 @@
   <span class="md-ellipsis">
     
   
-    Figma → DesignSystem Mapping
+    Figma to Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Module%20Sequence%20Diagram/LoadBookingCodeSection/05_ui_replacement_strategy_01_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⭐ UI 替換策略 (01_09)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Module%20Sequence%20Diagram/LoadBookingCodeSection/06_ui_only_implementation_plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 UI-Only 實作計劃
   
 
     
@@ -1445,9 +1657,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -1468,17 +1681,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_2" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    TCA Feature
+    Data Flow
   
 
     
@@ -1489,12 +1702,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    TCA Feature
+    Data Flow
   
 
           </label>
@@ -1507,14 +1720,98 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06_Feature%20State%20and%20Action%20%28TCA%29/01_feature_state_action/" class="md-nav__link">
+      <a href="../../05_Module%20Sequence%20Diagram/Module%20Sequence%20Diagrams/01_data_initialization_load_provider_config/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    State & Action
+    ❌ Load Provider Config (廢棄)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Module%20Sequence%20Diagram/Module%20Sequence%20Diagrams/02_data_interaction_convert_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Convert Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Module%20Sequence%20Diagram/Module%20Sequence%20Diagrams/03_data_interaction_bookie_selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ❌ Bookie Selection (廢棄)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Module%20Sequence%20Diagram/Module%20Sequence%20Diagrams/04_tooltip_display_logic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🆕 Tooltip Display Logic
   
 
     
@@ -1531,87 +1828,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    UseCase
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    UseCase
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../07_UseCase%20Input%20and%20Output%20Model/01_usecase_input_output/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Input/Output Model
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1656,7 +1872,7 @@
   <span class="md-ellipsis">
     
   
-    API
+    Feature (TCA)
   
 
     
@@ -1669,6 +1885,184 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Feature (TCA)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Feature%20State%20and%20Action%20%28TCA%29/01_feature_state_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State and Action
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UseCase
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UseCase
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_UseCase%20Input%20and%20Output%20Model/01_usecase_input_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input and Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1692,7 +2086,7 @@
   <span class="md-ellipsis">
     
   
-    API 規格
+    API Spec
   
 
     
@@ -1763,17 +2157,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    錯誤處理
+    Error Handling
   
 
     
@@ -1784,12 +2178,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
   
-    錯誤處理
+    Error Handling
   
 
           </label>
@@ -1852,10 +2246,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
             
   
   
@@ -1873,8 +2267,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1941,17 +2335,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
         
           
-          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    風險與問題
+    風險
   
 
     
@@ -1962,12 +2356,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
             <span class="md-nav__icon md-icon"></span>
             
   
-    風險與問題
+    風險
   
 
           </label>
@@ -1987,7 +2381,7 @@
   <span class="md-ellipsis">
     
   
-    Risks & Questions
+    Risks and Questions
   
 
     
@@ -2030,17 +2424,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_14" >
         
           
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Sprint 規劃
+    Sprint Plan
   
 
     
@@ -2051,12 +2445,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_12">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Sprint 規劃
+    Sprint Plan
   
 
           </label>
@@ -2135,6 +2529,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#be-2025-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ BE 新設計更新 (2025-01)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2146,7 +2551,46 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tooltip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tooltip 功能
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tooltip 功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        行為描述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tooltip-ui-figma-100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tooltip UI (參考 Figma 1.0.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         入口點
@@ -2157,7 +2601,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         復用策略（核心設計決策）
@@ -2180,7 +2624,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         元件對照表
@@ -2207,7 +2651,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         技術架構
@@ -2246,7 +2690,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         實作優先級
@@ -2307,7 +2751,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         測試策略
@@ -2318,10 +2762,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         風險與待確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        簡化後的流程圖
       
     </span>
   </a>
@@ -2349,6 +2804,44 @@
 <h2 id="_1">功能概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><strong>Code Converter</strong> 是一個讓用戶將其他博彩公司（Bookie）的 Booking Code 轉換為 Fcom Booking Code 的功能。Phase 1 實作 <strong>Code2Code</strong> 轉換，支援用戶手動輸入競爭對手的 Booking Code 並轉換。</p>
 <hr />
+<h2 id="be-2025-01">⚠️ BE 新設計更新 (2025-01)<a class="headerlink" href="#be-2025-01" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>變更項目</th>
+<th>舊版</th>
+<th>新版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Provider/Country 選擇</strong></td>
+<td>需先選擇 Bookie (Provider + Country)</td>
+<td>❌ <strong>廢棄</strong> - 不需選擇</td>
+</tr>
+<tr>
+<td><strong>Config API</strong></td>
+<td><code>GET /orders/converter/config/providerCountries</code></td>
+<td>❌ <strong>廢棄</strong></td>
+</tr>
+<tr>
+<td><strong>Convert API</strong></td>
+<td><code>POST /orders/converter/code</code> (含 provider, country)</td>
+<td><code>POST /orders/converter/code</code> (只需 bookingCode)</td>
+</tr>
+<tr>
+<td><strong>Bookie Selector Sheet</strong></td>
+<td>需要實作</td>
+<td>❌ <strong>廢棄</strong> - 不需實作</td>
+</tr>
+<tr>
+<td><strong>流程</strong></td>
+<td>選 Bookie → 輸入 Code → 轉換</td>
+<td>輸入 Code → 轉換 → 走原有 load code 流程</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="_2">核心需求<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -2360,7 +2853,7 @@
 <tbody>
 <tr>
 <td>輸入</td>
-<td>用戶選擇 Bookie + 輸入 Booking Code</td>
+<td>用戶輸入任意 Booking Code（無需選擇 Provider）</td>
 </tr>
 <tr>
 <td>轉換</td>
@@ -2368,16 +2861,58 @@
 </tr>
 <tr>
 <td>輸出</td>
-<td>生成 Fcom ShareCode，導航至 Betslip</td>
+<td>生成 Fcom ShareCode，走原有 load code 流程導航至 Betslip</td>
 </tr>
 <tr>
 <td>錯誤處理</td>
 <td>Code Not Found、Partial Failure、All Failed</td>
 </tr>
+<tr>
+<td><strong>Tooltip</strong></td>
+<td>首次使用時顯示引導 Tooltip</td>
+</tr>
 </tbody>
 </table>
 <hr />
-<h2 id="_3">入口點<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="tooltip">Tooltip 功能<a class="headerlink" href="#tooltip" title="Permanent link">&para;</a></h2>
+<h3 id="_3">行為描述<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>顯示時機</strong></td>
+<td>功能上線後，所有 Load Code Widget 出現處</td>
+</tr>
+<tr>
+<td><strong>顯示位置</strong></td>
+<td>首頁 Widget、Code Center、Betslip Empty 等</td>
+</tr>
+<tr>
+<td><strong>消失條件</strong></td>
+<td>User 第一次在任意地方點擊關閉 Tooltip</td>
+</tr>
+<tr>
+<td><strong>儲存機制</strong></td>
+<td>以 Device ID 判斷是否再次出現</td>
+</tr>
+<tr>
+<td><strong>跨入口同步</strong></td>
+<td>任一入口關閉後，所有入口皆不再顯示</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tooltip-ui-figma-100">Tooltip UI (參考 Figma 1.0.0)<a class="headerlink" href="#tooltip-ui-figma-100" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│ 💡 Insert a booking code from any provider  ✕     │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>└────────────────────────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="_4">入口點<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -2390,32 +2925,34 @@
 <tr>
 <td><strong>首頁 Widget</strong></td>
 <td><code>LoadBookingCodeSectionView</code></td>
-<td><code>LoadBookingCodeSectionView</code>（原地擴展）</td>
+<td><code>LoadCodeWidgetView</code>（原地擴展）</td>
 </tr>
 <tr>
 <td><strong>Code Center Load Code Tab</strong></td>
 <td><code>LoadCodeViewWrapper</code> → <code>LoadCodeViewController</code> (UIKit)</td>
-<td><code>LoadBookingCodeSectionView</code> (SwiftUI)</td>
+<td><code>LoadCodeWidgetView</code> (SwiftUI)</td>
 </tr>
 <tr>
 <td><strong>首頁 Betslip (Empty)</strong></td>
 <td>既有空狀態</td>
-<td>嵌入 <code>LoadBookingCodeSectionView</code></td>
+<td>嵌入 <code>LoadCodeWidgetView</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="_4">復用策略（核心設計決策）<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">復用策略（核心設計決策）<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <h3 id="loadbookingcodesectionview">最大化復用 LoadBookingCodeSectionView<a class="headerlink" href="#loadbookingcodesectionview" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────────┐
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                    復用策略                                          │
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─────────────────────────────────────────────────────────────────────┤
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  ✅ 擴展現有 View/Feature 結構                                       │
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  ✅ 子元件擴展而非重寫                                               │
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  ✅ 漸進式替換 LoadCodeViewController                                │
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└─────────────────────────────────────────────────────────────────────┘
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌─────────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│                    復用策略                                          │
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├─────────────────────────────────────────────────────────────────────┤
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│  ✅ 擴展現有 View/Feature 結構                                       │
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│  ✅ 保持原有 API 向後相容                                            │
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│  ✅ 新功能以 optional flag (enableCodeConverter) 控制                │
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│  ✅ 子元件擴展而非重寫                                               │
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│  ✅ 漸進式替換 LoadCodeViewController                                │
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>└─────────────────────────────────────────────────────────────────────┘
 </code></pre></div>
-<h3 id="_5">元件對照表<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_6">元件對照表<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2427,13 +2964,13 @@
 <tbody>
 <tr>
 <td><code>LoadBookingCodeSectionView</code></td>
-<td><code>LoadBookingCodeSectionView</code></td>
+<td><code>LoadCodeWidgetView</code></td>
 <td>擴展</td>
 </tr>
 <tr>
-<td><code>CountryDropdownView</code></td>
-<td><code>BookieDropdownView</code></td>
-<td>擴展</td>
+<td>~~<code>CountryDropdownView</code>~~</td>
+<td>~~<code>BookieDropdownView</code>~~</td>
+<td>❌ 廢棄 - 不再需要</td>
 </tr>
 <tr>
 <td><code>BookingCodeInputView</code></td>
@@ -2442,12 +2979,17 @@
 </tr>
 <tr>
 <td><code>LoadBookingCodeSection.Feature</code></td>
-<td><code>LoadBookingCodeSection.Feature</code></td>
+<td><code>LoadCodeWidget.Feature</code></td>
 <td>擴展</td>
 </tr>
 <tr>
+<td>~~<code>BookieSelectorSheet</code>~~</td>
 <td>-</td>
-<td><code>BookieSelectorSheet</code></td>
+<td>❌ 廢棄 - 不再需要</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>TooltipView</code></td>
 <td>新增 (SwiftUI)</td>
 </tr>
 </tbody>
@@ -2510,22 +3052,23 @@
 </tbody>
 </table>
 <hr />
-<h2 id="_6">技術架構<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_7">技術架構<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <h3 id="clean-architecture">Clean Architecture 分層<a class="headerlink" href="#clean-architecture" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>UI Layer (SwiftUI)
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    └── LoadBookingCodeSectionView, BookieSelectorSheet
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Domain Layer (TCA)
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    ├── Feature: LoadBookingCodeSection.Feature
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    └── UseCase: LoadProviderConfigUseCase, ConvertBookingCodeUseCase
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Domain Model
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    └── ProviderConfig, SelectedBookie, ConvertResult, WidgetInputState
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Data &amp; Infrastructure Layer
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    ├── Repository: CodeConverterRepository
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    ├── Client: CodeConverterClient
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    └── API: CodeConverterAPI
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>UI Layer (SwiftUI)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    └── LoadCodeWidgetView, TooltipView
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Domain Layer (TCA)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    ├── Feature: LoadCodeWidget.Feature
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    └── UseCase: ConvertBookingCodeUseCase
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>Domain Model
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    └── ConvertResult, WidgetInputState
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>Data &amp; Infrastructure Layer
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    ├── Repository: CodeConverterRepository
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    ├── Client: CodeConverterClient
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    ├── API: CodeConverterAPI
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    └── TooltipStorage (UserDefaults + Device ID)
 </code></pre></div>
 <h3 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h3>
 <table>
@@ -2533,45 +3076,56 @@
 <tr>
 <th>API</th>
 <th>用途</th>
+<th>狀態</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>GET /orders/converter/config/providerCountries</code></td>
-<td>取得 Provider Config</td>
+<td>~~<code>GET /orders/converter/config/providerCountries</code>~~</td>
+<td>~~取得 Provider Config~~</td>
+<td>❌ 廢棄</td>
 </tr>
 <tr>
 <td><code>POST /orders/converter/code</code></td>
-<td>Code2Code 轉換</td>
+<td>Code2Code 轉換 (只需 bookingCode)</td>
+<td>✅ 使用中</td>
 </tr>
 <tr>
 <td><code>GET /bookingCode/{shareCode}/liabilities</code></td>
-<td>Liabilities 檢查（既有）</td>
+<td>Liabilities 檢查（既有流程）</td>
+<td>✅ 使用中</td>
+</tr>
+<tr>
+<td><code>GET /orders/share/{shareCode}</code></td>
+<td>取得 Betslip Data（既有流程）</td>
+<td>✅ 使用中</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="_7">實作優先級<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_8">實作優先級<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <h3 id="phase-11">Phase 1.1: 擴展現有元件<a class="headerlink" href="#phase-11" title="Permanent link">&para;</a></h3>
 <ol>
 <li>擴展 <code>LoadBookingCodeSection.State/Action/Feature</code></li>
 <li>擴展 <code>BookingCodeInputView</code>（增加 6 種狀態）</li>
-<li>擴展 <code>CountryDropdownView</code> → <code>BookieDropdownView</code></li>
-<li>新增 <code>BookieSelectorSheet</code> (SwiftUI)</li>
+<li>~~擴展 <code>CountryDropdownView</code> → <code>BookieDropdownView</code>~~ ❌ 廢棄</li>
+<li>~~新增 <code>BookieSelectorSheet</code> (SwiftUI)~~ ❌ 廢棄</li>
+<li>新增 <code>TooltipView</code> (SwiftUI)</li>
+<li>實作 Tooltip 儲存邏輯 (Device ID)</li>
 </ol>
 <h3 id="phase-12-data-layer">Phase 1.2: 新增 Data Layer<a class="headerlink" href="#phase-12-data-layer" title="Permanent link">&para;</a></h3>
 <ol>
 <li>定義 Domain Models</li>
 <li>實作 <code>CodeConverterRepository</code></li>
 <li>實作 <code>CodeConverterClient</code></li>
-<li>實作 <code>LoadProviderConfigUseCase</code></li>
+<li>~~實作 <code>LoadProviderConfigUseCase</code>~~ ❌ 廢棄</li>
 <li>實作 <code>ConvertBookingCodeUseCase</code></li>
 </ol>
 <h3 id="phase-13">Phase 1.3: 替換入口點<a class="headerlink" href="#phase-13" title="Permanent link">&para;</a></h3>
 <ol>
-<li>首頁 Widget：使用 <code>LoadBookingCodeSectionView</code></li>
-<li>Code Center：用 <code>LoadBookingCodeSectionView</code> 替換 <code>LoadCodeViewWrapper</code></li>
-<li>Betslip Empty：嵌入 <code>LoadBookingCodeSectionView</code></li>
+<li>首頁 Widget：設置 <code>enableCodeConverter = true</code> + Tooltip</li>
+<li>Code Center：用 <code>LoadCodeWidgetView</code> 替換 <code>LoadCodeViewWrapper</code> + Tooltip</li>
+<li>Betslip Empty：嵌入 <code>LoadCodeWidgetView</code> + Tooltip</li>
 </ol>
 <h3 id="phase-14">Phase 1.4: 清理<a class="headerlink" href="#phase-14" title="Permanent link">&para;</a></h3>
 <ol>
@@ -2580,7 +3134,7 @@
 <li>移除 <code>LoadCodeViewWrapper</code></li>
 </ol>
 <hr />
-<h2 id="_8">測試策略<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_9">測試策略<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -2613,7 +3167,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="_9">風險與待確認<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_10">風險與待確認<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -2623,6 +3177,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>原有邏輯相容性</td>
+<td>LoadCodeManager 既有呼叫可能受影響</td>
+<td>保持 enableCodeConverter = false 時完全相容</td>
+</tr>
 <tr>
 <td>API 回傳格式變更</td>
 <td>DTO 映射失敗</td>
@@ -2638,8 +3197,38 @@
 <td>Loading 狀態最長 10 秒</td>
 <td>顯示提示文字提醒用戶</td>
 </tr>
+<tr>
+<td>Tooltip 跨入口同步</td>
+<td>需確保所有入口都讀取同一份 flag</td>
+<td>使用統一的 TooltipStorage + Device ID</td>
+</tr>
 </tbody>
 </table>
+<hr />
+<h2 id="_11">簡化後的流程圖<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>sequenceDiagram
+    actor User
+    participant Widget as Load Code Widget
+    participant BE as Backend
+
+    Note over Widget: 📐 Tooltip 顯示 (首次使用)
+    User-&gt;&gt;Widget: 關閉 Tooltip
+    Note over Widget: 儲存 Device ID，不再顯示
+
+    User-&gt;&gt;Widget: 輸入 Booking Code
+    User-&gt;&gt;Widget: 點擊 Load 按鈕
+    Widget-&gt;&gt;BE: POST /orders/converter/code {bookingCode}
+
+    alt Convert API Success
+        BE--&gt;&gt;Widget: {shareCode, successCnt, failCnt}
+        Note over Widget: 走原有 Load Code 流程
+        Widget-&gt;&gt;BE: GET /bookingCode/{shareCode}/liabilities
+        Widget-&gt;&gt;BE: GET /orders/share/{shareCode}
+        Widget-&gt;&gt;User: Pop up Betslip
+    else Convert API Error
+        BE--&gt;&gt;Widget: error
+        Widget-&gt;&gt;User: 顯示錯誤訊息
+    end</code></pre>
 
 
 
@@ -2657,8 +3246,6 @@
             </div>
           
           
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -2694,7 +3281,7 @@
       
       
     
-    <a href="https://github.com/HsinChungHan" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+    <a href="https://github.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
@@ -2713,10 +3300,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "\u7f3a\u5c11\u5b57\u8a5e", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "\u7f3a\u5c11\u5b57\u8a5e", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

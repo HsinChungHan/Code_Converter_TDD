@@ -6,32 +6,32 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Technical Design Document for Code Converter Feature">
+        <meta name="description" content="Technical Design Documentation for Code Converter Feature">
       
       
-        <meta name="author" content="Reed Hsin">
+        <meta name="author" content="iOS Team">
       
       
       
         <link rel="prev" href="../02_data_interaction_convert_code/">
       
       
-        <link rel="next" href="../../LoadBookingCodeSection/01_view_implementation/">
+        <link rel="next" href="../04_tooltip_display_logic/">
       
       
         
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Bookie 選擇 - Code Converter Phase 1 - TDD</title>
+        <title>❌ Bookie Selection (廢棄) - Code Converter - TDD Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="頁首">
-    <a href="../../.." title="Code Converter Phase 1 - TDD" class="md-header__button md-logo" aria-label="Code Converter Phase 1 - TDD" data-md-component="logo">
+    <a href="../../.." title="Code Converter - TDD Documentation" class="md-header__button md-logo" aria-label="Code Converter - TDD Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,13 +106,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Code Converter Phase 1 - TDD
+            Code Converter - TDD Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Bookie 選擇
+              ❌ Bookie Selection (廢棄)
             
           </span>
         </div>
@@ -125,9 +125,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換到淺色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換至淺色模式"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="切換到淺色模式" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="切換至淺色模式" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -135,9 +135,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換到深色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="lime"  aria-label="切換至深色模式"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="切換到深色模式" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="切換至深色模式" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -169,16 +169,13 @@
       </label>
       <nav class="md-search__options" aria-label="搜尋">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
-          </a>
-        
         <button type="reset" class="md-search__icon md-icon" title="清除" aria-label="清除" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -261,7 +258,47 @@
           
   
   
-  架構設計
+  整合流程
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../02_Architecture/01_clean_architecture_diagram/" class="md-tabs__link">
+          
+  
+  
+  架構
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../03_Module%20Responsibility/01_module_responsibility/" class="md-tabs__link">
+          
+  
+  
+  模組職責
 
         </a>
       </li>
@@ -308,11 +345,11 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../01_data_initialization_load_provider_config/" class="md-tabs__link">
+        <a href="../../LoadBookingCodeSection/00_version_changelog/" class="md-tabs__link">
           
   
   
-  Sequence Diagram
+  Module Sequence
 
         </a>
       </li>
@@ -335,7 +372,7 @@
           
   
   
-  TCA Feature
+  Feature (TCA)
 
         </a>
       </li>
@@ -395,7 +432,7 @@
           
   
   
-  錯誤處理
+  Error Handling
 
         </a>
       </li>
@@ -435,7 +472,7 @@
           
   
   
-  風險與問題
+  風險
 
         </a>
       </li>
@@ -455,7 +492,7 @@
           
   
   
-  Sprint 規劃
+  Sprint Plan
 
         </a>
       </li>
@@ -485,13 +522,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="導覽列" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Code Converter Phase 1 - TDD" class="md-nav__button md-logo" aria-label="Code Converter Phase 1 - TDD" data-md-component="logo">
+    <a href="../../.." title="Code Converter - TDD Documentation" class="md-nav__button md-logo" aria-label="Code Converter - TDD Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Code Converter Phase 1 - TDD
+    Code Converter - TDD Documentation
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -644,7 +681,7 @@
   <span class="md-ellipsis">
     
   
-    架構設計
+    整合流程
   
 
     
@@ -660,7 +697,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    架構設計
+    整合流程
   
 
           </label>
@@ -680,63 +717,7 @@
   <span class="md-ellipsis">
     
   
-    完整流程序列圖
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../02_Architecture/01_clean_architecture_diagram/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Clean Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../03_Module%20Responsibility/01_module_responsibility/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    模組職責
+    Full Integration Flow
   
 
     
@@ -789,7 +770,7 @@
   <span class="md-ellipsis">
     
   
-    Domain Model
+    架構
   
 
     
@@ -802,6 +783,184 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    架構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_Architecture/01_clean_architecture_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clean Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模組職責
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    模組職責
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_Module%20Responsibility/01_module_responsibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Responsibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -899,17 +1058,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    Sequence Diagram
+    Module Sequence
   
 
     
@@ -920,16 +1079,277 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Sequence Diagram
+    Module Sequence
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LoadBookingCodeSection
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LoadBookingCodeSection
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/00_version_changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本變更紀錄
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/01_view_implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    View Implementation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/02_view_design_specs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    View Design Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/03_state_to_figma_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State to Figma Mapping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/04_figma_to_design_system_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Figma to Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/05_ui_replacement_strategy_01_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⭐ UI 替換策略 (01_09)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LoadBookingCodeSection/06_ui_only_implementation_plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 UI-Only 實作計劃
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
             
               
                 
@@ -956,17 +1376,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    序列圖
+    Data Flow
   
 
     
@@ -977,12 +1397,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    序列圖
+    Data Flow
   
 
           </label>
@@ -1002,7 +1422,7 @@
   <span class="md-ellipsis">
     
   
-    載入 Provider Config
+    ❌ Load Provider Config (廢棄)
   
 
     
@@ -1030,7 +1450,7 @@
   <span class="md-ellipsis">
     
   
-    轉換 Code
+    Convert Code
   
 
     
@@ -1067,7 +1487,7 @@
   <span class="md-ellipsis">
     
   
-    Bookie 選擇
+    ❌ Bookie Selection (廢棄)
   
 
     
@@ -1085,7 +1505,7 @@
   <span class="md-ellipsis">
     
   
-    Bookie 選擇
+    ❌ Bookie Selection (廢棄)
   
 
     
@@ -1114,7 +1534,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        情境說明
+        ⚠️ 此文件已廢棄
       
     </span>
   </a>
@@ -1122,122 +1542,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-user-facing-sequence-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1️⃣ User-Facing Sequence Diagram
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1️⃣ User-Facing Sequence Diagram">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#figma-frame" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Figma Frame 對應表
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Provider 類型對照表
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-codebase-level-sequence-diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2️⃣ Codebase-Level Sequence Diagrams
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2️⃣ Codebase-Level Sequence Diagrams">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-bookie" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        情境 1: 單一國家 Bookie
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-bookie" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        情境 2: 多國家 Bookie（兩步選擇）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-all-provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        情境 3: ALL 國家 Provider
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sheet 關閉（無選擇）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#state" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        State 變更對照
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="State 變更對照">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        選擇前
+        廢棄內容
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="廢棄內容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ~~原情境說明~~
       
     </span>
   </a>
@@ -1245,10 +1565,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#betway-ghana" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        選擇後（選擇 Betway Ghana）
+        ~~原流程~~
       
     </span>
   </a>
@@ -1261,22 +1581,44 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        新流程
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相關廢棄項目
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        對開發的影響
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="對開發的影響">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#ui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UI 行為規格
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="UI 行為規格">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bookieselectorsheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BookieSelectorSheet 行為
+        移除的 UI 元件
       
     </span>
   </a>
@@ -1284,38 +1626,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dropdown" class="md-nav__link">
+  <a href="#state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dropdown 顯示規則
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#view" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        View 實作參考
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="View 實作參考">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bookieselectorsheet_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BookieSelectorSheet
+        簡化的 State
       
     </span>
   </a>
@@ -1323,10 +1637,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#reducer" class="md-nav__link">
+  <a href="#action" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reducer
+        簡化的 Action
       
     </span>
   </a>
@@ -1347,14 +1661,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -1362,98 +1668,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../LoadBookingCodeSection/01_view_implementation/" class="md-nav__link">
+      <a href="../04_tooltip_display_logic/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    View 實作
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../LoadBookingCodeSection/02_view_design_specs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    設計規格
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../LoadBookingCodeSection/03_state_to_figma_mapping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    State ↔ Figma 對照
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../LoadBookingCodeSection/04_figma_to_design_system_mapping/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Figma → DesignSystem Mapping
+    🆕 Tooltip Display Logic
   
 
     
@@ -1470,176 +1692,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    TCA Feature
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    TCA Feature
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../06_Feature%20State%20and%20Action%20%28TCA%29/01_feature_state_action/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    State & Action
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    UseCase
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    UseCase
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../07_UseCase%20Input%20and%20Output%20Model/01_usecase_input_output/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Input/Output Model
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1684,7 +1736,7 @@
   <span class="md-ellipsis">
     
   
-    API
+    Feature (TCA)
   
 
     
@@ -1697,6 +1749,184 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Feature (TCA)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06_Feature%20State%20and%20Action%20%28TCA%29/01_feature_state_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State and Action
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UseCase
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UseCase
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07_UseCase%20Input%20and%20Output%20Model/01_usecase_input_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input and Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1720,7 +1950,7 @@
   <span class="md-ellipsis">
     
   
-    API 規格
+    API Spec
   
 
     
@@ -1791,17 +2021,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    錯誤處理
+    Error Handling
   
 
     
@@ -1812,12 +2042,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
   
-    錯誤處理
+    Error Handling
   
 
           </label>
@@ -1880,10 +2110,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
             
   
   
@@ -1901,8 +2131,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1969,17 +2199,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
         
           
-          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    風險與問題
+    風險
   
 
     
@@ -1990,12 +2220,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
             <span class="md-nav__icon md-icon"></span>
             
   
-    風險與問題
+    風險
   
 
           </label>
@@ -2015,7 +2245,7 @@
   <span class="md-ellipsis">
     
   
-    Risks & Questions
+    Risks and Questions
   
 
     
@@ -2058,17 +2288,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_14" >
         
           
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Sprint 規劃
+    Sprint Plan
   
 
     
@@ -2079,12 +2309,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_12">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Sprint 規劃
+    Sprint Plan
   
 
           </label>
@@ -2155,7 +2385,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        情境說明
+        ⚠️ 此文件已廢棄
       
     </span>
   </a>
@@ -2163,122 +2393,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-user-facing-sequence-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1️⃣ User-Facing Sequence Diagram
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1️⃣ User-Facing Sequence Diagram">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#figma-frame" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Figma Frame 對應表
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Provider 類型對照表
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-codebase-level-sequence-diagrams" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2️⃣ Codebase-Level Sequence Diagrams
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2️⃣ Codebase-Level Sequence Diagrams">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-bookie" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        情境 1: 單一國家 Bookie
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-bookie" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        情境 2: 多國家 Bookie（兩步選擇）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-all-provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        情境 3: ALL 國家 Provider
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sheet 關閉（無選擇）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#state" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        State 變更對照
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="State 變更對照">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        選擇前
+        廢棄內容
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="廢棄內容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ~~原情境說明~~
       
     </span>
   </a>
@@ -2286,10 +2416,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#betway-ghana" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        選擇後（選擇 Betway Ghana）
+        ~~原流程~~
       
     </span>
   </a>
@@ -2302,22 +2432,44 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        新流程
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相關廢棄項目
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        對開發的影響
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="對開發的影響">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#ui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UI 行為規格
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="UI 行為規格">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bookieselectorsheet" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BookieSelectorSheet 行為
+        移除的 UI 元件
       
     </span>
   </a>
@@ -2325,38 +2477,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dropdown" class="md-nav__link">
+  <a href="#state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dropdown 顯示規則
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#view" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        View 實作參考
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="View 實作參考">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bookieselectorsheet_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BookieSelectorSheet
+        簡化的 State
       
     </span>
   </a>
@@ -2364,10 +2488,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#reducer" class="md-nav__link">
+  <a href="#action" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reducer
+        簡化的 Action
       
     </span>
   </a>
@@ -2396,526 +2520,148 @@
 
 
 
-<h1 id="module-sequence-diagram-bookie-selection">Module Sequence Diagram: Bookie Selection<a class="headerlink" href="#module-sequence-diagram-bookie-selection" title="Permanent link">&para;</a></h1>
-<h2 id="_1">情境說明<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>當用戶從 Bookie Selector Sheet 選擇 Bookie 時，有三種情況：</p>
+<h1 id="module-sequence-diagram-bookie-selection">~~Module Sequence Diagram: Bookie Selection~~ ❌ 廢棄<a class="headerlink" href="#module-sequence-diagram-bookie-selection" title="Permanent link">&para;</a></h1>
+<h2 id="_1">⚠️ 此文件已廢棄<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>廢棄原因</strong></td>
+<td>BE 新設計不再需要選擇 Provider/Country</td>
+</tr>
+<tr>
+<td><strong>廢棄日期</strong></td>
+<td>2025-01</td>
+</tr>
+<tr>
+<td><strong>替代方案</strong></td>
+<td>無需替代，直接輸入任意 Booking Code 即可轉換</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">廢棄內容<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">~~原情境說明~~<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>~~當用戶從 Bookie Selector Sheet 選擇 Bookie 時，有三種情況：~~</p>
 <ol>
-<li><strong>ALL 國家 Provider</strong>：如 Fcom，Country 預設為 ALL，無需選擇</li>
-<li><strong>單一國家 Bookie</strong>：如 Bet9ja，Country 自動選定，無需選擇</li>
-<li><strong>多國家 Bookie</strong>：如 MSport，需要先選擇 Country</li>
+<li>~~<strong>ALL 國家 Provider</strong>：如 Fcom，Country 預設為 ALL，無需選擇~~</li>
+<li>~~<strong>單一國家 Bookie</strong>：如 Bet9ja，Country 自動選定，無需選擇~~</li>
+<li>~~<strong>多國家 Bookie</strong>：如 MSport，需要先選擇 Country~~</li>
 </ol>
-<hr />
-<h2 id="1-user-facing-sequence-diagram">1️⃣ User-Facing Sequence Diagram<a class="headerlink" href="#1-user-facing-sequence-diagram" title="Permanent link">&para;</a></h2>
-<p>此圖展示從用戶視角的 Bookie 選擇流程，包含 Figma 設計對應。</p>
-<pre class="mermaid"><code>sequenceDiagram
-    actor User
-
-    box rgb(173, 216, 230) App
-        participant Widget as Load Code Widget
-        participant Selector as Bookie Selector Sheet
-    end
-
-    %% Bookie 選擇流程
-    rect rgb(255, 250, 240)
-        note over User,Selector: Bookie Selector Sheet 互動流程
-        note over Selector: 📐 Figma: 1.0.3 開啟選單 (node: 26753:64425)
-
-        alt ALL 國家 Provider (如 Fcom)
-            note over Selector: 📐 Figma: 1.0.3 (node: 26921:96820)
-            User-&gt;&gt;Selector: 選擇 Provider "Fcom"
-            note over Selector: Country 預設為 "ALL"，無需選擇
-            Selector-&gt;&gt;Selector: selectedCountry = "ALL"
-        else 單一國家 Provider (如 Bet9ja)
-            note over Selector: 📐 Figma: 1.0.3 單一國家 Bookie (node: 26753:64562)
-            User-&gt;&gt;Selector: 選擇 Provider "Bet9ja"
-            note over Selector: Country 自動選定 "NG"，無需選擇
-            Selector-&gt;&gt;Selector: selectedCountry = "NG"
-        else 多國家 Provider (如 MSport)
-            note over Selector: 📐 Figma: 1.0.3 多國家 Bookie (node: 26753:64699)
-            User-&gt;&gt;Selector: 選擇 Provider "MSport"
-            Selector-&gt;&gt;User: 展開 Country 列表
-            note over Selector: 📐 Figma: 1.0.3 選擇 Country (node: 26753:64836)
-            User-&gt;&gt;Selector: 選擇 Country "Ghana"
-            Selector-&gt;&gt;Selector: selectedCountry = "GH"
-        end
-
-        note over Selector: 📐 Figma: 1.0.3 Submit 按鈕 (node: 26921:96820)
-        User-&gt;&gt;Selector: 點擊 Submit 按鈕
-
-        note over Selector: 📐 Figma: 1.0.3 結果-最終狀態 (node: 26753:85011)
-        Selector--&gt;&gt;Widget: 關閉 Sheet + 回傳 {provider, country}
-        Widget-&gt;&gt;User: 更新 Dropdown 顯示已選 Provider
-    end</code></pre>
-<details>
-<summary>📝 Mermaid 語法</summary>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sequenceDiagram
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    actor User
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    box rgb(173, 216, 230) App
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        participant Widget as Load Code Widget
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        participant Selector as Bookie Selector Sheet
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    end
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    %% Bookie 選擇流程
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    rect rgb(255, 250, 240)
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        note over User,Selector: Bookie Selector Sheet 互動流程
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        note over Selector: 📐 Figma: 1.0.3 開啟選單 (node: 26753:64425)
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        alt ALL 國家 Provider (如 Fcom)
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>            note over Selector: 📐 Figma: 1.0.3 (node: 26921:96820)
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>            User-&gt;&gt;Selector: 選擇 Provider &quot;Fcom&quot;
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>            note over Selector: Country 預設為 &quot;ALL&quot;，無需選擇
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>            Selector-&gt;&gt;Selector: selectedCountry = &quot;ALL&quot;
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        else 單一國家 Provider (如 Bet9ja)
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            note over Selector: 📐 Figma: 1.0.3 單一國家 Bookie (node: 26753:64562)
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>            User-&gt;&gt;Selector: 選擇 Provider &quot;Bet9ja&quot;
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            note over Selector: Country 自動選定 &quot;NG&quot;，無需選擇
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>            Selector-&gt;&gt;Selector: selectedCountry = &quot;NG&quot;
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        else 多國家 Provider (如 MSport)
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            note over Selector: 📐 Figma: 1.0.3 多國家 Bookie (node: 26753:64699)
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            User-&gt;&gt;Selector: 選擇 Provider &quot;MSport&quot;
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>            Selector-&gt;&gt;User: 展開 Country 列表
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>            note over Selector: 📐 Figma: 1.0.3 選擇 Country (node: 26753:64836)
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>            User-&gt;&gt;Selector: 選擇 Country &quot;Ghana&quot;
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>            Selector-&gt;&gt;Selector: selectedCountry = &quot;GH&quot;
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        end
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        note over Selector: 📐 Figma: 1.0.3 Submit 按鈕 (node: 26921:96820)
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        User-&gt;&gt;Selector: 點擊 Submit 按鈕
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        note over Selector: 📐 Figma: 1.0.3 結果-最終狀態 (node: 26753:85011)
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        Selector--&gt;&gt;Widget: 關閉 Sheet + 回傳 {provider, country}
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        Widget-&gt;&gt;User: 更新 Dropdown 顯示已選 Provider
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    end
+<h3 id="_4">~~原流程~~<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>❌ 廢棄:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>User → 點擊 Bookie Dropdown → 載入 Config → 開啟 Sheet → 選擇 Provider → 選擇 Country → Submit
 </code></pre></div>
-
-</details>
-
-<h3 id="figma-frame">Figma Frame 對應表<a class="headerlink" href="#figma-frame" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="_5">新流程<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>✅ 新流程:
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>User → 輸入任意 Booking Code → 點擊 Load → BE 自動識別 Provider/Country
+</code></pre></div>
+<hr />
+<h2 id="_6">相關廢棄項目<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>流程階段</th>
-<th>Figma Frame</th>
-<th>Node ID</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>開啟選單</td>
-<td>1.0.3</td>
-<td><code>26753:64425</code></td>
-</tr>
-<tr>
-<td>單一國家 Bookie</td>
-<td>1.0.3</td>
-<td><code>26753:64562</code></td>
-</tr>
-<tr>
-<td>多國家 Bookie</td>
-<td>1.0.3</td>
-<td><code>26753:64699</code></td>
-</tr>
-<tr>
-<td>選擇 Country</td>
-<td>1.0.3</td>
-<td><code>26753:64836</code></td>
-</tr>
-<tr>
-<td>Click mask to close</td>
-<td>1.0.3</td>
-<td><code>26753:64973</code></td>
-</tr>
-<tr>
-<td>Submit 按鈕</td>
-<td>1.0.3</td>
-<td><code>26921:96820</code></td>
-</tr>
-<tr>
-<td>結果 - 最終狀態</td>
-<td>1.0.3</td>
-<td><code>26753:85011</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="provider">Provider 類型對照表<a class="headerlink" href="#provider" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
+<th>項目</th>
 <th>類型</th>
-<th>範例</th>
-<th><code>countries</code> 值</th>
-<th>Country 選擇行為</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>ALL 國家</strong></td>
-<td>Fcom</td>
-<td><code>["ALL"]</code></td>
-<td>預設為 ALL，無需選擇</td>
+<td><code>BookieSelectorSheet</code></td>
+<td>UI</td>
 </tr>
 <tr>
-<td><strong>單一國家</strong></td>
-<td>Bet9ja</td>
-<td><code>["NG"]</code></td>
-<td>自動選定，無需選擇</td>
+<td><code>BookieDropdownView</code></td>
+<td>UI</td>
 </tr>
 <tr>
-<td><strong>多國家</strong></td>
-<td>MSport</td>
-<td><code>["NG", "GH", "UG", "ZM"]</code></td>
-<td>需要選擇 Country</td>
+<td><code>CountryListView</code></td>
+<td>UI</td>
+</tr>
+<tr>
+<td><code>.bookieSelected</code></td>
+<td>Action</td>
+</tr>
+<tr>
+<td><code>.bookieSelectorDismissed</code></td>
+<td>Action</td>
+</tr>
+<tr>
+<td><code>.bookieDropdownTapped</code></td>
+<td>Action</td>
+</tr>
+<tr>
+<td><code>selectedBookie</code></td>
+<td>State</td>
+</tr>
+<tr>
+<td><code>isBookieSelectorPresented</code></td>
+<td>State</td>
+</tr>
+<tr>
+<td><code>providerConfigs</code></td>
+<td>State</td>
+</tr>
+<tr>
+<td><code>SelectedBookie</code></td>
+<td>Domain Model</td>
+</tr>
+<tr>
+<td><code>ProviderConfig</code></td>
+<td>Domain Model</td>
+</tr>
+<tr>
+<td><code>GET /orders/converter/config/providerCountries</code></td>
+<td>API</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="2-codebase-level-sequence-diagrams">2️⃣ Codebase-Level Sequence Diagrams<a class="headerlink" href="#2-codebase-level-sequence-diagrams" title="Permanent link">&para;</a></h2>
-<p>此圖展示 Clean Architecture 各層之間的呼叫關係。</p>
-<h3 id="1-bookie">情境 1: 單一國家 Bookie<a class="headerlink" href="#1-bookie" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as BookieSelectorSheet
-    participant Feature as LoadBookingCodeSection.Feature
-    participant State as LoadBookingCodeSection.State
-
-    Note over UI: 用戶點擊 "Bet9ja"&lt;br/&gt;(countries: ["NG"])
-
-    UI-&gt;&gt;Feature: .bookieSelected(provider: "bet9ja", country: .nigeria)
-
-    Feature-&gt;&gt;State: selectedBookie = SelectedBookie(...)
-    Feature-&gt;&gt;State: selectedCountry = .nigeria
-    Feature-&gt;&gt;State: isBookieSelectorPresented = false
-
-    Feature--&gt;&gt;UI: State 更新
-
-    Note over UI: Sheet 自動關閉&lt;br/&gt;Dropdown 顯示 "Bet9ja NG"</code></pre>
-<details>
-<summary>📝 Mermaid 語法</summary>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sequenceDiagram
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    participant UI as BookieSelectorSheet
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    participant Feature as LoadBookingCodeSection.Feature
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    participant State as LoadBookingCodeSection.State
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    Note over UI: 用戶點擊 &quot;Bet9ja&quot;&lt;br/&gt;(countries: [&quot;NG&quot;])
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    UI-&gt;&gt;Feature: .bookieSelected(provider: &quot;bet9ja&quot;, country: .nigeria)
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    Feature-&gt;&gt;State: selectedBookie = SelectedBookie(...)
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    Feature-&gt;&gt;State: selectedCountry = .nigeria
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    Feature-&gt;&gt;State: isBookieSelectorPresented = false
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    Feature--&gt;&gt;UI: State 更新
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    Note over UI: Sheet 自動關閉&lt;br/&gt;Dropdown 顯示 &quot;Bet9ja NG&quot;
-</code></pre></div>
-
-</details>
-
-<hr />
-<h3 id="2-bookie">情境 2: 多國家 Bookie（兩步選擇）<a class="headerlink" href="#2-bookie" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as BookieSelectorSheet
-    participant Feature as LoadBookingCodeSection.Feature
-    participant State as LoadBookingCodeSection.State
-
-    Note over UI: 用戶點擊 "Betway"&lt;br/&gt;(countries: ["GH", "NG", "KE", "TZ", "UG", "ZM"])
-
-    UI-&gt;&gt;UI: 切換至國家列表顯示
-
-    Note over UI: 用戶選擇 "Ghana"
-
-    UI-&gt;&gt;Feature: .bookieSelected(provider: "betway", country: .ghana)
-
-    Feature-&gt;&gt;State: selectedBookie = SelectedBookie(...)
-    Feature-&gt;&gt;State: selectedCountry = .ghana
-    Feature-&gt;&gt;State: isBookieSelectorPresented = false
-
-    Feature--&gt;&gt;UI: State 更新
-
-    Note over UI: Sheet 關閉&lt;br/&gt;Dropdown 顯示 "Betway GH"</code></pre>
-<details>
-<summary>📝 Mermaid 語法</summary>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sequenceDiagram
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    participant UI as BookieSelectorSheet
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    participant Feature as LoadBookingCodeSection.Feature
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    participant State as LoadBookingCodeSection.State
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    Note over UI: 用戶點擊 &quot;Betway&quot;&lt;br/&gt;(countries: [&quot;GH&quot;, &quot;NG&quot;, &quot;KE&quot;, &quot;TZ&quot;, &quot;UG&quot;, &quot;ZM&quot;])
+<h2 id="_7">對開發的影響<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="ui">移除的 UI 元件<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h3>
+<ol>
+<li>❌ <code>BookieSelectorSheet</code> - 不需要實作</li>
+<li>❌ <code>BookieDropdownView</code> - 不需要擴展 <code>CountryDropdownView</code></li>
+<li>❌ Provider/Country 選擇邏輯 - 全部移除</li>
+</ol>
+<h3 id="state">簡化的 State<a class="headerlink" href="#state" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 舊版 State（已廢棄）</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">State</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">selectedBookie</span><span class="p">:</span><span class="w"> </span><span class="n">SelectedBookie</span><span class="p">?</span><span class="w">           </span><span class="c1">// ❌ 移除</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">providerConfigs</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">ProviderConfig</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="w">    </span><span class="c1">// ❌ 移除</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">isBookieSelectorPresented</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="w">   </span><span class="c1">// ❌ 移除</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    UI-&gt;&gt;UI: 切換至國家列表顯示
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    Note over UI: 用戶選擇 &quot;Ghana&quot;
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    UI-&gt;&gt;Feature: .bookieSelected(provider: &quot;betway&quot;, country: .ghana)
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    Feature-&gt;&gt;State: selectedBookie = SelectedBookie(...)
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    Feature-&gt;&gt;State: selectedCountry = .ghana
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    Feature-&gt;&gt;State: isBookieSelectorPresented = false
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    Feature--&gt;&gt;UI: State 更新
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    Note over UI: Sheet 關閉&lt;br/&gt;Dropdown 顯示 &quot;Betway GH&quot;
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1">// 新版 State</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">State</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">bookingCode</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">inputState</span><span class="p">:</span><span class="w"> </span><span class="n">WidgetInputState</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="k">default</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">isTooltipVisible</span><span class="p">:</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="w">  </span><span class="c1">// 新增</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="c1">// ... 其他</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">}</span>
 </code></pre></div>
-
-</details>
-
-<hr />
-<h3 id="3-all-provider">情境 3: ALL 國家 Provider<a class="headerlink" href="#3-all-provider" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as BookieSelectorSheet
-    participant Feature as LoadBookingCodeSection.Feature
-    participant State as LoadBookingCodeSection.State
-
-    Note over UI: 用戶點擊 "Fcom"&lt;br/&gt;(countries: ["ALL"])
-
-    UI-&gt;&gt;Feature: .bookieSelected(provider: "fcom", country: .all)
-
-    Feature-&gt;&gt;State: selectedBookie = SelectedBookie(provider: "fcom", name: "Fcom", country: .all)
-    Feature-&gt;&gt;State: selectedCountry = .all
-    Feature-&gt;&gt;State: isBookieSelectorPresented = false
-
-    Feature--&gt;&gt;UI: State 更新
-
-    Note over UI: Sheet 關閉&lt;br/&gt;Dropdown 顯示 "Fcom"</code></pre>
-<details>
-<summary>📝 Mermaid 語法</summary>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sequenceDiagram
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    participant UI as BookieSelectorSheet
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    participant Feature as LoadBookingCodeSection.Feature
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    participant State as LoadBookingCodeSection.State
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    Note over UI: 用戶點擊 &quot;Fcom&quot;&lt;br/&gt;(countries: [&quot;ALL&quot;])
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    UI-&gt;&gt;Feature: .bookieSelected(provider: &quot;fcom&quot;, country: .all)
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    Feature-&gt;&gt;State: selectedBookie = SelectedBookie(provider: &quot;fcom&quot;, name: &quot;Fcom&quot;, country: .all)
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    Feature-&gt;&gt;State: selectedCountry = .all
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    Feature-&gt;&gt;State: isBookieSelectorPresented = false
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    Feature--&gt;&gt;UI: State 更新
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    Note over UI: Sheet 關閉&lt;br/&gt;Dropdown 顯示 &quot;Fcom&quot;
-</code></pre></div>
-
-</details>
-
-<hr />
-<h3 id="sheet">Sheet 關閉（無選擇）<a class="headerlink" href="#sheet" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>sequenceDiagram
-    participant UI as BookieSelectorSheet
-    participant Feature as LoadBookingCodeSection.Feature
-    participant State as LoadBookingCodeSection.State
-
-    Note over UI: 用戶向下滑動關閉 Sheet
-
-    UI-&gt;&gt;Feature: .bookieSelectorDismissed
-
-    Feature-&gt;&gt;State: isBookieSelectorPresented = false
-
-    Feature--&gt;&gt;UI: State 更新
-
-    Note over UI: Sheet 關閉&lt;br/&gt;保持原本的 selectedBookie</code></pre>
-<details>
-<summary>📝 Mermaid 語法</summary>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sequenceDiagram
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    participant UI as BookieSelectorSheet
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    participant Feature as LoadBookingCodeSection.Feature
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    participant State as LoadBookingCodeSection.State
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    Note over UI: 用戶向下滑動關閉 Sheet
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    UI-&gt;&gt;Feature: .bookieSelectorDismissed
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    Feature-&gt;&gt;State: isBookieSelectorPresented = false
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    Feature--&gt;&gt;UI: State 更新
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    Note over UI: Sheet 關閉&lt;br/&gt;保持原本的 selectedBookie
-</code></pre></div>
-
-</details>
-
-<hr />
-<h2 id="state">State 變更對照<a class="headerlink" href="#state" title="Permanent link">&para;</a></h2>
-<h3 id="_2">選擇前<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">state</span><span class="p">.</span><span class="n">selectedBookie</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SelectedBookie</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bet9ja&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Bet9ja&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">country</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">nigeria</span><span class="p">)</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">state</span><span class="p">.</span><span class="n">selectedCountry</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">nigeria</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">state</span><span class="p">.</span><span class="n">isBookieSelectorPresented</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
-</code></pre></div>
-<h3 id="betway-ghana">選擇後（選擇 Betway Ghana）<a class="headerlink" href="#betway-ghana" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">state</span><span class="p">.</span><span class="n">selectedBookie</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SelectedBookie</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;betway&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Betway&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">country</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">ghana</span><span class="p">)</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">state</span><span class="p">.</span><span class="n">selectedCountry</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">ghana</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">state</span><span class="p">.</span><span class="n">isBookieSelectorPresented</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
-</code></pre></div>
-<hr />
-<h2 id="ui">UI 行為規格<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h2>
-<h3 id="bookieselectorsheet">BookieSelectorSheet 行為<a class="headerlink" href="#bookieselectorsheet" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>條件</th>
-<th>行為</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Bookie 有 ALL 國家</td>
-<td>點擊後直接選定，Country = ALL</td>
-</tr>
-<tr>
-<td>Bookie 只有單一國家</td>
-<td>點擊立即選定該國家</td>
-</tr>
-<tr>
-<td>Bookie 有多個國家</td>
-<td>點擊後展開國家列表</td>
-</tr>
-<tr>
-<td>點擊國家</td>
-<td>選定該國家</td>
-</tr>
-<tr>
-<td>點擊 Submit 按鈕</td>
-<td>關閉 Sheet，回傳選擇結果</td>
-</tr>
-<tr>
-<td>向下滑動</td>
-<td>關閉 Sheet（不改變選擇）</td>
-</tr>
-<tr>
-<td>點擊背景 (mask)</td>
-<td>關閉 Sheet（不改變選擇）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="dropdown">Dropdown 顯示規則<a class="headerlink" href="#dropdown" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>條件</th>
-<th>顯示</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ALL 國家</td>
-<td><code>{Name}</code> (不顯示國家)</td>
-</tr>
-<tr>
-<td>名稱 ≤ 12 字元</td>
-<td><code>{Name} {Country}</code></td>
-</tr>
-<tr>
-<td>名稱 &gt; 12 字元</td>
-<td><code>{Name前12字}… {Country}</code></td>
-</tr>
-</tbody>
-</table>
-<p>範例：
-- <code>Fcom</code> (ALL 國家)
-- <code>Bet9ja NG</code>
-- <code>SportyBet GH</code>
-- <code>Bookie Longna… NG</code></p>
-<hr />
-<h2 id="view">View 實作參考<a class="headerlink" href="#view" title="Permanent link">&para;</a></h2>
-<h3 id="bookieselectorsheet_1">BookieSelectorSheet<a class="headerlink" href="#bookieselectorsheet_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">BookieSelectorSheet</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">providerConfigs</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">ProviderConfig</span><span class="p">]</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">onSelect</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Void</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">onDismiss</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Void</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="p">@</span><span class="n">State</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">expandedProvider</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="p">@</span><span class="n">State</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">selectedProvider</span><span class="p">:</span><span class="w"> </span><span class="n">ProviderConfig</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="p">@</span><span class="n">State</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">selectedCountry</span><span class="p">:</span><span class="w"> </span><span class="n">CountryCode</span><span class="p">?</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">body</span><span class="p">:</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="n">NavigationStack</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">            </span><span class="n">List</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">                </span><span class="n">ForEach</span><span class="p">(</span><span class="n">providerConfigs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="k">in</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">isAllCountry</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">                        </span><span class="c1">// ALL 國家：直接可選</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">                        </span><span class="n">BookieRow</span><span class="p">(</span><span class="n">config</span><span class="p">:</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">isSelected</span><span class="p">:</span><span class="w"> </span><span class="n">selectedProvider</span><span class="p">?.</span><span class="n">provider</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">provider</span><span class="p">)</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">                            </span><span class="p">.</span><span class="n">onTapGesture</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">                                </span><span class="n">selectedProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">config</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">                                </span><span class="n">selectedCountry</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="n">all</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">                            </span><span class="p">}</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">isSingleCountry</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">                        </span><span class="c1">// 單一國家：直接可選</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">                        </span><span class="n">BookieRow</span><span class="p">(</span><span class="n">config</span><span class="p">:</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">isSelected</span><span class="p">:</span><span class="w"> </span><span class="n">selectedProvider</span><span class="p">?.</span><span class="n">provider</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">provider</span><span class="p">)</span>
-<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">                            </span><span class="p">.</span><span class="n">onTapGesture</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">                                </span><span class="n">selectedProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">config</span>
-<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">                                </span><span class="n">selectedCountry</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">countries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">                            </span><span class="p">}</span>
-<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">                        </span><span class="c1">// 多國家：可展開</span>
-<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">                        </span><span class="n">DisclosureGroup</span><span class="p">(</span>
-<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="w">                            </span><span class="n">isExpanded</span><span class="p">:</span><span class="w"> </span><span class="n">Binding</span><span class="p">(</span>
-<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="w">                                </span><span class="kr">get</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">expandedProvider</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">provider</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="w">                                </span><span class="kr">set</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">$0</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">expandedProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">provider</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">                            </span><span class="p">)</span>
-<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">                        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="w">                            </span><span class="n">ForEach</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">countries</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="err">\</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="k">in</span>
-<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="w">                                </span><span class="n">CountryRow</span><span class="p">(</span><span class="n">country</span><span class="p">:</span><span class="w"> </span><span class="n">country</span><span class="p">,</span><span class="w"> </span><span class="n">isSelected</span><span class="p">:</span><span class="w"> </span><span class="n">selectedCountry</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">country</span><span class="p">)</span>
-<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w">                                    </span><span class="p">.</span><span class="n">onTapGesture</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="w">                                        </span><span class="n">selectedProvider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">config</span>
-<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="w">                                        </span><span class="n">selectedCountry</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">country</span>
-<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="w">                                    </span><span class="p">}</span>
-<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a><span class="w">                            </span><span class="p">}</span>
-<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="w">                        </span><span class="p">}</span><span class="w"> </span><span class="n">label</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="w">                            </span><span class="n">BookieRow</span><span class="p">(</span><span class="n">config</span><span class="p">:</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">isSelected</span><span class="p">:</span><span class="w"> </span><span class="n">selectedProvider</span><span class="p">?.</span><span class="n">provider</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">provider</span><span class="p">)</span>
-<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a><span class="w">                        </span><span class="p">}</span>
-<a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a><span class="w">                    </span><span class="p">}</span>
-<a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a><span class="w">                </span><span class="p">}</span>
-<a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a><span class="w">            </span><span class="p">}</span>
-<a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a><span class="w">            </span><span class="p">.</span><span class="n">navigationTitle</span><span class="p">(</span><span class="s">&quot;Select Bookie&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a><span class="w">            </span><span class="p">.</span><span class="n">navigationBarTitleDisplayMode</span><span class="p">(.</span><span class="n">inline</span><span class="p">)</span>
-<a id="__codelineno-7-51" name="__codelineno-7-51" href="#__codelineno-7-51"></a><span class="w">            </span><span class="p">.</span><span class="n">toolbar</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-52" name="__codelineno-7-52" href="#__codelineno-7-52"></a><span class="w">                </span><span class="n">ToolbarItem</span><span class="p">(</span><span class="n">placement</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">cancellationAction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-53" name="__codelineno-7-53" href="#__codelineno-7-53"></a><span class="w">                    </span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Cancel&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="n">onDismiss</span><span class="p">)</span>
-<a id="__codelineno-7-54" name="__codelineno-7-54" href="#__codelineno-7-54"></a><span class="w">                </span><span class="p">}</span>
-<a id="__codelineno-7-55" name="__codelineno-7-55" href="#__codelineno-7-55"></a><span class="w">                </span><span class="n">ToolbarItem</span><span class="p">(</span><span class="n">placement</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">confirmationAction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-56" name="__codelineno-7-56" href="#__codelineno-7-56"></a><span class="w">                    </span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Submit&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-57" name="__codelineno-7-57" href="#__codelineno-7-57"></a><span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">provider</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">selectedProvider</span><span class="p">,</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">country</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">selectedCountry</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-58" name="__codelineno-7-58" href="#__codelineno-7-58"></a><span class="w">                            </span><span class="n">onSelect</span><span class="p">(</span><span class="n">provider</span><span class="p">.</span><span class="n">provider</span><span class="p">,</span><span class="w"> </span><span class="n">country</span><span class="p">)</span>
-<a id="__codelineno-7-59" name="__codelineno-7-59" href="#__codelineno-7-59"></a><span class="w">                        </span><span class="p">}</span>
-<a id="__codelineno-7-60" name="__codelineno-7-60" href="#__codelineno-7-60"></a><span class="w">                    </span><span class="p">}</span>
-<a id="__codelineno-7-61" name="__codelineno-7-61" href="#__codelineno-7-61"></a><span class="w">                    </span><span class="p">.</span><span class="n">disabled</span><span class="p">(</span><span class="n">selectedProvider</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">selectedCountry</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span>
-<a id="__codelineno-7-62" name="__codelineno-7-62" href="#__codelineno-7-62"></a><span class="w">                </span><span class="p">}</span>
-<a id="__codelineno-7-63" name="__codelineno-7-63" href="#__codelineno-7-63"></a><span class="w">            </span><span class="p">}</span>
-<a id="__codelineno-7-64" name="__codelineno-7-64" href="#__codelineno-7-64"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-7-65" name="__codelineno-7-65" href="#__codelineno-7-65"></a><span class="w">        </span><span class="p">.</span><span class="n">presentationDetents</span><span class="p">([.</span><span class="n">medium</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">large</span><span class="p">])</span>
-<a id="__codelineno-7-66" name="__codelineno-7-66" href="#__codelineno-7-66"></a><span class="w">        </span><span class="p">.</span><span class="n">presentationDragIndicator</span><span class="p">(.</span><span class="n">visible</span><span class="p">)</span>
-<a id="__codelineno-7-67" name="__codelineno-7-67" href="#__codelineno-7-67"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-7-68" name="__codelineno-7-68" href="#__codelineno-7-68"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="reducer">Reducer<a class="headerlink" href="#reducer" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">case</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="p">.</span><span class="n">bookieSelected</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span><span class="w"> </span><span class="n">country</span><span class="p">):</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">guard</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">config</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">providerConfigs</span><span class="p">.</span><span class="bp">first</span><span class="p">(</span><span class="k">where</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">$0</span><span class="p">.</span><span class="n">provider</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">provider</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="kr">none</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">selectedBookie</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SelectedBookie</span><span class="p">(</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="n">provider</span><span class="p">:</span><span class="w"> </span><span class="n">provider</span><span class="p">,</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">        </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">        </span><span class="n">country</span><span class="p">:</span><span class="w"> </span><span class="n">country</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="p">)</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">isBookieSelectorPresented</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span><span class="c1">// 同步更新 selectedCountry</span>
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">region</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Region</span><span class="p">.</span><span class="n">from</span><span class="p">(</span><span class="n">countryCode</span><span class="p">:</span><span class="w"> </span><span class="n">country</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">selectedCountry</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">region</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
-<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="kr">none</span>
-<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
-<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">bookieSelectorDismissed</span><span class="p">:</span>
-<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">isBookieSelectorPresented</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span>
-<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">.</span><span class="kr">none</span>
+<h3 id="action">簡化的 Action<a class="headerlink" href="#action" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// 舊版 Action（已廢棄）</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">enum</span><span class="w"> </span><span class="nc">Action</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">bookieDropdownTapped</span><span class="w">      </span><span class="c1">// ❌ 移除</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">bookieSelectorDismissed</span><span class="w">   </span><span class="c1">// ❌ 移除</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">bookieSelected</span><span class="p">(...)</span><span class="w">       </span><span class="c1">// ❌ 移除</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">providerConfigLoaded</span><span class="p">(...)</span><span class="w"> </span><span class="c1">// ❌ 移除</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">// 新版 Action</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="kd">enum</span><span class="w"> </span><span class="nc">Action</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">bookingCodeChanged</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">loadBookingCode</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">tooltipDismissed</span><span class="w">  </span><span class="c1">// 新增</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="c1">// ... 其他</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
 </code></pre></div>
 
 
@@ -2934,8 +2680,6 @@
             </div>
           
           
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -2971,7 +2715,7 @@
       
       
     
-    <a href="https://github.com/HsinChungHan" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+    <a href="https://github.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
@@ -2990,10 +2734,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "\u7f3a\u5c11\u5b57\u8a5e", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "\u7f3a\u5c11\u5b57\u8a5e", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
